@@ -1,0 +1,28 @@
+### InverSeek Ingestion Service - runnable HTTP checks
+### Open in IntelliJ (HTTP Client) or VS Code (REST Client). Expected results are in the comments.
+
+@base = http://localhost:7001
+
+### 1. Health -> 200 {"service":"ingestion","status":"UP",...}
+GET {{base}}/health
+
+### 2. Ingest a new book -> 200 {"status":"downloaded","path":"AAAAMMDD/HH/1342",...}
+POST {{base}}/ingest/1342
+
+### 3. Same book again (idempotent) -> 200 {"status":"available"}, same path, no new download
+POST {{base}}/ingest/1342
+
+### 4. Status of a downloaded book -> 200 {"status":"available"}
+GET {{base}}/ingest/status/1342
+
+### 5. Status of a book never ingested -> 404 {"status":"not_available"}
+GET {{base}}/ingest/status/11
+
+### 6. List downloaded books -> 200 {"count":N,"books":[...]} in ascending order
+GET {{base}}/ingest/list
+
+### 7. Invalid id -> 400 {"error":"invalid_book_id"}
+POST {{base}}/ingest/abc
+
+### 8. Book that does not exist on Gutenberg -> 404 {"error":"book_not_found"}
+POST {{base}}/ingest/9999999
