@@ -18,7 +18,7 @@ public class IndexingService {
         this.store = new DatamartStore(config.databasePath());
     }
 
-    public IndexingResult indexBooks() throws IOException {
+    public synchronized IndexingResult indexBooks() throws IOException {
 
         List<DatalakeReader.BookFiles> books =
                 DatalakeReader.findBooks(config.datalakePath());
@@ -76,4 +76,123 @@ public class IndexingService {
             int indexed,
             int failed
     ) {}
+
+
+    public synchronized boolean indexBook(String bookId) throws Exception {
+
+        List<DatalakeReader.BookFiles> books =
+                DatalakeReader.findBooks(config.datalakePath());
+
+        for (DatalakeReader.BookFiles book : books) {
+
+            if (!book.bookId().equals(bookId)) {
+                continue;
+            }
+
+            HeaderParser.BookMetadata metadata =
+                    HeaderParser.parse(book.headerPath());
+
+            String body = Files.readString(
+                    book.bodyPath(),
+                    StandardCharsets.UTF_8
+            );
+
+            Map<String, Integer> frequencies =
+                    Tokenizer.tokenize(body);
+
+            store.saveBook(
+                    bookId,
+                    metadata,
+                    book.bodyPath(),
+                    frequencies
+            );
+
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    public synchronized RebuildResult rebuildIndex() throws Exception {
+
+        long startTime = System.nanoTime();
+
+        List<DatalakeReader.BookFiles> books =
+                DatalakeReader.findBooks(config.datalakePath());
+
+        List<DatamartStore.BookData> bookData =
+                new java.util.ArrayList<>();
+
+        for (DatalakeReader.BookFiles book : books) {
+
+            HeaderParser.BookMetadata metadata =
+                    HeaderParser.parse(book.headerPath());
+
+            String content = Files.readString(
+                    book.bodyPath(),
+                    StandardCharsets.UTF_8
+            );
+
+            Map<String, Integer> frequencies =
+                    Tokenizer.tokenize(content);
+
+            bookData.add(
+                    new DatamartStore.BookData(
+                            book.bookId(),
+                            metadata,
+                            book.bodyPath(),
+                            frequencies
+                    )
+            );
+        }
+
+        // Atomically replace the complete index
+        store.rebuildIndex(bookData);
+
+        double elapsedSeconds =
+                (System.nanoTime() - startTime) / 1_000_000_000.0;
+
+        return new RebuildResult(
+                bookData.size(),
+                String.format(
+                        java.util.Locale.US,
+                        "%.2fs",
+                        elapsedSeconds
+                )
+        );
+    }
+
+
+    public record RebuildResult(
+            int books_processed,
+            String elapsed_time
+    ) {}
+
+
+    public IndexStatus getStatus() throws SQLException {
+
+        int booksIndexed = store.countBooks();
+
+        String lastUpdate = store.getLastUpdate();
+
+        double indexSizeMB = store.getIndexSizeMB();
+
+        return new IndexStatus(
+                booksIndexed,
+                lastUpdate,
+                indexSizeMB
+        );
+    }
+
+    public record IndexStatus(
+            int books_indexed,
+            String last_update,
+            double index_size_MB
+    ) {}
+
+
 }
+
+

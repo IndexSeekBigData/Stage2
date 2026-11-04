@@ -1,0 +1,158 @@
+
+openapi: 3.0.3
+
+info:
+  title: InverSeek Indexing Service API
+  version: 1.0.0
+  description: >
+    REST API for indexing books stored in the DataLake
+    and managing the inverted index in SQLite.
+
+servers:
+  - url: http://localhost:7002
+
+paths:
+
+  /index:
+    post:
+      summary: Index all available books
+      operationId: indexBooks
+      responses:
+        '200':
+          description: Indexing completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexingResult'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /index/update/{book_id}:
+    post:
+      summary: Index or update a specific book
+      operationId: updateBook
+      parameters:
+        - name: book_id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "1342"
+      responses:
+        '200':
+          description: Book indexed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateResponse'
+        '404':
+          description: Book not found in the DataLake
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /index/rebuild:
+    post:
+      summary: Rebuild the complete inverted index
+      operationId: rebuildIndex
+      responses:
+        '200':
+          description: Index rebuilt successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RebuildResult'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+  /index/status:
+    get:
+      summary: Get indexing statistics
+      operationId: getIndexStatus
+      responses:
+        '200':
+          description: Current index statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexStatus'
+        '500':
+          $ref: '#/components/responses/InternalError'
+
+components:
+
+  schemas:
+
+    IndexingResult:
+      type: object
+      required:
+        - total
+        - indexed
+        - failed
+      properties:
+        total:
+          type: integer
+        indexed:
+          type: integer
+        failed:
+          type: integer
+
+    UpdateResponse:
+      type: object
+      required:
+        - book_id
+        - index
+      properties:
+        book_id:
+          type: string
+        index:
+          type: string
+          example: updated
+
+    RebuildResult:
+      type: object
+      required:
+        - books_processed
+        - elapsed_time
+      properties:
+        books_processed:
+          type: integer
+        elapsed_time:
+          type: string
+          example: "0.35s"
+
+    IndexStatus:
+      type: object
+      required:
+        - books_indexed
+        - index_size_MB
+      properties:
+        books_indexed:
+          type: integer
+        last_update:
+          type: string
+          format: date-time
+          nullable: true
+        index_size_MB:
+          type: number
+          format: double
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+
+  responses:
+
+    InternalError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
