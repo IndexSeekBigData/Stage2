@@ -8,6 +8,10 @@
     <groupId>ulpgc.bd</groupId>
     <artifactId>InverSeek</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>indexing-service</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
