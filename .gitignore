@@ -48,3 +48,8 @@ __pycache__/
 /index_benchmark/
 /sample_data/
 /datamarts/
+
+### Stage 2 ###
+data/
+*.class
+.idea/
