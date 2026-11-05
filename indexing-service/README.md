@@ -39,7 +39,7 @@ A malformed committed marker or missing published file aborts discovery, rather 
 Unpublished header/body files without a marker are ignored.
 
 This reader cannot make concurrent replacement of a published Ingestion file safe. Until the Control Module provides cross-process ownership, run one Ingestion writer for any given book id.
-Indexing mutations are serialized within a service instance; SQLite locks arbitrate separate processes. Replica coordination remains Step 06/07 work.
+Indexing mutations are serialized within a service instance; SQLite locks arbitrate separate processes. Replica coordination is not implemented by this service.
 
 ## SQLite contract for Search
 

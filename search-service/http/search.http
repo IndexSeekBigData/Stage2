@@ -1,0 +1,52 @@
+### InverSeek Search Service - read-only HTTP checks
+@base = http://localhost:7003
+
+### Health -> 200 if a compatible index is published, otherwise 503
+GET {{base}}/health
+
+### One term, default pagination
+GET {{base}}/search?q=love
+
+### Multiple terms use AND
+GET {{base}}/search?q=love%20truth
+
+### Combined filters, uppercase code accepted
+GET {{base}}/search?q=love&author=AUSTEN&language=EN
+
+### Year is original publication year; NULL years do not match
+GET {{base}}/search?q=love&year=1813
+
+### Two pages with total independent of limit
+GET {{base}}/search?q=love&offset=0&limit=1
+
+###
+GET {{base}}/search?q=love&offset=1&limit=1
+
+### Empty page keeps the actual total
+GET {{base}}/search?q=love&offset=2147483647
+
+### Valid no-match query -> 200 with total=0
+GET {{base}}/search?q=nonexistentinverseekterm
+
+### Invalid input -> 400 JSON
+GET {{base}}/search?q=a
+
+###
+GET {{base}}/search?q=love&limit=101
+
+###
+GET {{base}}/search?q=love&year=unknown
+
+### Published metadata
+GET {{base}}/books/1342
+
+### Global facets
+GET {{base}}/search/filters
+
+### Unknown route -> 404 JSON
+GET {{base}}/missing
+
+### CORS preflight
+OPTIONS {{base}}/search
+Origin: http://localhost:5173
+Access-Control-Request-Method: GET
