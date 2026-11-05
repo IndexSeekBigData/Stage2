@@ -1,0 +1,27 @@
+### InverSeek Indexing Service - runnable HTTP checks
+### Book 1342 must have been ingested first. Expected results are in the comments.
+@base = http://localhost:7002
+
+### Health -> 200 {"service":"indexing","status":"UP",...}
+GET {{base}}/health
+
+### Index one ingested book -> 200 {"book_id":1342,"index":"updated"}
+POST {{base}}/index/update/1342
+
+### Same book again (idempotent) -> 200, same postings
+POST {{base}}/index/update/1342
+
+### Book without completion marker -> 404 {"error":"book_not_found"}
+POST {{base}}/index/update/9999999
+
+### Invalid id -> 400 {"error":"invalid_book_id"}
+POST {{base}}/index/update/abc
+
+### Status -> 200 {"books_indexed":N,"last_update":"...","index_size_MB":N,"index_version":N}
+GET {{base}}/index/status
+
+### Reindex every ingested book, one publication per book -> 200 {"total":N,"indexed":N,"failed":0}
+POST {{base}}/index
+
+### Replace the whole index atomically -> 200 {"books_processed":N,"elapsed_time":"..."}
+POST {{base}}/index/rebuild
