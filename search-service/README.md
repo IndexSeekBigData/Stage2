@@ -16,7 +16,7 @@ The root reactor builds and tests Ingestion, Indexing and Search. Each module ca
 Run Search from `search-service/`:
 
 ```powershell
-$env:DATAMARTS_PATH = "C:/Users/herna/IdeaProjects/Stage_2/data/datamarts/datamarts.db"
+$env:DATAMARTS_PATH = "C:/path/to/stage2/data/datamarts/datamarts.db"
 java -jar target/search-service-1.0.0.jar
 ```
 
@@ -96,8 +96,9 @@ Search responses never expose `body_path` or `content_sha`.
   %, _ and ! are escaped and treated as literal characters. SQL values are always bound parameters.
 - `language`: 2 or 3 ASCII letters, lowercased. Stored codes are ISO 639-1 (en/es/fr).
   A syntactically valid code without books returns 200 with zero matches; three-letter aliases are not converted.
-- `year`: exact integer from 1 through 2100. NULL never matches a year.
-  Current Gutenberg ingestion does not provide original publication years, so these may all be NULL.
+- `year`: exact four-digit integer from 1000 through 2100. NULL never matches a year.
+  Gutenberg headers only give the digitisation (release) date, not the original publication year, so `year` stays NULL
+  and this filter only matches books with a reliable year. No data is invented; whether to add another source is a pending team decision.
 - Empty/blank author, language and year are treated as absent.
 - `offset`: integer 0 through 2147483647, default 0.
 - `limit`: integer 1 through configured maximum, default 20 and maximum 100.

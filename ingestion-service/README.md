@@ -11,16 +11,18 @@ mvn clean package
 java -jar target\ingestion-service-1.0.0.jar
 ```
 
-The service listens on port 7001 and stores data in `data\datalake`, relative to the working directory.
+The service listens on port 7001. By default it stores data in `../data/datalake`, relative to the working directory, which is `data\datalake` at the repository root when launched from `ingestion-service/`. Git ignores that folder.
 
 ## Configuration
 
-Defaults are in `src/main/resources/application.properties`. Environment variables override them.
+Defaults are in `src/main/resources/application.properties`. Environment variables override them. When launching from another directory, set the same absolute `DATALAKE_PATH` as Indexing.
+
+The full contract is in `src/main/resources/openapi.yaml`.
 
 | Property | Environment variable | Default | Notes |
 | --- | --- | --- | --- |
 | `ingestion.port` | `INGESTION_PORT` | `7001` | One port per replica |
-| `datalake.path` | `DATALAKE_PATH` | `data/datalake` | Keep it outside OneDrive |
+| `datalake.path` | `DATALAKE_PATH` | `../data/datalake` | Keep it outside OneDrive |
 | `datalake.partition-zone` | `DATALAKE_PARTITION_ZONE` | `UTC` | Time zone of the partition folders |
 | `gutenberg.base-url` | `GUTENBERG_BASE_URL` | `https://www.gutenberg.org` | |
 | `download.timeout-seconds` | `DOWNLOAD_TIMEOUT_SECONDS` | `60` | |
