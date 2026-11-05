@@ -1,0 +1,312 @@
+"openapi": "3.0.3"
+"info":
+  "title": "InverSeek Search Service"
+  "version": "1.0.0"
+  "description": "Stateless Java 17 API over published SQLite schema version 1. Read-only transaction per request. Fixed TF-IDF ranking and numeric book-id tie order."
+"servers": [{"url":"http://localhost:7003"}]
+"paths":
+  "/search":
+    "get":
+      "operationId": "search"
+      "summary": "Required keyword search with AND semantics and optional combined filters"
+      "description": "Terms use the exact Indexing tokenizer: Locale.ROOT lowercase, ASCII letters, length >=3. Duplicate terms are ignored. Score = sum(tf * ln(1 + N/df)); corpus N and df are global, before filters. Sort by score DESC, numeric book_id ASC. Unknown parameters are ignored; known parameters may occur only once. Snapshot consistency applies within a response; subsequent pages may see a new index_version."
+      "parameters": [{"$ref":"#/components/parameters/q"},{"$ref":"#/components/parameters/author"},{"$ref":"#/components/parameters/language"},{"$ref":"#/components/parameters/year"},{"$ref":"#/components/parameters/offset"},{"$ref":"#/components/parameters/limit"}]
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/SearchResponse"
+        "400":
+          "$ref": "#/components/responses/Invalid"
+        "503":
+          "$ref": "#/components/responses/Unavailable"
+  "/books/{book_id}":
+    "get":
+      "operationId": "bookDetail"
+      "summary": "Published book metadata"
+      "parameters": [{"name":"book_id","in":"path","required":true,"schema":{"type":"integer","minimum":1,"maximum":10000000}}]
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/Book"
+        "400":
+          "$ref": "#/components/responses/Invalid"
+        "404":
+          "description": "book_not_found"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/Error"
+        "503":
+          "$ref": "#/components/responses/Unavailable"
+  "/search/filters":
+    "get":
+      "operationId": "searchFilters"
+      "summary": "Global published facets, independent of a query"
+      "description": "Non-NULL languages sorted by code; non-NULL authors limited to top 100 by book count DESC, then name ASC. Year range excludes NULL years."
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/Filters"
+        "503":
+          "$ref": "#/components/responses/Unavailable"
+  "/health":
+    "get":
+      "operationId": "health"
+      "summary": "Readiness of the published index and operational thread count"
+      "description": "Returns 503 while the index is missing, uninitialized, incompatible or unreadable; no database is created."
+      "responses":
+        "200":
+          "description": "Successful response"
+          "content":
+            "application/json":
+              "schema":
+                "$ref": "#/components/schemas/Health"
+        "503":
+          "$ref": "#/components/responses/Unavailable"
+"components":
+  "parameters":
+    "q":
+      "name": "q"
+      "in": "query"
+      "required": true
+      "schema":
+        "type": "string"
+        "minLength": 1
+        "maxLength": 4096
+      "description": "At least one valid indexed term, at most 10 distinct terms. Multiple terms use AND."
+      "example": "love adventure"
+    "author":
+      "name": "author"
+      "in": "query"
+      "allowEmptyValue": true
+      "schema":
+        "type": "string"
+        "maxLength": 100
+      "description": "Literal substring of author_norm, ignoring case and accents. %, _ and ! are literal. Empty/blank means absent."
+      "example": "austen"
+    "language":
+      "name": "language"
+      "in": "query"
+      "allowEmptyValue": true
+      "schema":
+        "type": "string"
+        "pattern": "^[a-zA-Z]{2,3}$"
+      "description": "Exact code, lowercased. Data uses ISO 639-1; an unknown syntactically valid code (including a three-letter code) returns zero matches. Empty/blank means absent."
+      "example": "en"
+    "year":
+      "name": "year"
+      "in": "query"
+      "allowEmptyValue": true
+      "schema":
+        "type": "integer"
+        "minimum": 1
+        "maximum": 2100
+      "description": "Original publication year, exact match. NULL years never match. Empty/blank means absent."
+    "offset":
+      "name": "offset"
+      "in": "query"
+      "schema":
+        "type": "integer"
+        "minimum": 0
+        "maximum": 2147483647
+        "default": 0
+      "description": "Offset beyond total returns an empty page with the correct total."
+    "limit":
+      "name": "limit"
+      "in": "query"
+      "schema":
+        "type": "integer"
+        "minimum": 1
+        "maximum": 100
+        "default": 20
+      "description": "Server configuration may lower default and maximum."
+  "responses":
+    "Invalid":
+      "description": "invalid_query, invalid_parameter or invalid_book_id"
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "#/components/schemas/Error"
+    "Unavailable":
+      "description": "index_not_ready (missing file/state), index_incompatible (schema), or index_unavailable (read/lock/storage failure)"
+      "content":
+        "application/json":
+          "schema":
+            "$ref": "#/components/schemas/Error"
+  "schemas":
+    "SearchResponse":
+      "type": "object"
+      "required": ["query","filters","total","offset","limit","index_version","results"]
+      "properties":
+        "query":
+          "type": "string"
+        "filters":
+          "type": "object"
+          "properties":
+            "author":
+              "type": "string"
+            "language":
+              "type": "string"
+            "year":
+              "type": "integer"
+        "total":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "offset":
+          "type": "integer"
+          "minimum": 0
+        "limit":
+          "type": "integer"
+          "minimum": 1
+          "maximum": 100
+        "index_version":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "results":
+          "type": "array"
+          "items":
+            "$ref": "#/components/schemas/Result"
+    "Result":
+      "type": "object"
+      "required": ["book_id","title","author","language","year","score"]
+      "properties":
+        "book_id":
+          "type": "integer"
+          "minimum": 1
+          "maximum": 10000000
+        "title":
+          "type": "string"
+          "nullable": true
+        "author":
+          "type": "string"
+          "nullable": true
+        "language":
+          "type": "string"
+          "nullable": true
+        "year":
+          "type": "integer"
+          "nullable": true
+        "score":
+          "type": "number"
+          "format": "double"
+          "minimum": 0
+    "Book":
+      "type": "object"
+      "required": ["book_id","title","author","language","year","word_count","indexed_at"]
+      "properties":
+        "book_id":
+          "type": "integer"
+          "minimum": 1
+          "maximum": 10000000
+        "title":
+          "type": "string"
+          "nullable": true
+        "author":
+          "type": "string"
+          "nullable": true
+        "language":
+          "type": "string"
+          "nullable": true
+        "year":
+          "type": "integer"
+          "nullable": true
+        "word_count":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "indexed_at":
+          "type": "string"
+          "format": "date-time"
+          "nullable": true
+    "Filters":
+      "type": "object"
+      "required": ["languages","years","authors","books_indexed","index_version"]
+      "properties":
+        "languages":
+          "type": "array"
+          "items":
+            "type": "object"
+            "required": ["code","books"]
+            "properties":
+              "code":
+                "type": "string"
+              "books":
+                "type": "integer"
+                "format": "int64"
+                "minimum": 0
+        "years":
+          "type": "object"
+          "required": ["min","max","books_with_year"]
+          "properties":
+            "min":
+              "type": "integer"
+              "nullable": true
+            "max":
+              "type": "integer"
+              "nullable": true
+            "books_with_year":
+              "type": "integer"
+              "format": "int64"
+              "minimum": 0
+        "authors":
+          "type": "array"
+          "maxItems": 100
+          "items":
+            "type": "object"
+            "required": ["name","books"]
+            "properties":
+              "name":
+                "type": "string"
+              "books":
+                "type": "integer"
+                "format": "int64"
+                "minimum": 0
+        "books_indexed":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "index_version":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+    "Health":
+      "type": "object"
+      "required": ["service","status","index_version","books_indexed","max_threads"]
+      "properties":
+        "service":
+          "type": "string"
+          "enum": ["search"]
+        "status":
+          "type": "string"
+          "enum": ["UP"]
+        "index_version":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "books_indexed":
+          "type": "integer"
+          "format": "int64"
+          "minimum": 0
+        "max_threads":
+          "type": "integer"
+          "minimum": 1
+    "Error":
+      "type": "object"
+      "required": ["error","message"]
+      "properties":
+        "error":
+          "type": "string"
+          "enum": ["invalid_query","invalid_parameter","invalid_book_id","book_not_found","route_not_found","method_not_allowed","http_error","index_not_ready","index_incompatible","index_unavailable","internal_error"]
+        "message":
+          "type": "string"
