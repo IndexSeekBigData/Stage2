@@ -69,7 +69,7 @@ class DatamartStoreTest {
             assertTrue(rs.next());
             assertEquals("Example Book", rs.getString("title"));
             assertEquals("John Smith", rs.getString("author"));
-            assertEquals("English", rs.getString("language"));
+            assertEquals("en", rs.getString("language"));
         }
     }
 
@@ -92,13 +92,13 @@ class DatamartStoreTest {
                 "jdbc:sqlite:" + dbPath);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("""
-                     SELECT frequency
+                     SELECT tf
                      FROM postings
-                     WHERE word = 'data' AND book_id = '123'
+                     WHERE term = 'data' AND book_id = '123'
                      """)) {
 
             assertTrue(rs.next());
-            assertEquals(3, rs.getInt("frequency"));
+            assertEquals(3, rs.getInt("tf"));
         }
     }
 
@@ -149,9 +149,9 @@ class DatamartStoreTest {
             }
 
             try (ResultSet rs = stmt.executeQuery("""
-                    SELECT frequency
+                    SELECT tf
                     FROM postings
-                    WHERE word = 'data' AND book_id = '123'
+                    WHERE term = 'data' AND book_id = '123'
                     """)) {
 
                 assertTrue(rs.next());
@@ -161,7 +161,7 @@ class DatamartStoreTest {
             try (ResultSet rs = stmt.executeQuery("""
                     SELECT COUNT(*)
                     FROM postings
-                    WHERE word = 'old' AND book_id = '123'
+                    WHERE term = 'old' AND book_id = '123'
                     """)) {
 
                 assertTrue(rs.next());
@@ -234,11 +234,11 @@ class DatamartStoreTest {
             }
 
             try (ResultSet rs = stmt.executeQuery(
-                    "SELECT word, frequency FROM postings")) {
+                    "SELECT term, tf FROM postings")) {
 
                 assertTrue(rs.next());
-                assertEquals("new", rs.getString("word"));
-                assertEquals(3, rs.getInt("frequency"));
+                assertEquals("new", rs.getString("term"));
+                assertEquals(3, rs.getInt("tf"));
                 assertFalse(rs.next());
             }
         }
@@ -300,14 +300,14 @@ class DatamartStoreTest {
             }
 
             try (ResultSet rs = stmt.executeQuery("""
-                    SELECT word, frequency
+                    SELECT term, tf
                     FROM postings
                     WHERE book_id = '123'
                     """)) {
 
                 assertTrue(rs.next());
-                assertEquals("original", rs.getString("word"));
-                assertEquals(2, rs.getInt("frequency"));
+                assertEquals("original", rs.getString("term"));
+                assertEquals(2, rs.getInt("tf"));
                 assertFalse(rs.next());
             }
         }
