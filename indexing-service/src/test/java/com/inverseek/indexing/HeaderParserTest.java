@@ -31,7 +31,7 @@ class HeaderParserTest {
 
         assertEquals("Example Book", metadata.title());
         assertEquals("John Smith", metadata.author());
-        assertEquals("English", metadata.language());
+        assertEquals("en", metadata.language());
     }
 
     @Test
@@ -50,11 +50,11 @@ class HeaderParserTest {
 
         assertEquals("Example Book", metadata.title());
         assertEquals("John Smith", metadata.author());
-        assertEquals("Spanish", metadata.language());
+        assertEquals("es", metadata.language());
     }
 
     @Test
-    void shouldReturnUnknownForMissingFields() throws IOException {
+    void shouldReturnNullForMissingFields() throws IOException {
 
         Path header = tempDir.resolve("123.header.txt");
 
@@ -64,8 +64,8 @@ class HeaderParserTest {
                 HeaderParser.parse(header);
 
         assertEquals("Example Book", metadata.title());
-        assertEquals("Unknown", metadata.author());
-        assertEquals("Unknown", metadata.language());
+        assertNull(metadata.author());
+        assertNull(metadata.language());
     }
 
     @Test
@@ -77,5 +77,16 @@ class HeaderParserTest {
                 IOException.class,
                 () -> HeaderParser.parse(header)
         );
+    }
+
+    @Test
+    void normalizesAccentsAndDoesNotConsumeFollowingLinesForEmptyFields() {
+        var metadata = HeaderParser.parseContent("Title: Test\nAuthor: \nLanguage: French\n");
+        assertNull(metadata.author());
+        assertEquals("fr", metadata.language());
+        assertEquals("jose alvarez", HeaderParser.normalizeAuthor("José Álvarez"));
+        assertEquals("en", HeaderParser.languageCode("EN"));
+        assertEquals("es", HeaderParser.languageCode("spa"));
+        assertNull(HeaderParser.languageCode("unrecognized language"));
     }
 }

@@ -1,198 +1,88 @@
-
 package com.inverseek.indexing;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class IndexingService {
-
+public final class IndexingService {
+    private static final Logger LOG = LoggerFactory.getLogger(IndexingService.class);
     private final Config config;
     private final DatamartStore store;
 
     public IndexingService(Config config) throws Exception {
-        this.config = config;
-        this.store = new DatamartStore(config.databasePath());
+        this.config=config;
+        this.store=new DatamartStore(config.databasePath());
     }
 
     public synchronized IndexingResult indexBooks() throws IOException {
-
-        List<DatalakeReader.BookFiles> books =
-                DatalakeReader.findBooks(config.datalakePath());
-
-        int indexed = 0;
-        int failed = 0;
-
-        for (DatalakeReader.BookFiles book : books) {
-
+        var books=DatalakeReader.findBooks(config.datalakePath());
+        int indexed=0, failed=0;
+        for (var book : books) {
             try {
-                HeaderParser.BookMetadata metadata =
-                        HeaderParser.parse(book.headerPath());
-
-                String content = Files.readString(
-                        book.bodyPath(),
-                        StandardCharsets.UTF_8
-                );
-
-                Map<String, Integer> frequencies =
-                        Tokenizer.tokenize(content);
-
-                store.saveBook(
-                        book.bookId(),
-                        metadata,
-                        book.bodyPath(),
-                        frequencies
-                );
-
+                store.saveBook(prepare(book));
                 indexed++;
-
-                System.out.println(
-                        "Indexed book: " + book.bookId()
-                );
-
             } catch (IOException | SQLException e) {
-
                 failed++;
-
-                System.err.println(
-                        "Error indexing book " +
-                                book.bookId() + ": " + e.getMessage()
-                );
+                LOG.error("Cannot index book {}",book.bookId(),e);
             }
         }
-
-        return new IndexingResult(
-                books.size(),
-                indexed,
-                failed
-        );
+        return new IndexingResult(books.size(),indexed,failed);
     }
 
-    public record IndexingResult(
-            int total,
-            int indexed,
-            int failed
-    ) {}
-
-
     public synchronized boolean indexBook(String bookId) throws Exception {
-
-        List<DatalakeReader.BookFiles> books =
-                DatalakeReader.findBooks(config.datalakePath());
-
-        for (DatalakeReader.BookFiles book : books) {
-
-            if (!book.bookId().equals(bookId)) {
-                continue;
+        String canonical = canonicalBookId(bookId);
+        for (var book : DatalakeReader.findBooks(config.datalakePath())) {
+            if (book.bookId().equals(canonical)) {
+                store.saveBook(prepare(book));
+                return true;
             }
-
-            HeaderParser.BookMetadata metadata =
-                    HeaderParser.parse(book.headerPath());
-
-            String body = Files.readString(
-                    book.bodyPath(),
-                    StandardCharsets.UTF_8
-            );
-
-            Map<String, Integer> frequencies =
-                    Tokenizer.tokenize(body);
-
-            store.saveBook(
-                    bookId,
-                    metadata,
-                    book.bodyPath(),
-                    frequencies
-            );
-
-            return true;
         }
-
         return false;
     }
 
+    static String canonicalBookId(String raw) {
+        try {
+            int id=Integer.parseInt(raw);
+            if (id < 1 || id > 10_000_000) throw new NumberFormatException();
+            return Integer.toString(id);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("book_id must be an integer between 1 and 10000000");
+        }
+    }
 
+    private static DatamartStore.BookData prepare(DatalakeReader.BookFiles book) throws IOException {
+        byte[] header=Files.readAllBytes(book.headerPath());
+        byte[] body=Files.readAllBytes(book.bodyPath());
+        String hash=DatalakeReader.sha256(body);
+        if (header.length != book.marker().headerBytes() || body.length != book.marker().bodyBytes()
+                || !hash.equals(book.marker().bodySha256()))
+            throw new IOException("Published files changed or hash mismatch for book " + book.bookId());
+        return new DatamartStore.BookData(book.bookId(),
+                HeaderParser.parseContent(new String(header,StandardCharsets.UTF_8)),
+                book.bodyPath(),Tokenizer.tokenize(new String(body,StandardCharsets.UTF_8)),hash);
+    }
 
     public synchronized RebuildResult rebuildIndex() throws Exception {
-
-        long startTime = System.nanoTime();
-
-        List<DatalakeReader.BookFiles> books =
-                DatalakeReader.findBooks(config.datalakePath());
-
-        List<DatamartStore.BookData> bookData =
-                new java.util.ArrayList<>();
-
-        for (DatalakeReader.BookFiles book : books) {
-
-            HeaderParser.BookMetadata metadata =
-                    HeaderParser.parse(book.headerPath());
-
-            String content = Files.readString(
-                    book.bodyPath(),
-                    StandardCharsets.UTF_8
-            );
-
-            Map<String, Integer> frequencies =
-                    Tokenizer.tokenize(content);
-
-            bookData.add(
-                    new DatamartStore.BookData(
-                            book.bookId(),
-                            metadata,
-                            book.bodyPath(),
-                            frequencies
-                    )
-            );
-        }
-
-        // Atomically replace the complete index
-        store.rebuildIndex(bookData);
-
-        double elapsedSeconds =
-                (System.nanoTime() - startTime) / 1_000_000_000.0;
-
-        return new RebuildResult(
-                bookData.size(),
-                String.format(
-                        java.util.Locale.US,
-                        "%.2fs",
-                        elapsedSeconds
-                )
-        );
+        long start=System.nanoTime();
+        var prepared=new ArrayList<DatamartStore.BookData>();
+        // Prepare first: a corrupt input never erases the previous published index.
+        for (var book : DatalakeReader.findBooks(config.datalakePath())) prepared.add(prepare(book));
+        store.rebuildIndex(prepared);
+        return new RebuildResult(prepared.size(),
+                String.format(Locale.ROOT,"%.2fs",(System.nanoTime()-start)/1_000_000_000.0));
     }
-
-
-    public record RebuildResult(
-            int books_processed,
-            String elapsed_time
-    ) {}
-
 
     public IndexStatus getStatus() throws SQLException {
-
-        int booksIndexed = store.countBooks();
-
-        String lastUpdate = store.getLastUpdate();
-
-        double indexSizeMB = store.getIndexSizeMB();
-
-        return new IndexStatus(
-                booksIndexed,
-                lastUpdate,
-                indexSizeMB
-        );
+        var state=store.snapshot();
+        return new IndexStatus(state.booksIndexed(),state.lastUpdate(),state.sizeMB(),state.version());
     }
 
-    public record IndexStatus(
-            int books_indexed,
-            String last_update,
-            double index_size_MB
-    ) {}
-
-
+    public record IndexingResult(int total,int indexed,int failed) {}
+    public record RebuildResult(int books_processed,String elapsed_time) {}
+    public record IndexStatus(int books_indexed,String last_update,double index_size_MB,long index_version) {}
 }
-
-

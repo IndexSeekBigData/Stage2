@@ -13,9 +13,37 @@ servers:
 
 paths:
 
+  /health:
+    get:
+      summary: Database-backed service health and published index state
+      responses:
+        '200':
+          description: Indexing service is available
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [service, status, index_version, books_indexed, max_threads]
+                properties:
+                  service:
+                    type: string
+                    example: indexing
+                  status:
+                    type: string
+                    example: UP
+                  index_version:
+                    type: integer
+                    format: int64
+                  books_indexed:
+                    type: integer
+                  max_threads:
+                    type: integer
+        '500':
+          $ref: '#/components/responses/InternalError'
+
   /index:
     post:
-      summary: Index all available books
+      summary: Reprocess selected completed books (inspect failed counter)
       operationId: indexBooks
       responses:
         '200':
@@ -37,6 +65,8 @@ paths:
           required: true
           schema:
             type: string
+            pattern: '^[+]?[0-9]+$'
+            description: Integer value between 1 and 10000000; canonicalized before lookup
           example: "1342"
       responses:
         '200':
@@ -45,6 +75,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UpdateResponse'
+        '400':
+          description: Invalid book id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Book not found in the DataLake
           content:
@@ -129,6 +165,8 @@ components:
       required:
         - books_indexed
         - index_size_MB
+        - index_version
+        - last_update
       properties:
         books_indexed:
           type: integer
@@ -136,6 +174,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        index_version:
+          type: integer
+          format: int64
+          description: Version of the same snapshot used for the other statistics
         index_size_MB:
           type: number
           format: double
@@ -144,14 +186,18 @@ components:
       type: object
       required:
         - error
+        - message
       properties:
         error:
+          type: string
+          enum: [invalid_book_id, book_not_found, datalake_error, internal_error, route_not_found]
+        message:
           type: string
 
   responses:
 
     InternalError:
-      description: Internal server error
+      description: Datalake read/publication validation failure (datalake_error) or database/unexpected failure (internal_error)
       content:
         application/json:
           schema:
