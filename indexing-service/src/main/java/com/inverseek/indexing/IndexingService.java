@@ -3,6 +3,7 @@ package com.inverseek.indexing;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -13,36 +14,41 @@ public final class IndexingService {
     private static final Logger LOG = LoggerFactory.getLogger(IndexingService.class);
     private final Config config;
     private final DatamartStore store;
+    /** Serializes SQLite writes only: reading and tokenizing run in parallel in the request threads. */
+    private final Object writeLock=new Object();
 
     public IndexingService(Config config) throws Exception {
         this.config=config;
         this.store=new DatamartStore(config.databasePath());
     }
 
-    public synchronized IndexingResult indexBooks() throws IOException {
-        var books=DatalakeReader.findBooks(config.datalakePath());
-        int indexed=0, failed=0;
-        for (var book : books) {
+    public IndexingResult indexBooks() throws IOException {
+        var discovery=DatalakeReader.findBooksSkippingCorrupt(config.datalakePath());
+        int indexed=0, failed=discovery.skipped();
+        for (var book : discovery.books()) {
             try {
-                store.saveBook(prepare(book));
+                publish(prepare(book));
                 indexed++;
             } catch (IOException | SQLException e) {
                 failed++;
                 LOG.error("Cannot index book {}",book.bookId(),e);
             }
         }
-        return new IndexingResult(books.size(),indexed,failed);
+        return new IndexingResult(discovery.books().size()+discovery.skipped(),indexed,failed);
     }
 
-    public synchronized boolean indexBook(String bookId) throws Exception {
+    public boolean indexBook(String bookId) throws Exception {
         String canonical = canonicalBookId(bookId);
-        for (var book : DatalakeReader.findBooks(config.datalakePath())) {
-            if (book.bookId().equals(canonical)) {
-                store.saveBook(prepare(book));
-                return true;
-            }
+        var book=DatalakeReader.findBook(config.datalakePath(),canonical);
+        if (book.isEmpty()) return false;
+        publish(prepare(book.get()));
+        return true;
+    }
+
+    private void publish(DatamartStore.BookData data) throws SQLException {
+        synchronized (writeLock) {
+            store.saveBook(data);
         }
-        return false;
     }
 
     static String canonicalBookId(String raw) {
@@ -64,16 +70,18 @@ public final class IndexingService {
             throw new IOException("Published files changed or hash mismatch for book " + book.bookId());
         return new DatamartStore.BookData(book.bookId(),
                 HeaderParser.parseContent(new String(header,StandardCharsets.UTF_8)),
-                book.bodyPath(),Tokenizer.tokenize(new String(body,StandardCharsets.UTF_8)),hash);
+                Path.of(book.marker().bodyPath()),Tokenizer.tokenize(new String(body,StandardCharsets.UTF_8)),hash);
     }
 
-    public synchronized RebuildResult rebuildIndex() throws Exception {
+    public RebuildResult rebuildIndex() throws Exception {
         long start=System.nanoTime();
-        var prepared=new ArrayList<DatamartStore.BookData>();
-        // Prepare first: a corrupt input never erases the previous published index.
-        for (var book : DatalakeReader.findBooks(config.datalakePath())) prepared.add(prepare(book));
-        store.rebuildIndex(prepared);
-        return new RebuildResult(prepared.size(),
+        var loaders=new ArrayList<DatamartStore.BookLoader>();
+        for (var book : DatalakeReader.findBooks(config.datalakePath())) loaders.add(() -> prepare(book));
+        // One book in memory at a time, one transaction: a corrupt input rolls back and never erases the published index.
+        synchronized (writeLock) {
+            store.rebuildFrom(loaders);
+        }
+        return new RebuildResult(loaders.size(),
                 String.format(Locale.ROOT,"%.2fs",(System.nanoTime()-start)/1_000_000_000.0));
     }
 

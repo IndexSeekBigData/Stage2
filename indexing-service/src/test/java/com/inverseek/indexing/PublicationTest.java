@@ -109,6 +109,51 @@ class PublicationTest {
         assertEquals(1,service.indexBooks().failed());
     }
 
+    @Test void eightThreadsUpdatingDifferentBooksPublishEveryBook() throws Exception {
+        Path lake=Files.createDirectories(root.resolve("lake")), db=root.resolve("index.db");
+        int books=40;
+        for (int id=1; id<=books; id++)
+            PublishedBookFixture.create(lake,"20261104/17",id,"Title: Book "+id+"\n","love book word"+"x".repeat(id),"2026-11-04T17:00:00Z");
+        var service=new IndexingService(new Config(0,lake,db,0));
+        var pool=java.util.concurrent.Executors.newFixedThreadPool(8);
+        try {
+            var tasks=new java.util.ArrayList<java.util.concurrent.Callable<Boolean>>();
+            for (int id=1; id<=books; id++) {
+                String bookId=Integer.toString(id);
+                tasks.add(() -> service.indexBook(bookId));
+            }
+            for (var result : pool.invokeAll(tasks)) assertTrue(result.get());
+        } finally {
+            pool.shutdownNow();
+        }
+        assertEquals(books,service.getStatus().books_indexed());
+        assertEquals(books,service.getStatus().index_version());
+        try (var c=DriverManager.getConnection("jdbc:sqlite:"+db);var s=c.createStatement();
+             var rs=s.executeQuery("SELECT COUNT(*) FROM postings WHERE term='love'")) {
+            assertTrue(rs.next()); assertEquals(books,rs.getInt(1));
+        }
+    }
+
+    @Test void rebuildFailureOnALaterBookKeepsThePublishedIndex() throws Exception {
+        var store=new DatamartStore(root.resolve("index.db"));
+        store.saveBook(data("123","original"));
+        var previous=store.snapshot();
+        assertThrows(java.io.IOException.class,()->store.rebuildFrom(java.util.List.of(
+                ()->data("456","new"),
+                ()->{ throw new java.io.IOException("unreadable"); })));
+        assertEquals(previous,store.snapshot());
+    }
+
+    @Test void storesBodyPathRelativeToTheDatalake() throws Exception {
+        Path lake=Files.createDirectories(root.resolve("lake")), db=root.resolve("index.db");
+        PublishedBookFixture.create(lake,"20261104/17",7,"Title: T\n","love book","2026-11-04T17:00:00Z");
+        assertTrue(new IndexingService(new Config(0,lake,db,0)).indexBook("7"));
+        try (var c=DriverManager.getConnection("jdbc:sqlite:"+db);var s=c.createStatement();
+             var rs=s.executeQuery("SELECT body_path FROM books")) {
+            assertTrue(rs.next()); assertEquals("20261104/17/7.body.txt",rs.getString(1));
+        }
+    }
+
     @Test void serviceUsesTheSameOldestBookForUpdateAndRebuild() throws Exception {
         Path lake=Files.createDirectories(root.resolve("lake")), db=root.resolve("index.db");
         PublishedBookFixture.create(lake,"20261104/17",123,"Title: Old\n","old book","2026-11-04T17:00:00Z");

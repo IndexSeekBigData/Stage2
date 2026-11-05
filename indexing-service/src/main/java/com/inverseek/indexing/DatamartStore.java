@@ -20,7 +20,7 @@ public final class DatamartStore {
     private Connection open() throws SQLException {
         Connection conn = DriverManager.getConnection(databaseUrl);
         try (Statement stmt = conn.createStatement()) {
-            stmt.execute("PRAGMA busy_timeout=5000");
+            stmt.execute("PRAGMA busy_timeout=30000");
             stmt.execute("PRAGMA foreign_keys=ON");
         } catch (SQLException e) {
             conn.close();
@@ -171,7 +171,8 @@ public final class DatamartStore {
             stmt.setLong(6, wordCount);
             stmt.setString(7, book.contentSha());
             stmt.setString(8, Instant.now().toString());
-            stmt.setString(9, book.bodyPath().toAbsolutePath().normalize().toString());
+            // Relative to the datalake root, as in the marker: never tied to one machine.
+            stmt.setString(9, book.bodyPath().toString().replace('\\', '/'));
             stmt.executeUpdate();
         }
         try (PreparedStatement stmt = conn.prepareStatement("DELETE FROM postings WHERE book_id=?")) {
@@ -190,6 +191,15 @@ public final class DatamartStore {
     }
 
     public void rebuildIndex(List<BookData> books) throws SQLException {
+        try {
+            rebuildFrom(books.stream().map(book -> (BookLoader) () -> book).toList());
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    /** Replaces the whole index in one transaction, loading each book only while it is being written. */
+    public void rebuildFrom(List<BookLoader> books) throws SQLException, java.io.IOException {
         try (Connection conn = open()) {
             conn.setAutoCommit(false);
             try {
@@ -197,14 +207,19 @@ public final class DatamartStore {
                     stmt.executeUpdate("DELETE FROM postings");
                     stmt.executeUpdate("DELETE FROM books");
                 }
-                for (BookData book : books) writeBook(conn, book, false);
+                for (BookLoader book : books) writeBook(conn, book.load(), false);
                 publish(conn);
                 conn.commit();
-            } catch (SQLException | RuntimeException e) {
+            } catch (SQLException | java.io.IOException | RuntimeException e) {
                 conn.rollback();
                 throw e;
             }
         }
+    }
+
+    @FunctionalInterface
+    public interface BookLoader {
+        BookData load() throws java.io.IOException;
     }
 
     public void clearIndex() throws SQLException { rebuildIndex(List.of()); }
