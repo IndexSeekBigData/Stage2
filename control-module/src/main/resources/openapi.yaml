@@ -1,0 +1,380 @@
+openapi: 3.0.3
+
+info:
+  title: InverSeek Control Module API
+  version: 1.0.0
+  description: >
+    Administrative and operational API of the orchestrator. Registering a book only accepts the work:
+    workers process it in the background, and callers observe completion with GET /control/books/{book_id}
+    or GET /control/status. A book is searchable when its state is INDEXED.
+
+servers:
+  - url: http://localhost:7000
+
+paths:
+
+  /control/books:
+    post:
+      summary: Register books to process
+      operationId: registerBooks
+      x-consumer: Administrator, scripts/run-pipeline.ps1
+      description: >
+        Asynchronous: 202 means accepted. Idempotent: a registered book keeps its state and counts as ignored.
+        The body has either ids, or from and to. At most 10000 books per request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            examples:
+              ids:
+                value: {ids: [11, 84, 1342]}
+              range:
+                value: {from: 1, to: 100}
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [inserted, ignored, total]
+                properties:
+                  inserted:
+                    type: integer
+                  ignored:
+                    type: integer
+                  total:
+                    type: integer
+              example: {inserted: 2, ignored: 1, total: 3}
+        '400':
+          description: invalid_request, invalid_book_id or too_many_books
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/StorageError'
+    get:
+      summary: List books
+      operationId: listBooks
+      x-consumer: Administrator
+      parameters:
+        - name: state
+          in: query
+          description: Case-insensitive state filter
+          schema:
+            $ref: '#/components/schemas/BookState'
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 500
+            default: 50
+      responses:
+        '200':
+          description: Books ordered by book_id; total counts every match
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [total, offset, limit, books]
+                properties:
+                  total:
+                    type: integer
+                  offset:
+                    type: integer
+                  limit:
+                    type: integer
+                  books:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
+        '400':
+          description: invalid_parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+  /control/books/{book_id}:
+    get:
+      summary: State, attempts, last error and timestamps of one book
+      operationId: getBook
+      x-consumer: Administrator
+      parameters:
+        - $ref: '#/components/parameters/BookId'
+      responses:
+        '200':
+          description: The book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/InvalidBookId'
+        '404':
+          $ref: '#/components/responses/BookNotFound'
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+  /control/books/{book_id}/retry:
+    post:
+      summary: Process a finished book again
+      operationId: retryBook
+      x-consumer: Administrator
+      description: >
+        Asynchronous. FAILED and NOT_FOUND restart from the download. INDEXED only repeats indexing.
+        Active books return 409.
+      parameters:
+        - $ref: '#/components/parameters/BookId'
+      responses:
+        '202':
+          description: Accepted; the body has the new state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/InvalidBookId'
+        '404':
+          $ref: '#/components/responses/BookNotFound'
+        '409':
+          description: not_retryable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+  /control/status:
+    get:
+      summary: Books per state, workers and active leases
+      operationId: status
+      x-consumer: Administrator, scripts/run-pipeline.ps1
+      responses:
+        '200':
+          description: Current status. The run has finished when active is 0.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [total, active, states, workers, active_leases]
+                properties:
+                  total:
+                    type: integer
+                  active:
+                    type: integer
+                  states:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  workers:
+                    type: integer
+                  active_leases:
+                    type: integer
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+  /control/metrics:
+    get:
+      summary: Coordination cost per phase over the INDEXED books
+      operationId: metrics
+      x-consumer: Administrator, benchmarks
+      responses:
+        '200':
+          description: Average and 95th percentile in milliseconds; null without data
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [books_indexed, queue_wait_ms, ingest_ms, index_wait_ms, index_ms, end_to_end_ms, books_per_second]
+                properties:
+                  books_indexed:
+                    type: integer
+                  queue_wait_ms:
+                    $ref: '#/components/schemas/Phase'
+                  ingest_ms:
+                    $ref: '#/components/schemas/Phase'
+                  index_wait_ms:
+                    $ref: '#/components/schemas/Phase'
+                  index_ms:
+                    $ref: '#/components/schemas/Phase'
+                  end_to_end_ms:
+                    $ref: '#/components/schemas/Phase'
+                  books_per_second:
+                    type: number
+                    nullable: true
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+  /health:
+    get:
+      summary: Availability of Control and reachability of Ingestion and Indexing
+      operationId: health
+      x-consumer: Operations
+      responses:
+        '200':
+          description: Control is running, even if a dependency is down
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [service, status, dependencies, workers]
+                properties:
+                  service:
+                    type: string
+                    example: control
+                  status:
+                    type: string
+                    example: UP
+                  dependencies:
+                    type: object
+                    additionalProperties:
+                      type: string
+                    example: {ingestion: UP, indexing: DOWN}
+                  workers:
+                    type: integer
+                  max_threads:
+                    type: integer
+        '500':
+          $ref: '#/components/responses/StorageError'
+
+components:
+
+  parameters:
+    BookId:
+      name: book_id
+      in: path
+      required: true
+      description: Integer between 1 and 10000000
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000000
+      example: 1342
+
+  responses:
+    InvalidBookId:
+      description: invalid_book_id
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BookNotFound:
+      description: book_not_found (not registered)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    StorageError:
+      description: storage_error or internal_error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    BookState:
+      type: string
+      enum: [PENDING, DOWNLOADING, DOWNLOADED, INDEXING, INDEXED, NOT_FOUND, FAILED]
+
+    RegisterRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          maxItems: 10000
+          items:
+            type: integer
+            minimum: 1
+            maximum: 10000000
+        from:
+          type: integer
+          minimum: 1
+          maximum: 10000000
+        to:
+          type: integer
+          minimum: 1
+          maximum: 10000000
+
+    Book:
+      type: object
+      required: [book_id, state, attempts, queued_at]
+      properties:
+        book_id:
+          type: integer
+        state:
+          $ref: '#/components/schemas/BookState'
+        attempts:
+          type: integer
+          description: Attempts in the current phase
+        last_error:
+          type: string
+          nullable: true
+        datalake_path:
+          type: string
+          nullable: true
+        lease_owner:
+          type: string
+          nullable: true
+        lease_until:
+          type: string
+          format: date-time
+          nullable: true
+        queued_at:
+          type: string
+          format: date-time
+        download_started_at:
+          type: string
+          format: date-time
+          nullable: true
+        downloaded_at:
+          type: string
+          format: date-time
+          nullable: true
+        index_started_at:
+          type: string
+          format: date-time
+          nullable: true
+        indexed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Phase:
+      type: object
+      required: [avg, p95]
+      properties:
+        avg:
+          type: number
+          nullable: true
+        p95:
+          type: integer
+          nullable: true
+
+    ErrorResponse:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+        message:
+          type: string

@@ -5,6 +5,7 @@ Complete request, response and error schemas are in each service's OpenAPI file:
 - [Ingestion](../../ingestion-service/src/main/resources/openapi.yaml)
 - [Indexing](../../indexing-service/src/main/resources/openapi.yaml)
 - [Search](../../search-service/src/main/resources/openapi.yaml)
+- [Control Module](../../control-module/src/main/resources/openapi.yaml)
 
 ## Front-end-facing
 
@@ -30,4 +31,14 @@ Complete request, response and error schemas are in each service's OpenAPI file:
 | Indexing (7002) | Administrator | POST | `/index` | Reindex every ingested book, one publication per book | Synchronous | Yes |
 | Indexing (7002) | Administrator | POST | `/index/rebuild` | Replace the whole index atomically | Synchronous | Yes |
 | Indexing (7002) | Administrator | GET | `/index/status` | Index statistics and version | Synchronous | Read-only |
-| Ingestion, Indexing, Search | Operations | GET | `/health` | Availability; Search returns 503 until an index exists | Synchronous | Read-only |
+| Control Module (7000) | Administrator | POST | `/control/books` | Register books to process | Asynchronous: 202 means accepted; observe with `/control/books/{book_id}` | Yes: registered books keep their state |
+| Control Module (7000) | Administrator | GET | `/control/books` | List books by state, with pagination | Synchronous | Read-only |
+| Control Module (7000) | Administrator | GET | `/control/books/{book_id}` | State, attempts, last error and timestamps of one book | Synchronous | Read-only |
+| Control Module (7000) | Administrator | POST | `/control/books/{book_id}/retry` | Process a finished book again | Asynchronous: 202 means accepted | Active books return 409 |
+| Control Module (7000) | Administrator | GET | `/control/status` | Books per state, workers and active leases | Synchronous | Read-only |
+| Control Module (7000) | Administrator, benchmarks | GET | `/control/metrics` | Coordination cost per phase | Synchronous | Read-only |
+| Ingestion, Indexing, Search, Control Module | Operations; Control Module reads Ingestion and Indexing | GET | `/health` | Availability; Search returns 503 until an index exists; Control also reports its dependencies | Synchronous | Read-only |
+
+## Non-HTTP interactions
+
+Control Module owns `control.db`. Ingestion is the only writer of the datalake, and Indexing is the only writer of `datamarts.db`. Indexing reads the datalake, and Search reads `datamarts.db` in read-only mode. A book in the datalake exists only when its `{id}.success.json` marker exists.
