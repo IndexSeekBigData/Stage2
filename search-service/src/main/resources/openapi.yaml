@@ -108,7 +108,7 @@
       "allowEmptyValue": true
       "schema":
         "type": "integer"
-        "minimum": 1
+        "minimum": 1000
         "maximum": 2100
       "description": "Original publication year, exact match. NULL years never match. Empty/blank means absent."
     "offset":
