@@ -27,7 +27,7 @@ Precedence: environment variables, then `application.properties`.
 | --- | --- | --- |
 | control.port | CONTROL_PORT | 7000 |
 | control.db.path | CONTROL_DB_PATH | ../data/control/control.db |
-| ingestion.url | INGESTION_URL | http://localhost:7001 |
+| ingestion.url | INGESTION_URL | http://localhost:7001 (comma-separated URLs supported) |
 | indexing.url | INDEXING_URL | http://localhost:7002 |
 | control.workers | CONTROL_WORKERS | 4 |
 | control.max-attempts | CONTROL_MAX_ATTEMPTS | 3 |
@@ -41,7 +41,7 @@ Precedence: environment variables, then `application.properties`.
 | control.max-backoff-seconds | CONTROL_MAX_BACKOFF_SECONDS | 10 |
 | server.max-threads | SERVER_MAX_THREADS | 0 (Jetty default) |
 
-Each lease must exceed its call timeout; the service refuses to start otherwise. Relative paths resolve from the working directory. Only Control opens `control.db`.
+Positive timeouts, leases and polling waits are required. The retry delay may be zero. Each lease must exceed its call timeout; the service refuses to start otherwise. Relative paths resolve from the working directory. Only Control opens `control.db`.
 
 ## States
 
@@ -119,3 +119,14 @@ Errors have the form `{"error":"code","message":"description"}`.
 ## Tests
 
 `mvn clean package` runs JUnit 5 tests against fake Ingestion and Indexing HTTP servers. They cover the happy path, NOT_FOUND, retries, FAILED after the maximum attempts, 8 workers with 50 books processed exactly once, leases expiring during a hung call, stale workers, restart recovery, idempotent registration, and all endpoints and error codes.
+
+## Single-host deployment
+
+Use the root scripts/start-all.ps1 and scripts/stop-all.ps1 to run configurable Ingestion/Search replicas,
+one Indexing and one Control process with a common absolute data directory.
+See [configuration matrix](../docs/deployment/configuration-matrix.md).
+
+INGESTION_URL accepts one URL or a comma-separated list. Concurrent calls are distributed round-robin.
+Each call selects one endpoint; subsequent workflow retries rotate again, using the existing attempt policy.
+The health dependencies include ingestion[0], ingestion[1], etc. The aggregate ingestion value is UP when all
+replicas respond, DEGRADED when some respond, or DOWN when none respond. Indexing still uses one endpoint.

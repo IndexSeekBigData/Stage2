@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
@@ -13,9 +15,9 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * <p>Ingestion is idempotent: if the book already has a completion marker it is returned as is,
  * without downloading it again. Two requests for the same book inside this process are serialised
- * by a striped lock, so only the first one downloads. Across replicas, exclusive ownership comes
- * from the Control Module lease; a duplicate after a lease expiry is still harmless because the
- * oldest marker wins when the datalake is read.
+ * by a striped lock. A host-local OS file lock also serializes the complete check/download/publication
+ * across replicas sharing the datalake. A retry rechecks the marker after acquiring that lock,
+ * including when a previous HTTP call continues after its Control lease expired.
  */
 public class IngestionService {
 
@@ -44,7 +46,7 @@ public class IngestionService {
         long start = System.nanoTime();
         ReentrantLock lock = locks[Math.floorMod(bookId, LOCK_STRIPES)];
         lock.lock();
-        try {
+        try (BookLock ignored = BookLock.acquire(datalake.root(), bookId)) {
             Optional<BookRecord> existing = datalake.find(bookId);
             if (existing.isPresent()) {
                 return new Result(Outcome.ALREADY_AVAILABLE, existing.get(), elapsedMillis(start));
@@ -56,6 +58,8 @@ public class IngestionService {
             long elapsed = elapsedMillis(start);
             log.info("Book {} stored at {} in {} ms", bookId, stored.path(), elapsed);
             return new Result(Outcome.DOWNLOADED, stored, elapsed);
+        } catch (IOException e) {
+            throw new UncheckedIOException("Cannot lock book " + bookId + " in the shared datalake", e);
         } finally {
             lock.unlock();
         }
