@@ -38,6 +38,7 @@ datalake/
     {id}.body.txt
     {id}.success.json   completion marker
   .tmp/                 writes in progress
+  .locks/               persistent host-local per-book lock files
 ```
 
 This is the Stage 1 layout plus the marker.
@@ -84,7 +85,14 @@ Caller guidance:
 
 - Jetty handles each request in a pool thread.
 - A striped lock in `IngestionService` serializes requests for the same book inside one process.
-- Across replicas, exclusive ownership comes from the Control Module lease. If a lease expires and two replicas write the same book, the oldest marker wins when the datalake is read.
+- A per-book OS file lock in the shared datalake serializes the complete check/download/publication across processes.
+- After acquiring the shared lock, a duplicate request rereads the marker and returns the already published book.
+- This protects retries that overlap after a timeout or lease expiry; Control leases still coordinate workflow assignment.
+- The OS releases locks when a process dies. Lock files remain on disk: never delete .locks while replicas run.
+- Replicas must share the same local datalake; this is not a network-filesystem or multi-host protocol.
+
+The root deployment scripts configure shared paths, replica ports and thread pools.
+See [configuration matrix](../docs/deployment/configuration-matrix.md).
 
 ## Tests
 

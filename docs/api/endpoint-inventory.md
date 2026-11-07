@@ -42,3 +42,5 @@ Complete request, response and error schemas are in each service's OpenAPI file:
 ## Non-HTTP interactions
 
 Control Module owns `control.db`. Ingestion is the only writer of the datalake, and Indexing is the only writer of `datamarts.db`. Indexing reads the datalake, and Search reads `datamarts.db` in read-only mode. A book in the datalake exists only when its `{id}.success.json` marker exists.
+
+Deployment and replica routing are documented in [the configuration matrix](../deployment/configuration-matrix.md).

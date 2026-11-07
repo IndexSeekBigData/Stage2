@@ -221,7 +221,7 @@ paths:
 
   /health:
     get:
-      summary: Availability of Control and reachability of Ingestion and Indexing
+      summary: Availability of Control and reachability of every Ingestion replica and Indexing
       operationId: health
       x-consumer: Operations
       responses:
@@ -243,7 +243,8 @@ paths:
                     type: object
                     additionalProperties:
                       type: string
-                    example: {ingestion: UP, indexing: DOWN}
+                    description: Ingestion aggregate is UP, DEGRADED or DOWN; indexed keys identify each configured replica
+                    example: {ingestion: UP, 'ingestion[0]': UP, 'ingestion[1]': UP, indexing: DOWN}
                   workers:
                     type: integer
                   max_threads:
