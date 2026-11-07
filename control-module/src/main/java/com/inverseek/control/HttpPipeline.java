@@ -14,13 +14,18 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public final class HttpPipeline implements Pipeline {
     private final Config config;
+    private final List<String> ingestionUrls;
+    private final AtomicInteger nextIngestion = new AtomicInteger();
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
 
     public HttpPipeline(Config config) {
         this.config = config;
+        this.ingestionUrls = config.ingestionUrls();
     }
 
     private HttpResponse<String> post(String url, Duration timeout) throws IOException, InterruptedException {
@@ -49,7 +54,8 @@ public final class HttpPipeline implements Pipeline {
     public Outcome ingest(int bookId) {
         HttpResponse<String> response;
         try {
-            response = post(config.ingestionUrl() + "/ingest/" + bookId, config.ingestionTimeout());
+            String endpoint = ingestionUrls.get(Math.floorMod(nextIngestion.getAndIncrement(), ingestionUrls.size()));
+            response = post(endpoint + "/ingest/" + bookId, config.ingestionTimeout());
         } catch (IOException e) {
             return failure(e, "Ingestion");
         } catch (InterruptedException e) {
@@ -97,7 +103,13 @@ public final class HttpPipeline implements Pipeline {
     /** Reachability of each service, for /health. */
     public Map<String, String> dependencies() {
         Map<String, String> result = new LinkedHashMap<>();
-        result.put("ingestion", reach(config.ingestionUrl()));
+        int up = 0;
+        for (int i = 0; i < ingestionUrls.size(); i++) {
+            String status = reach(ingestionUrls.get(i));
+            result.put("ingestion[" + i + "]", status);
+            if (status.equals("UP")) up++;
+        }
+        result.put("ingestion", up == ingestionUrls.size() ? "UP" : up == 0 ? "DOWN" : "DEGRADED");
         result.put("indexing", reach(config.indexingUrl()));
         return result;
     }

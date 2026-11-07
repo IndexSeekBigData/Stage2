@@ -3,6 +3,9 @@ package com.inverseek.control;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Path;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.List;
 import java.time.Duration;
 import java.util.Locale;
 import java.util.Map;
@@ -17,9 +20,15 @@ public record Config(int port, Path databasePath, String ingestionUrl, String in
 
     public Config {
         databasePath = databasePath.toAbsolutePath().normalize();
-        ingestionUrl = stripSlash(ingestionUrl);
-        indexingUrl = stripSlash(indexingUrl);
+        ingestionUrl = String.join(",", Arrays.stream(ingestionUrl.split(",", -1)).map(Config::endpoint).toList());
+        indexingUrl = endpoint(indexingUrl);
         if (port < 0 || port > 65535) throw new IllegalArgumentException("Invalid control.port");
+        for (Duration duration : List.of(ingestionTimeout, indexingTimeout, ingestLease, indexLease,
+                reaperInterval, idleWait, maxBackoff)) {
+            if (duration.isNegative() || duration.isZero())
+                throw new IllegalArgumentException("Timeouts, leases and polling waits must be positive");
+        }
+        if (retryDelay.isNegative()) throw new IllegalArgumentException("Retry delay must be nonnegative");
         if (workers < 1) throw new IllegalArgumentException("control.workers must be at least 1");
         if (maxAttempts < 1) throw new IllegalArgumentException("control.max-attempts must be at least 1");
         if (maxThreads < 0 || (maxThreads > 0 && maxThreads < 8))
@@ -69,7 +78,17 @@ public record Config(int port, Path databasePath, String ingestionUrl, String in
         return value.strip();
     }
 
-    private static String stripSlash(String url) {
-        return url.endsWith("/") ? url.substring(0, url.length() - 1) : url;
+    public List<String> ingestionUrls() {
+        return List.of(ingestionUrl.split(","));
+    }
+
+    private static String endpoint(String value) {
+        String url = value.strip().replaceAll("/+$", "");
+        URI uri = URI.create(url);
+        if ((!"http".equals(uri.getScheme()) && !"https".equals(uri.getScheme())) || uri.getHost() == null
+                || uri.getRawQuery() != null || uri.getRawFragment() != null || uri.getUserInfo() != null
+                || uri.getPort() > 65535)
+            throw new IllegalArgumentException("Service URLs must be absolute http(s) endpoints: " + value);
+        return url;
     }
 }
