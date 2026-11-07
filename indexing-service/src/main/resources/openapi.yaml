@@ -143,7 +143,8 @@ components:
         - index
       properties:
         book_id:
-          type: string
+          type: integer
+          example: 1342
         index:
           type: string
           example: updated

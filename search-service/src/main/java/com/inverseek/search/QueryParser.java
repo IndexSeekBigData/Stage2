@@ -33,7 +33,7 @@ public final class QueryParser {
             if (!language.matches("[a-z]{2,3}")) throw invalidParameter("language must have 2 or 3 ASCII letters");
         }
         String yearValue = optional(single(parameters, "year"));
-        Integer year = yearValue == null ? null : integer(yearValue, "year", 1, 2100);
+        Integer year = yearValue == null ? null : integer(yearValue, "year", 1000, 2100);
         String offsetValue = single(parameters, "offset");
         int offset = offsetValue == null ? 0 : integer(offsetValue, "offset", 0, Integer.MAX_VALUE);
         String limitValue = single(parameters, "limit");

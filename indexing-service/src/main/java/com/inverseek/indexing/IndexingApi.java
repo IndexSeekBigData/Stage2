@@ -15,7 +15,7 @@ public final class IndexingApi {
         app.post("/index/update/{book_id}",ctx -> {
             String id=IndexingService.canonicalBookId(ctx.pathParam("book_id"));
             if (service.indexBook(id)) {
-                ctx.result(gson.toJson(new UpdateResponse(id,"updated")));
+                ctx.result(gson.toJson(new UpdateResponse(Integer.parseInt(id),"updated")));
             } else {
                 ctx.attribute("inverseek.handled",true);
                 ctx.status(404).result(gson.toJson(new ErrorResponse("book_not_found","Book not found: "+id)));
@@ -37,6 +37,6 @@ public final class IndexingApi {
         });
     }
 
-    public record UpdateResponse(String book_id,String index) {}
+    public record UpdateResponse(int book_id,String index) {}
     public record ErrorResponse(String error,String message) {}
 }

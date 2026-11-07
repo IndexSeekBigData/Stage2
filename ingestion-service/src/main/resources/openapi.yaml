@@ -1,0 +1,254 @@
+openapi: 3.0.3
+
+info:
+  title: InverSeek Ingestion Service API
+  version: 1.0.0
+  description: >
+    Internal API that downloads books from Project Gutenberg and publishes them in the datalake.
+    A book exists only when its completion marker exists.
+    Every operation is synchronous. POST /ingest/{book_id} is idempotent, so callers may retry it.
+    Callers should use a timeout of 90 s, which exceeds the default 60 s download timeout.
+    Retryable responses are 500, 502 and 504. Responses 400, 404 and 422 are final.
+
+servers:
+  - url: http://localhost:7001
+
+paths:
+
+  /ingest/{book_id}:
+    post:
+      summary: Download a book and publish it in the datalake
+      operationId: ingestBook
+      x-consumer: Control Module
+      description: >
+        A 200 means the book is already published and ready to index.
+        Repeating the call does not download the book again and returns the same path with status available.
+        Concurrent calls for one book inside a process wait for the first one.
+        Across replicas, the Control Module lease gives each book one owner; if two replicas still publish it, the oldest marker wins.
+      parameters:
+        - $ref: '#/components/parameters/BookId'
+      responses:
+        '200':
+          description: Book published. Status is downloaded for a new book, or available if it already existed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestResponse'
+              examples:
+                downloaded:
+                  value:
+                    book_id: 1342
+                    status: downloaded
+                    path: 20261104/13/1342
+                    header_path: 20261104/13/1342.header.txt
+                    body_path: 20261104/13/1342.body.txt
+                    header_bytes: 899
+                    body_bytes: 737914
+                    body_sha256: ec5006ab5edb21cf0ee304712665ef03a8a96bc5ef2e8bb70877dca86973d79c
+                    ingested_at: '2026-11-04T13:34:09.703906900Z'
+                    elapsed_ms: 300
+        '400':
+          $ref: '#/components/responses/InvalidBookId'
+        '404':
+          description: 'book_not_found: the book has no plain-text file on Project Gutenberg. Final.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: book_not_found
+                message: Book 9999999 has no plain-text file on Project Gutenberg
+                book_id: 9999999
+        '422':
+          description: 'invalid_book_format: the file has no START marker, has an empty body or exceeds the maximum size. Final.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 'storage_error or internal_error: the datalake could not be written. Retryable.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: 'upstream_error: Gutenberg failed or answered an unexpected status. Retryable.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: 'upstream_timeout: the download exceeded its timeout. Retryable.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /ingest/status/{book_id}:
+    get:
+      summary: Check whether a book is completely ingested
+      operationId: ingestStatus
+      x-consumer: Control Module, administration
+      parameters:
+        - $ref: '#/components/parameters/BookId'
+      responses:
+        '200':
+          description: The book is available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '400':
+          $ref: '#/components/responses/InvalidBookId'
+        '404':
+          description: 'The book is not available: no completion marker exists.'
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [book_id, status]
+                properties:
+                  book_id:
+                    type: integer
+                  status:
+                    type: string
+                    enum: [not_available]
+              example:
+                book_id: 11
+                status: not_available
+
+  /ingest/list:
+    get:
+      summary: List every completely ingested book
+      operationId: ingestList
+      x-consumer: Administration, validation
+      responses:
+        '200':
+          description: Book ids in ascending order
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [count, books]
+                properties:
+                  count:
+                    type: integer
+                  books:
+                    type: array
+                    items:
+                      type: integer
+              example:
+                count: 2
+                books: [345, 1342]
+
+  /health:
+    get:
+      summary: Service availability
+      operationId: health
+      x-consumer: Control Module, operations
+      responses:
+        '200':
+          description: The service is running
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [service, status, books_available, downloads_since_start]
+                properties:
+                  service:
+                    type: string
+                    example: ingestion
+                  status:
+                    type: string
+                    example: UP
+                  books_available:
+                    type: integer
+                  downloads_since_start:
+                    type: integer
+                  max_threads:
+                    type: integer
+
+components:
+
+  parameters:
+    BookId:
+      name: book_id
+      in: path
+      required: true
+      description: Integer between 1 and 10000000
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000000
+      example: 1342
+
+  responses:
+    InvalidBookId:
+      description: 'invalid_book_id: the id is not an integer between 1 and 10000000. Final.'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            error: invalid_book_id
+            message: book_id must be a positive integer, got 'abc'
+
+  schemas:
+    BookFields:
+      type: object
+      required: [book_id, status, path, header_path, body_path, header_bytes, body_bytes, body_sha256, ingested_at]
+      properties:
+        book_id:
+          type: integer
+        path:
+          type: string
+          description: Partition-relative prefix of the three files, relative to the datalake root
+        header_path:
+          type: string
+        body_path:
+          type: string
+        header_bytes:
+          type: integer
+          format: int64
+        body_bytes:
+          type: integer
+          format: int64
+        body_sha256:
+          type: string
+        ingested_at:
+          type: string
+          format: date-time
+
+    IngestResponse:
+      allOf:
+        - $ref: '#/components/schemas/BookFields'
+        - type: object
+          required: [status, elapsed_ms]
+          properties:
+            status:
+              type: string
+              enum: [downloaded, available]
+            elapsed_ms:
+              type: integer
+              format: int64
+
+    StatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/BookFields'
+        - type: object
+          required: [status]
+          properties:
+            status:
+              type: string
+              enum: [available]
+
+    ErrorResponse:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        book_id:
+          type: integer

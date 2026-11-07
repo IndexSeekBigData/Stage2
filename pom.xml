@@ -13,19 +13,12 @@
         <module>ingestion-service</module>
         <module>indexing-service</module>
         <module>search-service</module>
+        <module>control-module</module>
     </modules>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.17.2</version>
-        </dependency>
-    </dependencies>
 
 </project>

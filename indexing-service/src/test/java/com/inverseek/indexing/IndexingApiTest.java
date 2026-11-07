@@ -42,6 +42,25 @@ class IndexingApiTest {
         assertEquals(3,health.get("index_version").getAsLong());
     }
 
+    @Test void updateReturnsNumericBookId() throws Exception {
+        var body=JsonParser.parseString(request("POST","/index/update/123").body()).getAsJsonObject();
+        assertTrue(body.get("book_id").getAsJsonPrimitive().isNumber());
+        assertEquals(123,body.get("book_id").getAsInt());
+        assertEquals("updated",body.get("index").getAsString());
+    }
+
+    @Test void corruptMarkerOfAnotherBookDoesNotBlockUpdates() throws Exception {
+        Path lake=root.resolve("lake");
+        Path corrupt=PublishedBookFixture.create(lake,"20261104/17",84,"Title: Other\n","other book","2026-11-04T17:00:00Z");
+        Files.writeString(corrupt,"{broken");
+        assertEquals(200,request("POST","/index/update/123").statusCode());
+        assertEquals(500,request("POST","/index/update/84").statusCode());
+        var bulk=JsonParser.parseString(request("POST","/index").body()).getAsJsonObject();
+        assertEquals(1,bulk.get("indexed").getAsInt());
+        assertEquals(1,bulk.get("failed").getAsInt());
+        assertEquals(500,request("POST","/index/rebuild").statusCode());
+    }
+
     @Test void returnsStructuredErrorsForInvalidMissingAndUnknownRoutes() throws Exception {
         for (String id : new String[]{"abc","0","-1","10000001"}) {
             var response=request("POST","/index/update/"+id);

@@ -35,11 +35,16 @@ Paths must be relative, inside the datalake and match the marker's partition and
 The selected body's SHA-256 is checked on the exact bytes used for indexing.
 
 Duplicate ids across partitions are resolved by oldest ingestion instant, then header path for an exact tie. All indexing endpoints use this selection.
-A malformed committed marker or missing published file aborts discovery, rather than publishing an incomplete rebuild.
+A corrupt marker only affects its own book:
+
+- `POST /index/update/{id}` opens only the markers of that book. A corrupt marker of another book cannot make it fail; its own returns 500 `datalake_error`.
+- `POST /index` logs and skips corrupt markers, and counts them in `failed`.
+- `POST /index/rebuild` aborts and keeps the published index, rather than publishing an incomplete one.
+
 Unpublished header/body files without a marker are ignored.
 
-This reader cannot make concurrent replacement of a published Ingestion file safe. Until the Control Module provides cross-process ownership, run one Ingestion writer for any given book id.
-Indexing mutations are serialized within a service instance; SQLite locks arbitrate separate processes. Replica coordination is not implemented by this service.
+Reading, metadata extraction and tokenizing run in parallel in the request threads. Only the SQLite write is serialized within a service instance; SQLite locks arbitrate separate processes. A rebuild holds the write lock while it runs, so concurrent updates wait for it.
+The Control Module lease gives each book a single owner across replicas.
 
 ## SQLite contract for Search
 
@@ -67,13 +72,14 @@ index_state(
   Search must use exactly the same rule. `word_count` is the sum of indexed term frequencies, not a count of every word in the source.
 - Missing metadata and `Unknown` become SQL NULL. `author_norm` is lowercase with combining accents removed.
 - `language` is an ISO 639-1 code derived from an English language name, a known two-letter code or its ISO3 alias. Unrecognized or missing languages become NULL.
-- `year` stays NULL: Gutenberg release dates are not original publication years.
+- `year` stays NULL: Gutenberg headers only give the digitisation (release) date, not the original publication year. No data is invented, so the Search year filter only matches books with a reliable year. Whether to add another source is a pending team decision.
+- `body_path` is relative to the datalake root and uses `/`, as in the marker.
 - `content_sha` hashes the body bytes. `indexed_at` records indexing time in UTC.
 - `index_state` always has row `id=1`. Empty new databases start at version 0.
 - Each successful single-book publication, each book published by `POST /index`, and each rebuild/clear increments the version once.
   Re-indexing unchanged content also increments the version; hash-based skipping is not implemented.
 - Book data, postings, count, timestamp and version commit together. A failed rebuild preserves the old index.
-- WAL is enabled at initialization. Every service connection enables foreign keys and a 5000 ms busy timeout.
+- WAL is enabled at initialization. Every service connection enables foreign keys and a 30000 ms busy timeout.
 - `index_metadata` is retained as a compatibility mirror of `last_update`.
 
 Search must open SQLite read-only, use `PRAGMA query_only=ON`, and read version/count/postings/results in one transaction.
@@ -100,15 +106,15 @@ See `src/main/resources/openapi.yaml`.
 | --- | --- |
 | POST /index | Reprocess selected completed books; reports total/indexed/failed. Each book is a separate publication. |
 | POST /index/update/{book_id} | Publish one selected book; 404 if absent, 400 for invalid id |
-| POST /index/rebuild | Prepare all selected books, then atomically replace the entire index |
+| POST /index/rebuild | Atomically replace the entire index in one transaction, loading one book at a time |
 | GET /index/status | Snapshot of count, timestamp, logical database size and index version |
 | GET /health | Database-backed status, version, count and configured thread-pool maximum |
 
 `/index` may return 200 with `failed > 0`; callers must inspect the counters.
-A missing/unreadable datalake or invalid committed marker returns 500 `datalake_error`.
+A missing/unreadable datalake, or a marker that invalidates the requested operation, returns 500 `datalake_error`.
 Database/unexpected failures return 500 `internal_error`.
 Errors use `{"error":"code","message":"description"}`; unknown routes return JSON 404.
-Book ids must be integers from 1 to 10000000; update responses retain a string id for backward compatibility.
+Book ids must be integers from 1 to 10000000; update responses return the id as a JSON number.
 `index_size_MB` is logical SQLite pages, excluding WAL and shared-memory file sizes.
 
 ## Tests
@@ -116,7 +122,7 @@ Book ids must be integers from 1 to 10000000; update responses retain a string i
 `mvn clean package` runs JUnit 5 unit and HTTP tests against temporary data only.
 Coverage includes legacy migration, metadata normalization, foreign-key-safe updates, duplicate selection,
 temporary-file exclusion, corrupt publication/hash rejection, rollback preserving the version,
-read-only WAL snapshot consistency while another connection publishes, and API errors/status/thread limits.
+read-only WAL snapshot consistency while another connection publishes, eight threads updating different books,
+a corrupt marker of another book, and API errors/status/thread limits.
 
-Rebuild currently prepares all term-frequency maps in memory before writing; very large corpora need a later bounded-memory staging implementation.
-The root aggregator currently includes only this module. Ingestion must still be built separately.
+Runnable checks against a running service: `http/indexing.http` and `scripts/sample-indexing.ps1`.

@@ -1,0 +1,50 @@
+### InverSeek Control Module - runnable HTTP checks
+@base = http://localhost:7000
+
+### Health -> 200 with the reachability of Ingestion and Indexing
+GET {{base}}/health
+
+### Register books -> 202 {"inserted":N,"ignored":N,"total":N}
+POST {{base}}/control/books
+Content-Type: application/json
+
+{"ids": [11, 84, 1342, 9999999]}
+
+### Register again (idempotent) -> 202, everything ignored
+POST {{base}}/control/books
+Content-Type: application/json
+
+{"ids": [11, 84, 1342, 9999999]}
+
+### Register a range -> 202
+POST {{base}}/control/books
+Content-Type: application/json
+
+{"from": 100, "to": 102}
+
+### Invalid body -> 400 {"error":"invalid_request"}
+POST {{base}}/control/books
+Content-Type: application/json
+
+{"ids": []}
+
+### One book -> 200 with state, attempts, last_error and timestamps
+GET {{base}}/control/books/1342
+
+### Book that does not exist on Gutenberg ends as NOT_FOUND
+GET {{base}}/control/books/9999999
+
+### Unregistered book -> 404 {"error":"book_not_found"}
+GET {{base}}/control/books/5
+
+### List by state, with pagination
+GET {{base}}/control/books?state=INDEXED&offset=0&limit=10
+
+### Status -> books per state, workers and active leases
+GET {{base}}/control/status
+
+### Metrics -> coordination cost per phase
+GET {{base}}/control/metrics
+
+### Retry -> 202. FAILED and NOT_FOUND restart; INDEXED is reindexed; active books give 409
+POST {{base}}/control/books/1342/retry
