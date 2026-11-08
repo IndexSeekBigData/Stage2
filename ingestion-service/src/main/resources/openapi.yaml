@@ -196,7 +196,7 @@ components:
   schemas:
     BookFields:
       type: object
-      required: [book_id, status, path, header_path, body_path, header_bytes, body_bytes, body_sha256, ingested_at]
+      required: [book_id, path, header_path, body_path, header_bytes, body_bytes, body_sha256, ingested_at]
       properties:
         book_id:
           type: integer
@@ -220,27 +220,63 @@ components:
           format: date-time
 
     IngestResponse:
-      allOf:
-        - $ref: '#/components/schemas/BookFields'
-        - type: object
-          required: [status, elapsed_ms]
-          properties:
-            status:
-              type: string
-              enum: [downloaded, available]
-            elapsed_ms:
-              type: integer
-              format: int64
+      type: object
+      required: [book_id, path, header_path, body_path, header_bytes, body_bytes, body_sha256, ingested_at, status, elapsed_ms]
+      properties:
+        book_id:
+          type: integer
+        path:
+          type: string
+          description: Partition-relative prefix of the three files, relative to the datalake root
+        header_path:
+          type: string
+        body_path:
+          type: string
+        header_bytes:
+          type: integer
+          format: int64
+        body_bytes:
+          type: integer
+          format: int64
+        body_sha256:
+          type: string
+        ingested_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [downloaded, available]
+        elapsed_ms:
+          type: integer
+          format: int64
 
     StatusResponse:
-      allOf:
-        - $ref: '#/components/schemas/BookFields'
-        - type: object
-          required: [status]
-          properties:
-            status:
-              type: string
-              enum: [available]
+      type: object
+      required: [book_id, path, header_path, body_path, header_bytes, body_bytes, body_sha256, ingested_at, status]
+      properties:
+        book_id:
+          type: integer
+        path:
+          type: string
+          description: Partition-relative prefix of the three files, relative to the datalake root
+        header_path:
+          type: string
+        body_path:
+          type: string
+        header_bytes:
+          type: integer
+          format: int64
+        body_bytes:
+          type: integer
+          format: int64
+        body_sha256:
+          type: string
+        ingested_at:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [available]
 
     ErrorResponse:
       type: object
