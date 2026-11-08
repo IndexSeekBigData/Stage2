@@ -1,0 +1,21 @@
+# Books for experiment E (ingestion): not in corpus-ids.txt, so every run downloads them again.
+3176  # The Innocents Abroad
+86  # A Connecticut Yankee in King Arthur's Court
+245  # Life on the Mississippi
+1837  # The Prince and the Pauper
+4217  # A Portrait of the Artist as a Young Man
+1259  # Twenty Years After
+2148  # The Works of Edgar Allan Poe, Volume 2
+59  # Discourse on the Method
+4705  # A Treatise of Human Nature
+815  # Democracy in America, Volume 1
+3600  # Essays of Michel de Montaigne
+1251  # Le Morte d'Arthur, Volume 1
+2610  # Notre-Dame de Paris
+1934  # Songs of Innocence and of Experience
+45  # Anne of Green Gables
+215  # The Call of the Wild
+910  # White Fang
+1155  # The Secret Adversary
+863  # The Mysterious Affair at Styles
+3090  # Complete Original Short Stories of Guy de Maupassant
