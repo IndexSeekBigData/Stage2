@@ -21,4 +21,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>system-tests</id>
+            <modules><module>system-tests</module></modules>
+        </profile>
+    </profiles>
 </project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.inverseek</groupId><artifactId>system-tests</artifactId><version>1.0.0</version>
+  <name>InverSeek System Validation</name>
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <skipITs>true</skipITs><groups>contract,flow</groups>
+    <system.reports>${project.build.directory}/failsafe-reports</system.reports>
+  </properties>
+  <dependencies>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.10.2</version><scope>test</scope></dependency>
+    <dependency><groupId>com.google.code.gson</groupId><artifactId>gson</artifactId><version>2.11.0</version><scope>test</scope></dependency>
+    <dependency><groupId>org.xerial</groupId><artifactId>sqlite-jdbc</artifactId><version>3.46.1.0</version><scope>test</scope></dependency>
+    <dependency><groupId>com.atlassian.oai</groupId><artifactId>swagger-request-validator-core</artifactId><version>2.44.7</version><scope>test</scope></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-simple</artifactId><version>2.0.9</version><scope>test</scope></dependency>
+  </dependencies>
+  <build><plugins>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.2.5</version>
+      <configuration><groups>infrastructure</groups><systemPropertyVariables><repository.root>${project.basedir}/..</repository.root></systemPropertyVariables></configuration>
+    </plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-failsafe-plugin</artifactId><version>3.2.5</version>
+      <configuration>
+        <skipITs>${skipITs}</skipITs><groups>${groups}</groups><reportsDirectory>${system.reports}</reportsDirectory>
+        <forkCount>1</forkCount><reuseForks>true</reuseForks>
+        <systemPropertyVariables><repository.root>${project.basedir}/..</repository.root><junit.jupiter.execution.parallel.enabled>false</junit.jupiter.execution.parallel.enabled></systemPropertyVariables>
+      </configuration>
+      <executions><execution><goals><goal>integration-test</goal><goal>verify</goal></goals></execution></executions>
+    </plugin>
+  </plugins></build>
+  <profiles><profile><id>system-tests</id><properties><skipITs>false</skipITs></properties></profile></profiles>
+</project>
