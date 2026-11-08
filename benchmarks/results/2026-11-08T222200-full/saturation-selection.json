@@ -1,0 +1,26 @@
+﻿{
+    "rule":  "smallest tested client count reaching 95 percent of maximum mean throughput in experiment A",
+    "averages":  [
+                     {
+                         "clients":  1,
+                         "throughput":  259.58333333333331
+                     },
+                     {
+                         "clients":  4,
+                         "throughput":  1256.0166666666667
+                     },
+                     {
+                         "clients":  16,
+                         "throughput":  2397.75
+                     },
+                     {
+                         "clients":  64,
+                         "throughput":  2255.6666666666665
+                     },
+                     {
+                         "clients":  128,
+                         "throughput":  2230
+                     }
+                 ],
+    "clients":  16
+}

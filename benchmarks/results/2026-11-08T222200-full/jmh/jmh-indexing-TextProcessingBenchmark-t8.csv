@@ -1,0 +1,13 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: size"
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","thrpt",8,10,"2,623679","0,144432","ops/ms",SMALL
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","thrpt",8,10,"0,503944","0,032918","ops/ms",MEDIUM
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","thrpt",8,10,"0,118333","0,007654","ops/ms",LARGE
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","thrpt",8,10,"2,965534","0,066179","ops/ms",SMALL
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","thrpt",8,10,"0,536002","0,012687","ops/ms",MEDIUM
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","thrpt",8,10,"0,127510","0,002282","ops/ms",LARGE
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","avgt",8,10,"2,913559","0,232657","ms/op",SMALL
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","avgt",8,10,"15,120835","0,426557","ms/op",MEDIUM
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook","avgt",8,10,"65,620836","4,384581","ms/op",LARGE
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","avgt",8,10,"2,811556","0,071461","ms/op",SMALL
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","avgt",8,10,"14,603754","0,759176","ms/op",MEDIUM
+"com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize","avgt",8,10,"65,083637","4,861365","ms/op",LARGE

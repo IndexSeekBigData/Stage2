@@ -1,0 +1,485 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = SMALL)
+
+# Run progress: 0,00% complete, ETA 00:03:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,593 ops/ms
+# Warmup Iteration   2: 1,783 ops/ms
+# Warmup Iteration   3: 1,764 ops/ms
+# Warmup Iteration   4: 1,785 ops/ms
+# Warmup Iteration   5: 1,778 ops/ms
+Iteration   1: 1,795 ops/ms
+Iteration   2: 1,783 ops/ms
+Iteration   3: 1,783 ops/ms
+Iteration   4: 1,814 ops/ms
+Iteration   5: 1,786 ops/ms
+Iteration   6: 1,755 ops/ms
+Iteration   7: 1,767 ops/ms
+Iteration   8: 1,651 ops/ms
+Iteration   9: 1,780 ops/ms
+Iteration  10: 1,764 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  1,768 ±(99.9%) 0,067 ops/ms [Average]
+  (min, avg, max) = (1,651, 1,768, 1,814), stdev = 0,044
+  CI (99.9%): [1,701, 1,835] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = MEDIUM)
+
+# Run progress: 8,33% complete, ETA 00:02:51
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,283 ops/ms
+# Warmup Iteration   2: 0,328 ops/ms
+# Warmup Iteration   3: 0,324 ops/ms
+# Warmup Iteration   4: 0,326 ops/ms
+# Warmup Iteration   5: 0,329 ops/ms
+Iteration   1: 0,326 ops/ms
+Iteration   2: 0,316 ops/ms
+Iteration   3: 0,322 ops/ms
+Iteration   4: 0,327 ops/ms
+Iteration   5: 0,331 ops/ms
+Iteration   6: 0,314 ops/ms
+Iteration   7: 0,305 ops/ms
+Iteration   8: 0,324 ops/ms
+Iteration   9: 0,325 ops/ms
+Iteration  10: 0,320 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  0,321 ±(99.9%) 0,012 ops/ms [Average]
+  (min, avg, max) = (0,305, 0,321, 0,331), stdev = 0,008
+  CI (99.9%): [0,309, 0,333] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = LARGE)
+
+# Run progress: 16,67% complete, ETA 00:02:37
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,062 ops/ms
+# Warmup Iteration   2: 0,071 ops/ms
+# Warmup Iteration   3: 0,073 ops/ms
+# Warmup Iteration   4: 0,073 ops/ms
+# Warmup Iteration   5: 0,073 ops/ms
+Iteration   1: 0,073 ops/ms
+Iteration   2: 0,073 ops/ms
+Iteration   3: 0,072 ops/ms
+Iteration   4: 0,073 ops/ms
+Iteration   5: 0,072 ops/ms
+Iteration   6: 0,070 ops/ms
+Iteration   7: 0,072 ops/ms
+Iteration   8: 0,074 ops/ms
+Iteration   9: 0,073 ops/ms
+Iteration  10: 0,073 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  0,073 ±(99.9%) 0,002 ops/ms [Average]
+  (min, avg, max) = (0,070, 0,073, 0,074), stdev = 0,001
+  CI (99.9%): [0,071, 0,074] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = SMALL)
+
+# Run progress: 25,00% complete, ETA 00:02:25
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,570 ops/ms
+# Warmup Iteration   2: 1,784 ops/ms
+# Warmup Iteration   3: 1,738 ops/ms
+# Warmup Iteration   4: 1,771 ops/ms
+# Warmup Iteration   5: 1,763 ops/ms
+Iteration   1: 1,808 ops/ms
+Iteration   2: 1,750 ops/ms
+Iteration   3: 1,743 ops/ms
+Iteration   4: 1,753 ops/ms
+Iteration   5: 1,762 ops/ms
+Iteration   6: 1,775 ops/ms
+Iteration   7: 1,789 ops/ms
+Iteration   8: 1,720 ops/ms
+Iteration   9: 1,742 ops/ms
+Iteration  10: 1,767 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  1,761 ±(99.9%) 0,038 ops/ms [Average]
+  (min, avg, max) = (1,720, 1,761, 1,808), stdev = 0,025
+  CI (99.9%): [1,722, 1,799] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = MEDIUM)
+
+# Run progress: 33,33% complete, ETA 00:02:07
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,315 ops/ms
+# Warmup Iteration   2: 0,343 ops/ms
+# Warmup Iteration   3: 0,352 ops/ms
+# Warmup Iteration   4: 0,350 ops/ms
+# Warmup Iteration   5: 0,356 ops/ms
+Iteration   1: 0,352 ops/ms
+Iteration   2: 0,354 ops/ms
+Iteration   3: 0,348 ops/ms
+Iteration   4: 0,356 ops/ms
+Iteration   5: 0,348 ops/ms
+Iteration   6: 0,351 ops/ms
+Iteration   7: 0,352 ops/ms
+Iteration   8: 0,355 ops/ms
+Iteration   9: 0,356 ops/ms
+Iteration  10: 0,353 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  0,353 ±(99.9%) 0,004 ops/ms [Average]
+  (min, avg, max) = (0,348, 0,353, 0,356), stdev = 0,003
+  CI (99.9%): [0,348, 0,357] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = LARGE)
+
+# Run progress: 41,67% complete, ETA 00:01:51
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,073 ops/ms
+# Warmup Iteration   2: 0,081 ops/ms
+# Warmup Iteration   3: 0,081 ops/ms
+# Warmup Iteration   4: 0,079 ops/ms
+# Warmup Iteration   5: 0,079 ops/ms
+Iteration   1: 0,081 ops/ms
+Iteration   2: 0,078 ops/ms
+Iteration   3: 0,081 ops/ms
+Iteration   4: 0,082 ops/ms
+Iteration   5: 0,077 ops/ms
+Iteration   6: 0,080 ops/ms
+Iteration   7: 0,081 ops/ms
+Iteration   8: 0,081 ops/ms
+Iteration   9: 0,079 ops/ms
+Iteration  10: 0,075 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  0,079 ±(99.9%) 0,003 ops/ms [Average]
+  (min, avg, max) = (0,075, 0,079, 0,082), stdev = 0,002
+  CI (99.9%): [0,076, 0,083] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = SMALL)
+
+# Run progress: 50,00% complete, ETA 00:01:36
+# Fork: 1 of 1
+# Warmup Iteration   1: 2,759 ±(99.9%) 0,730 ms/op
+# Warmup Iteration   2: 2,377 ±(99.9%) 0,136 ms/op
+# Warmup Iteration   3: 2,412 ±(99.9%) 0,441 ms/op
+# Warmup Iteration   4: 2,344 ±(99.9%) 0,186 ms/op
+# Warmup Iteration   5: 2,359 ±(99.9%) 0,413 ms/op
+Iteration   1: 2,331 ±(99.9%) 0,175 ms/op
+Iteration   2: 2,369 ±(99.9%) 0,171 ms/op
+Iteration   3: 2,342 ±(99.9%) 0,234 ms/op
+Iteration   4: 2,342 ±(99.9%) 0,221 ms/op
+Iteration   5: 2,336 ±(99.9%) 0,141 ms/op
+Iteration   6: 2,318 ±(99.9%) 0,373 ms/op
+Iteration   7: 2,337 ±(99.9%) 0,346 ms/op
+Iteration   8: 2,333 ±(99.9%) 0,147 ms/op
+Iteration   9: 2,338 ±(99.9%) 0,085 ms/op
+Iteration  10: 2,345 ±(99.9%) 0,320 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  2,339 ±(99.9%) 0,020 ms/op [Average]
+  (min, avg, max) = (2,318, 2,339, 2,369), stdev = 0,013
+  CI (99.9%): [2,319, 2,359] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = MEDIUM)
+
+# Run progress: 58,33% complete, ETA 00:01:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 14,305 ±(99.9%) 5,636 ms/op
+# Warmup Iteration   2: 12,203 ±(99.9%) 2,550 ms/op
+# Warmup Iteration   3: 12,143 ±(99.9%) 0,515 ms/op
+# Warmup Iteration   4: 12,249 ±(99.9%) 1,509 ms/op
+# Warmup Iteration   5: 12,454 ±(99.9%) 3,246 ms/op
+Iteration   1: 12,363 ±(99.9%) 1,937 ms/op
+Iteration   2: 12,114 ±(99.9%) 0,843 ms/op
+Iteration   3: 12,241 ±(99.9%) 0,666 ms/op
+Iteration   4: 12,350 ±(99.9%) 0,579 ms/op
+Iteration   5: 12,132 ±(99.9%) 1,708 ms/op
+Iteration   6: 12,104 ±(99.9%) 1,556 ms/op
+Iteration   7: 12,306 ±(99.9%) 0,779 ms/op
+Iteration   8: 12,250 ±(99.9%) 0,405 ms/op
+Iteration   9: 12,120 ±(99.9%) 0,245 ms/op
+Iteration  10: 12,193 ±(99.9%) 1,486 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  12,217 ±(99.9%) 0,151 ms/op [Average]
+  (min, avg, max) = (12,104, 12,217, 12,363), stdev = 0,100
+  CI (99.9%): [12,067, 12,368] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook
+# Parameters: (size = LARGE)
+
+# Run progress: 66,67% complete, ETA 00:01:03
+# Fork: 1 of 1
+# Warmup Iteration   1: 60,313 ±(99.9%) 18,682 ms/op
+# Warmup Iteration   2: 52,799 ±(99.9%) 6,066 ms/op
+# Warmup Iteration   3: 53,029 ±(99.9%) 7,925 ms/op
+# Warmup Iteration   4: 53,332 ±(99.9%) 5,956 ms/op
+# Warmup Iteration   5: 52,494 ±(99.9%) 3,752 ms/op
+Iteration   1: 52,294 ±(99.9%) 4,486 ms/op
+Iteration   2: 53,187 ±(99.9%) 8,235 ms/op
+Iteration   3: 54,881 ±(99.9%) 5,750 ms/op
+Iteration   4: 54,581 ±(99.9%) 5,322 ms/op
+Iteration   5: 54,518 ±(99.9%) 5,087 ms/op
+Iteration   6: 54,209 ±(99.9%) 7,619 ms/op
+Iteration   7: 54,796 ±(99.9%) 11,291 ms/op
+Iteration   8: 53,637 ±(99.9%) 8,863 ms/op
+Iteration   9: 53,002 ±(99.9%) 8,309 ms/op
+Iteration  10: 55,196 ±(99.9%) 14,165 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.prepareBook":
+  54,030 ±(99.9%) 1,442 ms/op [Average]
+  (min, avg, max) = (52,294, 54,030, 55,196), stdev = 0,953
+  CI (99.9%): [52,589, 55,472] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = SMALL)
+
+# Run progress: 75,00% complete, ETA 00:00:48
+# Fork: 1 of 1
+# Warmup Iteration   1: 2,392 ±(99.9%) 0,663 ms/op
+# Warmup Iteration   2: 2,187 ±(99.9%) 0,196 ms/op
+# Warmup Iteration   3: 2,170 ±(99.9%) 0,329 ms/op
+# Warmup Iteration   4: 2,175 ±(99.9%) 0,356 ms/op
+# Warmup Iteration   5: 2,175 ±(99.9%) 0,243 ms/op
+Iteration   1: 2,188 ±(99.9%) 0,075 ms/op
+Iteration   2: 2,178 ±(99.9%) 0,221 ms/op
+Iteration   3: 2,160 ±(99.9%) 0,182 ms/op
+Iteration   4: 2,135 ±(99.9%) 0,243 ms/op
+Iteration   5: 2,197 ±(99.9%) 0,474 ms/op
+Iteration   6: 2,292 ±(99.9%) 0,378 ms/op
+Iteration   7: 2,201 ±(99.9%) 0,292 ms/op
+Iteration   8: 2,166 ±(99.9%) 0,168 ms/op
+Iteration   9: 2,190 ±(99.9%) 0,176 ms/op
+Iteration  10: 2,161 ±(99.9%) 0,133 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  2,187 ±(99.9%) 0,064 ms/op [Average]
+  (min, avg, max) = (2,135, 2,187, 2,292), stdev = 0,042
+  CI (99.9%): [2,123, 2,250] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = MEDIUM)
+
+# Run progress: 83,33% complete, ETA 00:00:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 13,734 ±(99.9%) 4,050 ms/op
+# Warmup Iteration   2: 12,555 ±(99.9%) 1,353 ms/op
+# Warmup Iteration   3: 12,650 ±(99.9%) 1,224 ms/op
+# Warmup Iteration   4: 12,504 ±(99.9%) 1,161 ms/op
+# Warmup Iteration   5: 12,475 ±(99.9%) 1,742 ms/op
+Iteration   1: 12,203 ±(99.9%) 0,648 ms/op
+Iteration   2: 12,328 ±(99.9%) 0,423 ms/op
+Iteration   3: 12,573 ±(99.9%) 0,985 ms/op
+Iteration   4: 12,672 ±(99.9%) 1,263 ms/op
+Iteration   5: 12,407 ±(99.9%) 1,017 ms/op
+Iteration   6: 12,699 ±(99.9%) 0,780 ms/op
+Iteration   7: 12,683 ±(99.9%) 1,170 ms/op
+Iteration   8: 12,578 ±(99.9%) 2,602 ms/op
+Iteration   9: 13,154 ±(99.9%) 0,782 ms/op
+Iteration  10: 13,418 ±(99.9%) 1,368 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  12,672 ±(99.9%) 0,556 ms/op [Average]
+  (min, avg, max) = (12,203, 12,672, 13,418), stdev = 0,368
+  CI (99.9%): [12,116, 13,227] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize
+# Parameters: (size = LARGE)
+
+# Run progress: 91,67% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 55,519 ±(99.9%) 20,944 ms/op
+# Warmup Iteration   2: 50,885 ±(99.9%) 7,038 ms/op
+# Warmup Iteration   3: 50,742 ±(99.9%) 8,007 ms/op
+# Warmup Iteration   4: 50,147 ±(99.9%) 9,841 ms/op
+# Warmup Iteration   5: 50,830 ±(99.9%) 7,309 ms/op
+Iteration   1: 52,317 ±(99.9%) 6,668 ms/op
+Iteration   2: 53,311 ±(99.9%) 5,096 ms/op
+Iteration   3: 53,163 ±(99.9%) 4,162 ms/op
+Iteration   4: 52,266 ±(99.9%) 7,104 ms/op
+Iteration   5: 52,587 ±(99.9%) 10,035 ms/op
+Iteration   6: 53,111 ±(99.9%) 2,274 ms/op
+Iteration   7: 53,886 ±(99.9%) 8,663 ms/op
+Iteration   8: 53,096 ±(99.9%) 7,047 ms/op
+Iteration   9: 51,507 ±(99.9%) 5,233 ms/op
+Iteration  10: 53,202 ±(99.9%) 5,608 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.TextProcessingBenchmark.tokenize":
+  52,844 ±(99.9%) 1,025 ms/op [Average]
+  (min, avg, max) = (51,507, 52,844, 53,886), stdev = 0,678
+  CI (99.9%): [51,820, 53,869] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:03:13
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                            (size)   Mode  Cnt   Score   Error   Units
+TextProcessingBenchmark.prepareBook   SMALL  thrpt   10   1,768 ± 0,067  ops/ms
+TextProcessingBenchmark.prepareBook  MEDIUM  thrpt   10   0,321 ± 0,012  ops/ms
+TextProcessingBenchmark.prepareBook   LARGE  thrpt   10   0,073 ± 0,002  ops/ms
+TextProcessingBenchmark.tokenize      SMALL  thrpt   10   1,761 ± 0,038  ops/ms
+TextProcessingBenchmark.tokenize     MEDIUM  thrpt   10   0,353 ± 0,004  ops/ms
+TextProcessingBenchmark.tokenize      LARGE  thrpt   10   0,079 ± 0,003  ops/ms
+TextProcessingBenchmark.prepareBook   SMALL   avgt   10   2,339 ± 0,020   ms/op
+TextProcessingBenchmark.prepareBook  MEDIUM   avgt   10  12,217 ± 0,151   ms/op
+TextProcessingBenchmark.prepareBook   LARGE   avgt   10  54,030 ± 1,442   ms/op
+TextProcessingBenchmark.tokenize      SMALL   avgt   10   2,187 ± 0,064   ms/op
+TextProcessingBenchmark.tokenize     MEDIUM   avgt   10  12,672 ± 0,556   ms/op
+TextProcessingBenchmark.tokenize      LARGE   avgt   10  52,844 ± 1,025   ms/op
+
+Benchmark result is saved to target/jmh-indexing-TextProcessingBenchmark-t4.csv

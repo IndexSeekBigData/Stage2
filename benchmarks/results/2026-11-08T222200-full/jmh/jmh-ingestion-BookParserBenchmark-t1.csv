@@ -1,0 +1,7 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: size"
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","thrpt",1,10,"1,842291","0,308232","ops/ms",SMALL
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","thrpt",1,10,"0,483362","0,005474","ops/ms",MEDIUM
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","thrpt",1,10,"0,134971","0,001888","ops/ms",LARGE
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","avgt",1,10,"0,507774","0,006182","ms/op",SMALL
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","avgt",1,10,"2,208892","0,647850","ms/op",MEDIUM
+"com.inverseek.ingestion.benchmark.BookParserBenchmark.split","avgt",1,10,"7,377615","0,094244","ms/op",LARGE

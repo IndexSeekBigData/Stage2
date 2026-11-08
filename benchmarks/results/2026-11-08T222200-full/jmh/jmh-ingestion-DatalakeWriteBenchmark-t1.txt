@@ -1,0 +1,251 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = SMALL)
+
+# Run progress: 0,00% complete, ETA 00:01:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,058 ops/ms
+# Warmup Iteration   2: 0,056 ops/ms
+# Warmup Iteration   3: 0,060 ops/ms
+# Warmup Iteration   4: 0,060 ops/ms
+# Warmup Iteration   5: 0,063 ops/ms
+Iteration   1: 0,052 ops/ms
+Iteration   2: 0,063 ops/ms
+Iteration   3: 0,063 ops/ms
+Iteration   4: 0,064 ops/ms
+Iteration   5: 0,062 ops/ms
+Iteration   6: 0,063 ops/ms
+Iteration   7: 0,057 ops/ms
+Iteration   8: 0,062 ops/ms
+Iteration   9: 0,060 ops/ms
+Iteration  10: 0,063 ops/ms
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  0,061 ±(99.9%) 0,006 ops/ms [Average]
+  (min, avg, max) = (0,052, 0,061, 0,064), stdev = 0,004
+  CI (99.9%): [0,055, 0,067] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = MEDIUM)
+
+# Run progress: 16,67% complete, ETA 00:01:18
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,031 ops/ms
+# Warmup Iteration   2: 0,042 ops/ms
+# Warmup Iteration   3: 0,059 ops/ms
+# Warmup Iteration   4: 0,059 ops/ms
+# Warmup Iteration   5: 0,059 ops/ms
+Iteration   1: 0,059 ops/ms
+Iteration   2: 0,051 ops/ms
+Iteration   3: 0,058 ops/ms
+Iteration   4: 0,058 ops/ms
+Iteration   5: 0,060 ops/ms
+Iteration   6: 0,059 ops/ms
+Iteration   7: 0,057 ops/ms
+Iteration   8: 0,047 ops/ms
+Iteration   9: 0,058 ops/ms
+Iteration  10: 0,059 ops/ms
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  0,056 ±(99.9%) 0,007 ops/ms [Average]
+  (min, avg, max) = (0,047, 0,056, 0,060), stdev = 0,004
+  CI (99.9%): [0,050, 0,063] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = LARGE)
+
+# Run progress: 33,33% complete, ETA 00:01:02
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,015 ops/ms
+# Warmup Iteration   2: 0,022 ops/ms
+# Warmup Iteration   3: 0,021 ops/ms
+# Warmup Iteration   4: 0,022 ops/ms
+# Warmup Iteration   5: 0,018 ops/ms
+Iteration   1: 0,023 ops/ms
+Iteration   2: 0,023 ops/ms
+Iteration   3: 0,021 ops/ms
+Iteration   4: 0,023 ops/ms
+Iteration   5: 0,023 ops/ms
+Iteration   6: 0,023 ops/ms
+Iteration   7: 0,023 ops/ms
+Iteration   8: 0,023 ops/ms
+Iteration   9: 0,020 ops/ms
+Iteration  10: 0,023 ops/ms
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  0,022 ±(99.9%) 0,002 ops/ms [Average]
+  (min, avg, max) = (0,020, 0,022, 0,023), stdev = 0,001
+  CI (99.9%): [0,021, 0,024] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = SMALL)
+
+# Run progress: 50,00% complete, ETA 00:00:47
+# Fork: 1 of 1
+# Warmup Iteration   1: 17,096 ms/op
+# Warmup Iteration   2: 16,334 ms/op
+# Warmup Iteration   3: 16,825 ms/op
+# Warmup Iteration   4: 21,122 ms/op
+# Warmup Iteration   5: 16,249 ms/op
+Iteration   1: 16,399 ms/op
+Iteration   2: 16,511 ms/op
+Iteration   3: 16,653 ms/op
+Iteration   4: 18,313 ms/op
+Iteration   5: 17,594 ms/op
+Iteration   6: 16,343 ms/op
+Iteration   7: 16,639 ms/op
+Iteration   8: 15,767 ms/op
+Iteration   9: 15,893 ms/op
+Iteration  10: 19,970 ms/op
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  17,008 ±(99.9%) 1,947 ms/op [Average]
+  (min, avg, max) = (15,767, 17,008, 19,970), stdev = 1,288
+  CI (99.9%): [15,061, 18,955] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = MEDIUM)
+
+# Run progress: 66,67% complete, ETA 00:00:31
+# Fork: 1 of 1
+# Warmup Iteration   1: 25,155 ms/op
+# Warmup Iteration   2: 24,074 ms/op
+# Warmup Iteration   3: 20,322 ms/op
+# Warmup Iteration   4: 21,178 ms/op
+# Warmup Iteration   5: 1033,501 ms/op
+Iteration   1: 127,705 ms/op
+Iteration   2: 48,956 ms/op
+Iteration   3: 22,044 ms/op
+Iteration   4: 17,026 ms/op
+Iteration   5: 17,538 ms/op
+Iteration   6: 17,027 ms/op
+Iteration   7: 17,314 ms/op
+Iteration   8: 17,507 ms/op
+Iteration   9: 22,046 ms/op
+Iteration  10: 17,891 ms/op
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  32,505 ±(99.9%) 52,674 ms/op [Average]
+  (min, avg, max) = (17,026, 32,505, 127,705), stdev = 34,841
+  CI (99.9%): [? 0, 85,180] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store
+# Parameters: (size = LARGE)
+
+# Run progress: 83,33% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 53,914 ms/op
+# Warmup Iteration   2: 50,403 ms/op
+# Warmup Iteration   3: 67,165 ms/op
+# Warmup Iteration   4: 44,481 ms/op
+# Warmup Iteration   5: 43,566 ms/op
+Iteration   1: 45,284 ms/op
+Iteration   2: 48,910 ms/op
+Iteration   3: 44,259 ms/op
+Iteration   4: 46,606 ms/op
+Iteration   5: 42,889 ms/op
+Iteration   6: 44,000 ms/op
+Iteration   7: 43,519 ms/op
+Iteration   8: 43,576 ms/op
+Iteration   9: 54,183 ms/op
+Iteration  10: 43,109 ms/op
+
+
+Result "com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store":
+  45,634 ±(99.9%) 5,335 ms/op [Average]
+  (min, avg, max) = (42,889, 45,634, 54,183), stdev = 3,529
+  CI (99.9%): [40,298, 50,969] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:01:37
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                     (size)   Mode  Cnt   Score    Error   Units
+DatalakeWriteBenchmark.store   SMALL  thrpt   10   0,061 ±  0,006  ops/ms
+DatalakeWriteBenchmark.store  MEDIUM  thrpt   10   0,056 ±  0,007  ops/ms
+DatalakeWriteBenchmark.store   LARGE  thrpt   10   0,022 ±  0,002  ops/ms
+DatalakeWriteBenchmark.store   SMALL   avgt   10  17,008 ±  1,947   ms/op
+DatalakeWriteBenchmark.store  MEDIUM   avgt   10  32,505 ± 52,674   ms/op
+DatalakeWriteBenchmark.store   LARGE   avgt   10  45,634 ±  5,335   ms/op
+
+Benchmark result is saved to target/jmh-ingestion-DatalakeWriteBenchmark-t1.csv

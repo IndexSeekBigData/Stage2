@@ -1,0 +1,1533 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] InverSeek Ingestion Service                                        [jar]
+[INFO] InverSeek Indexing Service                                         [jar]
+[INFO] InverSeek Search Service                                           [jar]
+[INFO] InverSeek Control Module                                           [jar]
+[INFO] InverSeek                                                          [pom]
+[INFO] 
+[INFO] ------------------< com.inverseek:ingestion-service >-------------------
+[INFO] Building InverSeek Ingestion Service 1.0.0                         [1/5]
+[INFO]   from ingestion-service\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ingestion-service ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ ingestion-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ingestion-service ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ ingestion-service ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 9 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ ingestion-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.inverseek.ingestion.BookParserTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.inverseek.ingestion.BookParserTest
+[INFO] Running com.inverseek.ingestion.DatalakeTest
+[main] INFO com.inverseek.ingestion.Datalake - Removing leftover of an interrupted write: C:\Users\herna\AppData\Local\Temp\junit4571170502349189045\20261104\14\9.body.txt
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit4571170502349189045 ready with 0 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit17233619684751604257 ready with 2 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit6974699370295911006 ready with 0 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit15779376622688051167 ready with 1 books
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.264 s -- in com.inverseek.ingestion.DatalakeTest
+[INFO] Running com.inverseek.ingestion.IngestionApiTest
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit2465356764030996358 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@60cf80e7{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@6c8bca63{HTTP/1.1, (http/1.1)}{0.0.0.0:59579}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@31e3250d{STARTING}[11.0.20,sto=0] @1192ms
+[main] INFO io.javalin.Javalin - Javalin started in 164ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59579/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@31e3250d{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@6c8bca63{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@60cf80e7{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit9275652131608375898 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@4fdfa676{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@285f09de{HTTP/1.1, (http/1.1)}{0.0.0.0:59583}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@31500940{STARTING}[11.0.20,sto=0] @1382ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59583/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@31500940{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@285f09de{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@4fdfa676{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit5933511716418096898 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@54ec8cc9{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@2102a4d5{HTTP/1.1, (http/1.1)}{0.0.0.0:59586}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@3d4d3fe7{STARTING}[11.0.20,sto=0] @1419ms
+[main] INFO io.javalin.Javalin - Javalin started in 10ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59586/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-98] WARN com.inverseek.ingestion.IngestionApi - Upstream failure: Gutenberg answered HTTP 500 for book 500
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@3d4d3fe7{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@2102a4d5{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@54ec8cc9{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit15152083609588269301 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@2d35442b{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@344561e0{HTTP/1.1, (http/1.1)}{0.0.0.0:59590}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@36ac8a63{STARTING}[11.0.20,sto=0] @1453ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59590/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@36ac8a63{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@344561e0{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@2d35442b{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit13890029345545621986 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@7728643a{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3a80515c{HTTP/1.1, (http/1.1)}{0.0.0.0:59593}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@1c807b1d{STARTING}[11.0.20,sto=0] @1481ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59593/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-146] INFO com.inverseek.ingestion.IngestionService - Book 84 stored at 20261108/22/84 in 20 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@1c807b1d{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@3a80515c{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@7728643a{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit4948179791745860581 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3f2049b6{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3c8bdd5b{HTTP/1.1, (http/1.1)}{0.0.0.0:59597}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@40e4ea87{STARTING}[11.0.20,sto=0] @1528ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59597/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-171] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 20 ms
+[JettyServerThreadPool-156] INFO com.inverseek.ingestion.IngestionService - Book 84 stored at 20261108/22/84 in 20 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@40e4ea87{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@3c8bdd5b{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3f2049b6{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit1787367721420191942 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@50d68830{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@7bd69e82{HTTP/1.1, (http/1.1)}{0.0.0.0:59601}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@51b01960{STARTING}[11.0.20,sto=0] @1602ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59601/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-196] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 19 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@51b01960{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@7bd69e82{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@50d68830{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit2603839972298956611 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1968a49c{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@36dce7ed{HTTP/1.1, (http/1.1)}{0.0.0.0:59605}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@33d05366{STARTING}[11.0.20,sto=0] @1649ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59605/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-217] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 19 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@33d05366{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@36dce7ed{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1968a49c{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit6905048566636621737 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1e287667{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@11ee02f8{HTTP/1.1, (http/1.1)}{0.0.0.0:59609}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@61a5b4ae{STARTING}[11.0.20,sto=0] @1701ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59609/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@61a5b4ae{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@11ee02f8{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1e287667{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit9301855505883166742 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@71652c98{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@1c05a54d{HTTP/1.1, (http/1.1)}{0.0.0.0:59613}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@5fd9b663{STARTING}[11.0.20,sto=0] @1733ms
+[main] INFO io.javalin.Javalin - Javalin started in 10ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59613/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-270] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 22 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@5fd9b663{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@1c05a54d{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@71652c98{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit4718675197704746748 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@75201592{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@39fc6b2c{HTTP/1.1, (http/1.1)}{0.0.0.0:59617}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@3ee39da0{STARTING}[11.0.20,sto=0] @1783ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59617/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-296] WARN com.inverseek.ingestion.IngestionApi - Upstream failure: Timeout downloading book 77
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@3ee39da0{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@39fc6b2c{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@75201592{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit18341983034623832548 ready with 0 books
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@76b0ae1b{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@54f5f647{HTTP/1.1, (http/1.1)}{0.0.0.0:59622}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@5a6d5a8f{STARTING}[11.0.20,sto=0] @4809ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59622/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[JettyServerThreadPool-321] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 19 ms
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@5a6d5a8f{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@54f5f647{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@76b0ae1b{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.119 s -- in com.inverseek.ingestion.IngestionApiTest
+[INFO] Running com.inverseek.ingestion.IngestionServiceTest
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit15722295208515175666 ready with 0 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit5156175572445926063 ready with 0 books
+[pool-2-thread-1] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 68 ms
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit10615464529261963914 ready with 0 books
+[main] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 70 ms
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit8103203549503191112 ready with 0 books
+[pool-3-thread-3] INFO com.inverseek.ingestion.IngestionService - Book 3 stored at 20261108/22/3 in 111 ms
+[pool-3-thread-6] INFO com.inverseek.ingestion.IngestionService - Book 6 stored at 20261108/22/6 in 111 ms
+[pool-3-thread-4] INFO com.inverseek.ingestion.IngestionService - Book 4 stored at 20261108/22/4 in 112 ms
+[pool-3-thread-2] INFO com.inverseek.ingestion.IngestionService - Book 2 stored at 20261108/22/2 in 122 ms
+[pool-3-thread-5] INFO com.inverseek.ingestion.IngestionService - Book 5 stored at 20261108/22/5 in 138 ms
+[pool-3-thread-1] INFO com.inverseek.ingestion.IngestionService - Book 1 stored at 20261108/22/1 in 155 ms
+[pool-3-thread-7] INFO com.inverseek.ingestion.IngestionService - Book 7 stored at 20261108/22/7 in 171 ms
+[pool-3-thread-8] INFO com.inverseek.ingestion.IngestionService - Book 8 stored at 20261108/22/8 in 190 ms
+[pool-3-thread-6] INFO com.inverseek.ingestion.IngestionService - Book 10 stored at 20261108/22/10 in 86 ms
+[pool-3-thread-3] INFO com.inverseek.ingestion.IngestionService - Book 9 stored at 20261108/22/9 in 88 ms
+[pool-3-thread-4] INFO com.inverseek.ingestion.IngestionService - Book 11 stored at 20261108/22/11 in 89 ms
+[pool-3-thread-2] INFO com.inverseek.ingestion.IngestionService - Book 12 stored at 20261108/22/12 in 88 ms
+[pool-3-thread-5] INFO com.inverseek.ingestion.IngestionService - Book 13 stored at 20261108/22/13 in 79 ms
+[pool-3-thread-1] INFO com.inverseek.ingestion.IngestionService - Book 14 stored at 20261108/22/14 in 76 ms
+[pool-3-thread-7] INFO com.inverseek.ingestion.IngestionService - Book 15 stored at 20261108/22/15 in 73 ms
+[pool-3-thread-4] INFO com.inverseek.ingestion.IngestionService - Book 19 stored at 20261108/22/19 in 95 ms
+[pool-3-thread-8] INFO com.inverseek.ingestion.IngestionService - Book 16 stored at 20261108/22/16 in 108 ms
+[pool-3-thread-6] INFO com.inverseek.ingestion.IngestionService - Book 17 stored at 20261108/22/17 in 101 ms
+[pool-3-thread-3] INFO com.inverseek.ingestion.IngestionService - Book 18 stored at 20261108/22/18 in 102 ms
+[pool-3-thread-2] INFO com.inverseek.ingestion.IngestionService - Book 20 stored at 20261108/22/20 in 97 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.499 s -- in com.inverseek.ingestion.IngestionServiceTest
+[INFO] Running com.inverseek.ingestion.ReplicaLockTest
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit14422850791390894301 ready with 0 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit14422850791390894301 ready with 0 books
+[main] INFO com.inverseek.ingestion.IngestionService - Book 11 stored at 20261108/22/11 in 17 ms
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit13162936916468368929 ready with 0 books
+[main] INFO com.inverseek.ingestion.Datalake - Datalake C:\Users\herna\AppData\Local\Temp\junit13162936916468368929 ready with 0 books
+[pool-4-thread-1] INFO com.inverseek.ingestion.IngestionService - Book 1342 stored at 20261108/22/1342 in 16 ms
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in com.inverseek.ingestion.ReplicaLockTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 31, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ ingestion-service ---
+[INFO] Building jar: C:\Users\herna\IdeaProjects\Stage_2\ingestion-service\target\ingestion-service-1.0.0.jar
+[INFO] 
+[INFO] --- shade:3.5.3:shade (default) @ ingestion-service ---
+[INFO] Including io.javalin:javalin:jar:6.1.3 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-api:jar:2.0.12 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-http:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-util:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-io:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:jar:5.0.2 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-security:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-webapp:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-xml:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-api:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains:annotations:jar:13.0 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.9.22 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.11.0 in the shaded jar.
+[INFO] Including com.google.errorprone:error_prone_annotations:jar:2.27.0 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-simple:jar:2.0.9 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] javalin-6.1.3.jar, jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE.txt
+[WARNING] jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE.txt
+[WARNING] error_prone_annotations-2.27.0.jar, gson-2.11.0.jar, kotlin-stdlib-1.9.22.jar, kotlin-stdlib-jdk7-1.9.22.jar, kotlin-stdlib-jdk8-1.9.22.jar, slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar define 1 overlapping classes: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\herna\IdeaProjects\Stage_2\ingestion-service\target\ingestion-service-1.0.0.jar with C:\Users\herna\IdeaProjects\Stage_2\ingestion-service\target\ingestion-service-1.0.0-shaded.jar
+[INFO] 
+[INFO] -------------------< com.inverseek:indexing-service >-------------------
+[INFO] Building InverSeek Indexing Service 1.0.0                          [2/5]
+[INFO]   from indexing-service\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ indexing-service ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ indexing-service ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 8 source files with javac [debug release 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ indexing-service ---
+[INFO] skip non existing resourceDirectory C:\Users\herna\IdeaProjects\Stage_2\indexing-service\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ indexing-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ indexing-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.inverseek.indexing.ConfigTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.inverseek.indexing.ConfigTest
+[INFO] Running com.inverseek.indexing.DatalakeReaderTest
+[main] WARN com.inverseek.indexing.DatalakeReader - Duplicate book 123: selecting oldest completed download
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.171 s -- in com.inverseek.indexing.DatalakeReaderTest
+[INFO] Running com.inverseek.indexing.DatamartStoreTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.598 s -- in com.inverseek.indexing.DatamartStoreTest
+[INFO] Running com.inverseek.indexing.HeaderParserTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.inverseek.indexing.HeaderParserTest
+[INFO] Running com.inverseek.indexing.IndexingApiTest
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1e886a5b{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@293bb8a5{HTTP/1.1, (http/1.1)}{0.0.0.0:59625}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@4a9cc6cb{STARTING}[11.0.20,sto=0] @1609ms
+[main] INFO io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+[main] INFO io.javalin.Javalin - Javalin started in 115ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59625/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[qtp94919826-30] ERROR com.inverseek.indexing.IndexingApi - Datalake failure
+java.io.IOException: Invalid completion marker: C:\Users\herna\AppData\Local\Temp\junit16012175810133693670\lake\20261104\17\84.success.json
+	at com.inverseek.indexing.DatalakeReader.findBook(DatalakeReader.java:52)
+	at com.inverseek.indexing.IndexingService.indexBook(IndexingService.java:42)
+	at com.inverseek.indexing.IndexingApi.lambda$register$3(IndexingApi.java:17)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.produce(AdaptiveExecutionStrategy.java:193)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: com.google.gson.JsonSyntaxException: java.io.EOFException: End of input at line 1 column 8 path $.broken
+	at com.google.gson.Gson.fromJson(Gson.java:1370)
+	at com.google.gson.Gson.fromJson(Gson.java:1262)
+	at com.google.gson.Gson.fromJson(Gson.java:1171)
+	at com.google.gson.Gson.fromJson(Gson.java:1107)
+	at com.inverseek.indexing.DatalakeReader.readMarker(DatalakeReader.java:111)
+	at com.inverseek.indexing.DatalakeReader.findBook(DatalakeReader.java:50)
+	... 42 more
+Caused by: java.io.EOFException: End of input at line 1 column 8 path $.broken
+	at com.google.gson.stream.JsonReader.nextNonWhitespace(JsonReader.java:1542)
+	at com.google.gson.stream.JsonReader.doPeek(JsonReader.java:602)
+	at com.google.gson.stream.JsonReader.skipValue(JsonReader.java:1339)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:514)
+	at com.google.gson.Gson.fromJson(Gson.java:1361)
+	... 47 more
+[qtp94919826-32] WARN com.inverseek.indexing.DatalakeReader - Skipping unusable completion marker C:\Users\herna\AppData\Local\Temp\junit16012175810133693670\lake\20261104\17\84.success.json: java.io.EOFException: End of input at line 1 column 8 path $.broken
+[qtp94919826-36] ERROR com.inverseek.indexing.IndexingApi - Datalake failure
+java.io.IOException: Invalid completion marker: C:\Users\herna\AppData\Local\Temp\junit16012175810133693670\lake\20261104\17\84.success.json
+	at com.inverseek.indexing.DatalakeReader$1.visitFile(DatalakeReader.java:100)
+	at com.inverseek.indexing.DatalakeReader$1.visitFile(DatalakeReader.java:82)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2811)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2882)
+	at com.inverseek.indexing.DatalakeReader.discover(DatalakeReader.java:82)
+	at com.inverseek.indexing.DatalakeReader.findBooks(DatalakeReader.java:28)
+	at com.inverseek.indexing.IndexingService.rebuildIndex(IndexingService.java:79)
+	at com.inverseek.indexing.IndexingApi.lambda$register$1(IndexingApi.java:13)
+	at io.javalin.router.Endpoint.handle(Endpoint.kt:52)
+	at io.javalin.router.ParsedEndpoint.handle(ParsedEndpoint.kt:15)
+	at io.javalin.http.servlet.DefaultTasks.HTTP$lambda$9$lambda$7$lambda$6(DefaultTasks.kt:52)
+	at io.javalin.http.servlet.JavalinServlet.handleTask(JavalinServlet.kt:99)
+	at io.javalin.http.servlet.JavalinServlet.handleSync(JavalinServlet.kt:64)
+	at io.javalin.http.servlet.JavalinServlet.handle(JavalinServlet.kt:50)
+	at io.javalin.http.servlet.JavalinServlet.service(JavalinServlet.kt:30)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:52)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:587)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:764)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:529)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:173)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.run(AdaptiveExecutionStrategy.java:199)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:411)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: com.google.gson.JsonSyntaxException: java.io.EOFException: End of input at line 1 column 8 path $.broken
+	at com.google.gson.Gson.fromJson(Gson.java:1370)
+	at com.google.gson.Gson.fromJson(Gson.java:1262)
+	at com.google.gson.Gson.fromJson(Gson.java:1171)
+	at com.google.gson.Gson.fromJson(Gson.java:1107)
+	at com.inverseek.indexing.DatalakeReader.readMarker(DatalakeReader.java:111)
+	at com.inverseek.indexing.DatalakeReader$1.visitFile(DatalakeReader.java:92)
+	... 48 more
+Caused by: java.io.EOFException: End of input at line 1 column 8 path $.broken
+	at com.google.gson.stream.JsonReader.nextNonWhitespace(JsonReader.java:1542)
+	at com.google.gson.stream.JsonReader.doPeek(JsonReader.java:602)
+	at com.google.gson.stream.JsonReader.skipValue(JsonReader.java:1339)
+	at com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter.read(ReflectiveTypeAdapterFactory.java:514)
+	at com.google.gson.Gson.fromJson(Gson.java:1361)
+	... 53 more
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@4a9cc6cb{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@293bb8a5{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1e886a5b{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@76b0ae1b{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@54f5f647{HTTP/1.1, (http/1.1)}{0.0.0.0:59627}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@5a6d5a8f{STARTING}[11.0.20,sto=0] @1839ms
+[main] INFO io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59627/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@5a6d5a8f{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@54f5f647{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@76b0ae1b{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@6134ac4a{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@2c1dc8e{HTTP/1.1, (http/1.1)}{0.0.0.0:59629}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@4e7095ac{STARTING}[11.0.20,sto=0] @1913ms
+[main] INFO io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+[main] INFO io.javalin.Javalin - Javalin started in 7ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59629/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@4e7095ac{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@2c1dc8e{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@6134ac4a{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@350b3a17{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@232024b9{HTTP/1.1, (http/1.1)}{0.0.0.0:59631}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@2a415aa9{STARTING}[11.0.20,sto=0] @2039ms
+[main] INFO io.javalin.Javalin - 
+       __                  ___           _____
+      / /___ __   ______ _/ (_)___      / ___/
+ __  / / __ `/ | / / __ `/ / / __ \    / __ \
+/ /_/ / /_/ /| |/ / /_/ / / / / / /   / /_/ /
+\____/\__,_/ |___/\__,_/_/_/_/ /_/    \____/
+
+       https://javalin.io/documentation
+
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59631/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@2a415aa9{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@232024b9{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@350b3a17{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.826 s -- in com.inverseek.indexing.IndexingApiTest
+[INFO] Running com.inverseek.indexing.PublicationTest
+[main] ERROR com.inverseek.indexing.IndexingService - Cannot index book 123
+java.io.IOException: Published files changed or hash mismatch for book 123
+	at com.inverseek.indexing.IndexingService.prepare(IndexingService.java:70)
+	at com.inverseek.indexing.IndexingService.indexBooks(IndexingService.java:30)
+	at com.inverseek.indexing.PublicationTest.serviceRejectsSameLengthBodyCorruptionWithoutReplacingPublishedIndex(PublicationTest.java:109)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+[main] WARN com.inverseek.indexing.DatalakeReader - Duplicate book 123: selecting oldest completed download
+[main] WARN com.inverseek.indexing.DatalakeReader - Duplicate book 123: selecting oldest completed download
+[main] WARN com.inverseek.indexing.DatalakeReader - Duplicate book 123: selecting oldest completed download
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.430 s -- in com.inverseek.indexing.PublicationTest
+[INFO] Running com.inverseek.indexing.TokenizerTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.inverseek.indexing.TokenizerTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 38, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ indexing-service ---
+[INFO] Building jar: C:\Users\herna\IdeaProjects\Stage_2\indexing-service\target\indexing-service-1.0.0.jar
+[INFO] 
+[INFO] --- shade:3.5.3:shade (default) @ indexing-service ---
+[INFO] Including io.javalin:javalin:jar:6.1.3 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-api:jar:2.0.12 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-http:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-util:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-io:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:jar:5.0.2 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-security:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-webapp:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-xml:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-api:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains:annotations:jar:13.0 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.9.22 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.11.0 in the shaded jar.
+[INFO] Including com.google.errorprone:error_prone_annotations:jar:2.27.0 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-simple:jar:2.0.9 in the shaded jar.
+[INFO] Including org.xerial:sqlite-jdbc:jar:3.46.1.0 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] javalin-6.1.3.jar, jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE.txt
+[WARNING] jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE.txt
+[WARNING] error_prone_annotations-2.27.0.jar, gson-2.11.0.jar, kotlin-stdlib-1.9.22.jar, kotlin-stdlib-jdk7-1.9.22.jar, kotlin-stdlib-jdk8-1.9.22.jar, slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar, sqlite-jdbc-3.46.1.0.jar define 1 overlapping classes: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\herna\IdeaProjects\Stage_2\indexing-service\target\indexing-service-1.0.0.jar with C:\Users\herna\IdeaProjects\Stage_2\indexing-service\target\indexing-service-1.0.0-shaded.jar
+[INFO] 
+[INFO] --------------------< com.inverseek:search-service >--------------------
+[INFO] Building InverSeek Search Service 1.0.0                            [3/5]
+[INFO]   from search-service\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ search-service ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ search-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ search-service ---
+[INFO] skip non existing resourceDirectory C:\Users\herna\IdeaProjects\Stage_2\search-service\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ search-service ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 7 source files with javac [debug release 17] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ search-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.inverseek.search.ConfigTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.037 s -- in com.inverseek.search.ConfigTest
+[INFO] Running com.inverseek.search.IndexReaderTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.990 s -- in com.inverseek.search.IndexReaderTest
+[INFO] Running com.inverseek.search.QueryParserTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.inverseek.search.QueryParserTest
+[INFO] Running com.inverseek.search.SearchApiTest
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@77b7ffa4{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@493dfb8e{HTTP/1.1, (http/1.1)}{0.0.0.0:59635}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@372ea2bc{STARTING}[11.0.20,sto=0] @1935ms
+[main] INFO io.javalin.Javalin - Javalin started in 137ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59635/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@372ea2bc{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@493dfb8e{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@77b7ffa4{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@7674a051{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@51b01960{HTTP/1.1, (http/1.1)}{0.0.0.0:59636}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@27dc79f7{STARTING}[11.0.20,sto=0] @1963ms
+[main] INFO io.javalin.Javalin - Javalin started in 7ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59636/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[qtp1862674654-46] WARN com.inverseek.search.SearchApi - Index unavailable: index_not_ready
+[qtp1862674654-41] WARN com.inverseek.search.SearchApi - Index unavailable: index_not_ready
+[qtp1862674654-43] WARN com.inverseek.search.SearchApi - Index unavailable: index_not_ready
+[qtp1862674654-47] WARN com.inverseek.search.SearchApi - Index unavailable: index_not_ready
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@27dc79f7{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@51b01960{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@7674a051{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3773862a{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@29b732a2{HTTP/1.1, (http/1.1)}{0.0.0.0:59638}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@51671b08{STARTING}[11.0.20,sto=0] @2125ms
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59638/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@51671b08{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@29b732a2{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3773862a{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@76f10035{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@28f8e165{HTTP/1.1, (http/1.1)}{0.0.0.0:59645}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@66f66866{STARTING}[11.0.20,sto=0] @2245ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59645/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[qtp1406004470-90] WARN com.inverseek.search.SearchApi - Index unavailable: index_incompatible
+[qtp1406004470-85] WARN com.inverseek.search.SearchApi - Index unavailable: index_not_ready
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@66f66866{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@28f8e165{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@76f10035{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@28b576a9{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@44d70181{HTTP/1.1, (http/1.1)}{0.0.0.0:59647}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@23c650a3{STARTING}[11.0.20,sto=0] @2328ms
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59647/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@23c650a3{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@44d70181{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@28b576a9{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@78d50a3c{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@37ff4054{HTTP/1.1, (http/1.1)}{0.0.0.0:59649}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@7af707e0{STARTING}[11.0.20,sto=0] @2388ms
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59649/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@7af707e0{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@37ff4054{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@78d50a3c{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@41c89d2f{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@2e16b08d{HTTP/1.1, (http/1.1)}{0.0.0.0:59650}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@70d8de{STARTING}[11.0.20,sto=0] @2398ms
+[main] INFO io.javalin.Javalin - Javalin started in 5ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59650/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@70d8de{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@2e16b08d{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@41c89d2f{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@49d98dc5{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@606fc505{HTTP/1.1, (http/1.1)}{0.0.0.0:59652}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@2d140a7{STARTING}[11.0.20,sto=0] @2462ms
+[main] INFO io.javalin.Javalin - Javalin started in 4ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59652/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@2d140a7{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@606fc505{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@49d98dc5{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@15515c51{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5e8a459{HTTP/1.1, (http/1.1)}{0.0.0.0:59654}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@4c9e9fb8{STARTING}[11.0.20,sto=0] @2541ms
+[main] INFO io.javalin.Javalin - Javalin started in 4ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59654/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@4c9e9fb8{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@5e8a459{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@15515c51{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1761de10{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@d2387c8{HTTP/1.1, (http/1.1)}{0.0.0.0:59656}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@1500e009{STARTING}[11.0.20,sto=0] @2619ms
+[main] INFO io.javalin.Javalin - Javalin started in 6ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59656/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@1500e009{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@d2387c8{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1761de10{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1059754c{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@778ca8ef{HTTP/1.1, (http/1.1)}{0.0.0.0:59658}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@78b236a0{STARTING}[11.0.20,sto=0] @2683ms
+[main] INFO io.javalin.Javalin - Javalin started in 4ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59658/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@78b236a0{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@778ca8ef{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1059754c{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.229 s -- in com.inverseek.search.SearchApiTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ search-service ---
+[INFO] Building jar: C:\Users\herna\IdeaProjects\Stage_2\search-service\target\search-service-1.0.0.jar
+[INFO] 
+[INFO] --- shade:3.5.3:shade (default) @ search-service ---
+[INFO] Including io.javalin:javalin:jar:6.1.3 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-api:jar:2.0.12 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-http:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-util:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-io:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:jar:5.0.2 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-security:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-webapp:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-xml:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-api:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains:annotations:jar:13.0 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.9.22 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.11.0 in the shaded jar.
+[INFO] Including com.google.errorprone:error_prone_annotations:jar:2.27.0 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-simple:jar:2.0.9 in the shaded jar.
+[INFO] Including org.xerial:sqlite-jdbc:jar:3.46.1.0 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] javalin-6.1.3.jar, jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE.txt
+[WARNING] jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE.txt
+[WARNING] error_prone_annotations-2.27.0.jar, gson-2.11.0.jar, kotlin-stdlib-1.9.22.jar, kotlin-stdlib-jdk7-1.9.22.jar, kotlin-stdlib-jdk8-1.9.22.jar, slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar, sqlite-jdbc-3.46.1.0.jar define 1 overlapping classes: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\herna\IdeaProjects\Stage_2\search-service\target\search-service-1.0.0.jar with C:\Users\herna\IdeaProjects\Stage_2\search-service\target\search-service-1.0.0-shaded.jar
+[INFO] 
+[INFO] --------------------< com.inverseek:control-module >--------------------
+[INFO] Building InverSeek Control Module 1.0.0                            [4/5]
+[INFO]   from control-module\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ control-module ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ control-module ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ control-module ---
+[INFO] skip non existing resourceDirectory C:\Users\herna\IdeaProjects\Stage_2\control-module\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ control-module ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ control-module ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.inverseek.control.ControlApiTest
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@4f8969b0{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@652a7737{HTTP/1.1, (http/1.1)}{0.0.0.0:59663}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@2dbf4cbd{STARTING}[11.0.20,sto=0] @955ms
+[main] INFO io.javalin.Javalin - Javalin started in 137ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59663/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@2dbf4cbd{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@652a7737{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@4f8969b0{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@372b0d86{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@473b3b7a{HTTP/1.1, (http/1.1)}{0.0.0.0:59669}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@77b7ffa4{STARTING}[11.0.20,sto=0] @1268ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59669/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@77b7ffa4{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@473b3b7a{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@372b0d86{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@39c11e6c{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@6cc0bcf6{HTTP/1.1, (http/1.1)}{0.0.0.0:59673}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@32f61a31{STARTING}[11.0.20,sto=0] @1353ms
+[main] INFO io.javalin.Javalin - Javalin started in 10ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59673/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@32f61a31{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@6cc0bcf6{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@39c11e6c{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@58a55449{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@29caf222{HTTP/1.1, (http/1.1)}{0.0.0.0:59681}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@5851bd4f{STARTING}[11.0.20,sto=0] @1435ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59681/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@5851bd4f{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@29caf222{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@58a55449{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@4d0402b{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@68ed96ca{HTTP/1.1, (http/1.1)}{0.0.0.0:59687}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@3228d990{STARTING}[11.0.20,sto=0] @1652ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59687/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@3228d990{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@68ed96ca{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@4d0402b{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@3bb9efbc{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@610db97e{HTTP/1.1, (http/1.1)}{0.0.0.0:59691}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@3fabf088{STARTING}[11.0.20,sto=0] @1742ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59691/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@3fabf088{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@610db97e{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@3bb9efbc{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@c20be82{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@7692cd34{HTTP/1.1, (http/1.1)}{0.0.0.0:59694}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@32c0915e{STARTING}[11.0.20,sto=0] @1910ms
+[main] INFO io.javalin.Javalin - Javalin started in 10ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59694/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@32c0915e{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@7692cd34{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@c20be82{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@df5f5c0{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@437e951d{HTTP/1.1, (http/1.1)}{0.0.0.0:59700}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@63a5e46c{STARTING}[11.0.20,sto=0] @2221ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59700/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@63a5e46c{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@437e951d{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@df5f5c0{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1a1d3c1a{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5aa360ea{HTTP/1.1, (http/1.1)}{0.0.0.0:59704}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@e27ba81{STARTING}[11.0.20,sto=0] @2317ms
+[main] INFO io.javalin.Javalin - Javalin started in 8ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59704/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@e27ba81{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@5aa360ea{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1a1d3c1a{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - jetty-11.0.20; built: 2024-01-29T21:04:22.394Z; git: 922f8dc188f7011e60d0361de585fd4ac4d63064; jvm 17.0.21+9
+[main] INFO org.eclipse.jetty.server.session.DefaultSessionIdManager - Session workerName=node0
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@1db0ec27{/,null,AVAILABLE}
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@3b718392{HTTP/1.1, (http/1.1)}{0.0.0.0:59709}
+[main] INFO org.eclipse.jetty.server.Server - Started Server@1f2d2181{STARTING}[11.0.20,sto=0] @2425ms
+[main] INFO io.javalin.Javalin - Javalin started in 9ms \o/
+[main] INFO io.javalin.Javalin - Listening on http://localhost:59709/
+[main] INFO io.javalin.Javalin - You are running Javalin 6.1.3 (released March 2, 2024. Your Javalin version is 981 days old. Consider checking for a newer version.).
+[main] INFO io.javalin.Javalin - Stopping Javalin ...
+[main] INFO org.eclipse.jetty.server.Server - Stopped Server@1f2d2181{STOPPING}[11.0.20,sto=0]
+[main] INFO org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@3b718392{HTTP/1.1, (http/1.1)}{0.0.0.0:0}
+[main] INFO org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@1db0ec27{/,null,STOPPED}
+[main] INFO io.javalin.Javalin - Javalin has stopped
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.292 s -- in com.inverseek.control.ControlApiTest
+[INFO] Running com.inverseek.control.ControlStoreTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.428 s -- in com.inverseek.control.ControlStoreTest
+[INFO] Running com.inverseek.control.OrchestratorTest
+[control-reaper] WARN com.inverseek.control.Orchestrator - Released 1 expired leases
+[control-worker-1] WARN com.inverseek.control.Orchestrator - Book 15: bdf8bf7e-3927-4d1a-aec2-ae1f1478e6b7-worker-1 lost its lease, discarding the result of DOWNLOADING
+[main] INFO com.inverseek.control.Orchestrator - Recovered 2 books with expired leases
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.268 s -- in com.inverseek.control.OrchestratorTest
+[INFO] Running com.inverseek.control.ReplicaRoutingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s -- in com.inverseek.control.ReplicaRoutingTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.1:jar (default-jar) @ control-module ---
+[INFO] 
+[INFO] --- shade:3.5.3:shade (default) @ control-module ---
+[INFO] Including io.javalin:javalin:jar:6.1.3 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-api:jar:2.0.12 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-http:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-util:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-io:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.toolchain:jetty-jakarta-servlet-api:jar:5.0.2 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-security:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-webapp:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty:jetty-xml:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-api:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-jetty-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-common:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-servlet:jar:11.0.20 in the shaded jar.
+[INFO] Including org.eclipse.jetty.websocket:websocket-core-server:jar:11.0.20 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk8:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib:jar:1.9.22 in the shaded jar.
+[INFO] Including org.jetbrains:annotations:jar:13.0 in the shaded jar.
+[INFO] Including org.jetbrains.kotlin:kotlin-stdlib-jdk7:jar:1.9.22 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.11.0 in the shaded jar.
+[INFO] Including com.google.errorprone:error_prone_annotations:jar:2.27.0 in the shaded jar.
+[INFO] Including org.slf4j:slf4j-simple:jar:2.0.9 in the shaded jar.
+[INFO] Including org.xerial:sqlite-jdbc:jar:3.46.1.0 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] control-module-1.0.0.jar, jetty-server-11.0.20.jar define 357 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-server/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-server/pom.xml
+[WARNING]   - jetty-dir.css
+[WARNING]   - org.eclipse.jetty.server.AbstractConnectionFactory
+[WARNING]   - org.eclipse.jetty.server.AbstractConnector
+[WARNING]   - org.eclipse.jetty.server.AbstractConnector$1
+[WARNING]   - org.eclipse.jetty.server.AbstractConnector$2
+[WARNING]   - org.eclipse.jetty.server.AbstractConnector$Acceptor
+[WARNING]   - org.eclipse.jetty.server.AbstractNetworkConnector
+[WARNING]   - org.eclipse.jetty.server.AcceptRateLimit
+[WARNING]   - 347 more...
+[WARNING] control-module-1.0.0.jar, javalin-6.1.3.jar define 484 overlapping classes and resources: 
+[WARNING]   - META-INF/javalin.kotlin_module
+[WARNING]   - META-INF/maven/io.javalin/javalin/pom.properties
+[WARNING]   - META-INF/maven/io.javalin/javalin/pom.xml
+[WARNING]   - io.javalin.Javalin
+[WARNING]   - io.javalin.apibuilder.ApiBuilder
+[WARNING]   - io.javalin.apibuilder.CrudHandler
+[WARNING]   - io.javalin.apibuilder.EndpointGroup
+[WARNING]   - io.javalin.compression.Brotli
+[WARNING]   - io.javalin.compression.Brotli4jCompressor
+[WARNING]   - io.javalin.compression.CompressedOutputStream
+[WARNING]   - 474 more...
+[WARNING] control-module-1.0.0.jar, slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE.txt
+[WARNING] control-module-1.0.0.jar, javalin-6.1.3.jar, jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] control-module-1.0.0.jar, jetty-xml-11.0.20.jar define 21 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-xml/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-xml/pom.xml
+[WARNING]   - org.eclipse.jetty.xml.ConfigurationProcessor
+[WARNING]   - org.eclipse.jetty.xml.ConfigurationProcessorFactory
+[WARNING]   - org.eclipse.jetty.xml.XmlAppendable
+[WARNING]   - org.eclipse.jetty.xml.XmlConfiguration
+[WARNING]   - org.eclipse.jetty.xml.XmlConfiguration$ConfigurationParser
+[WARNING]   - org.eclipse.jetty.xml.XmlConfiguration$JettyXmlConfiguration
+[WARNING]   - org.eclipse.jetty.xml.XmlConfiguration$JettyXmlConfiguration$Args
+[WARNING]   - org.eclipse.jetty.xml.XmlConfiguration$JettyXmlConfiguration$AttrOrElementNode
+[WARNING]   - 11 more...
+[WARNING] annotations-13.0.jar, control-module-1.0.0.jar define 34 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.jetbrains/annotations/pom.properties
+[WARNING]   - META-INF/maven/org.jetbrains/annotations/pom.xml
+[WARNING]   - org.intellij.lang.annotations.Flow
+[WARNING]   - org.intellij.lang.annotations.Identifier
+[WARNING]   - org.intellij.lang.annotations.JdkConstants
+[WARNING]   - org.intellij.lang.annotations.JdkConstants$AdjustableOrientation
+[WARNING]   - org.intellij.lang.annotations.JdkConstants$BoxLayoutAxis
+[WARNING]   - org.intellij.lang.annotations.JdkConstants$CalendarMonth
+[WARNING]   - org.intellij.lang.annotations.JdkConstants$CursorType
+[WARNING]   - org.intellij.lang.annotations.JdkConstants$FlowLayoutAlignment
+[WARNING]   - 24 more...
+[WARNING] control-module-1.0.0.jar, jetty-servlet-11.0.20.jar define 74 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-servlet/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-servlet/pom.xml
+[WARNING]   - org.eclipse.jetty.servlet.BaseHolder
+[WARNING]   - org.eclipse.jetty.servlet.BaseHolder$Wrapped
+[WARNING]   - org.eclipse.jetty.servlet.DecoratingListener
+[WARNING]   - org.eclipse.jetty.servlet.DecoratingListener$DynamicDecorator
+[WARNING]   - org.eclipse.jetty.servlet.DefaultServlet
+[WARNING]   - org.eclipse.jetty.servlet.ErrorPageErrorHandler
+[WARNING]   - org.eclipse.jetty.servlet.ErrorPageErrorHandler$ErrorCodeRange
+[WARNING]   - org.eclipse.jetty.servlet.ErrorPageErrorHandler$PageLookupTechnique
+[WARNING]   - 64 more...
+[WARNING] control-module-1.0.0.jar, jetty-io-11.0.20.jar define 120 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-io/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-io/pom.xml
+[WARNING]   - org.eclipse.jetty.io.AbstractByteBufferPool
+[WARNING]   - org.eclipse.jetty.io.AbstractByteBufferPool$Bucket
+[WARNING]   - org.eclipse.jetty.io.AbstractConnection
+[WARNING]   - org.eclipse.jetty.io.AbstractConnection$1
+[WARNING]   - org.eclipse.jetty.io.AbstractConnection$ReadCallback
+[WARNING]   - org.eclipse.jetty.io.AbstractEndPoint
+[WARNING]   - org.eclipse.jetty.io.AbstractEndPoint$1
+[WARNING]   - org.eclipse.jetty.io.AbstractEndPoint$2
+[WARNING]   - 110 more...
+[WARNING] control-module-1.0.0.jar, gson-2.11.0.jar define 226 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.google.code.gson/gson/pom.properties
+[WARNING]   - META-INF/maven/com.google.code.gson/gson/pom.xml
+[WARNING]   - META-INF/proguard/gson.pro
+[WARNING]   - com.google.gson.ExclusionStrategy
+[WARNING]   - com.google.gson.FieldAttributes
+[WARNING]   - com.google.gson.FieldNamingPolicy
+[WARNING]   - com.google.gson.FieldNamingPolicy$1
+[WARNING]   - com.google.gson.FieldNamingPolicy$2
+[WARNING]   - com.google.gson.FieldNamingPolicy$3
+[WARNING]   - com.google.gson.FieldNamingPolicy$4
+[WARNING]   - 216 more...
+[WARNING] control-module-1.0.0.jar, websocket-core-server-11.0.20.jar define 27 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-core-server/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-core-server/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.core.server.FrameHandlerFactory
+[WARNING]   - org.eclipse.jetty.websocket.core.server.Handshaker
+[WARNING]   - org.eclipse.jetty.websocket.core.server.ServerUpgradeRequest
+[WARNING]   - org.eclipse.jetty.websocket.core.server.ServerUpgradeResponse
+[WARNING]   - org.eclipse.jetty.websocket.core.server.WebSocketCreator
+[WARNING]   - org.eclipse.jetty.websocket.core.server.WebSocketMappings
+[WARNING]   - org.eclipse.jetty.websocket.core.server.WebSocketNegotiation
+[WARNING]   - org.eclipse.jetty.websocket.core.server.WebSocketNegotiation$1
+[WARNING]   - 17 more...
+[WARNING] control-module-1.0.0.jar, kotlin-stdlib-1.9.22.jar define 988 overlapping classes and resources: 
+[WARNING]   - META-INF/kotlin-stdlib-jdk7.kotlin_module
+[WARNING]   - META-INF/kotlin-stdlib-jdk8.kotlin_module
+[WARNING]   - META-INF/kotlin-stdlib.kotlin_module
+[WARNING]   - kotlin.ArrayIntrinsicsKt
+[WARNING]   - kotlin.BuilderInference
+[WARNING]   - kotlin.CharCodeJVMKt
+[WARNING]   - kotlin.CharCodeKt
+[WARNING]   - kotlin.CompareToKt
+[WARNING]   - kotlin.ContextFunctionTypeParams
+[WARNING]   - kotlin.DeepRecursiveFunction
+[WARNING]   - 978 more...
+[WARNING] control-module-1.0.0.jar, jetty-security-11.0.20.jar define 64 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-security/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-security/pom.xml
+[WARNING]   - org.eclipse.jetty.security.AbstractLoginService
+[WARNING]   - org.eclipse.jetty.security.AbstractUserAuthentication
+[WARNING]   - org.eclipse.jetty.security.Authenticator
+[WARNING]   - org.eclipse.jetty.security.Authenticator$AuthConfiguration
+[WARNING]   - org.eclipse.jetty.security.Authenticator$Factory
+[WARNING]   - org.eclipse.jetty.security.ConfigurableSpnegoLoginService
+[WARNING]   - org.eclipse.jetty.security.ConfigurableSpnegoLoginService$GSSContextHolder
+[WARNING]   - org.eclipse.jetty.security.ConfigurableSpnegoLoginService$SpnegoConfiguration
+[WARNING]   - 54 more...
+[WARNING] control-module-1.0.0.jar, sqlite-jdbc-3.46.1.0.jar define 155 overlapping classes and resources: 
+[WARNING]   - META-INF.versions.9.org.sqlite.nativeimage.SqliteJdbcFeature
+[WARNING]   - META-INF.versions.9.org.sqlite.nativeimage.SqliteJdbcFeature$1
+[WARNING]   - META-INF.versions.9.org.sqlite.nativeimage.SqliteJdbcFeature$SqliteJdbcFeatureException
+[WARNING]   - META-INF/maven/org.xerial/sqlite-jdbc/LICENSE
+[WARNING]   - META-INF/maven/org.xerial/sqlite-jdbc/LICENSE.zentus
+[WARNING]   - META-INF/maven/org.xerial/sqlite-jdbc/VERSION
+[WARNING]   - META-INF/maven/org.xerial/sqlite-jdbc/pom.properties
+[WARNING]   - META-INF/maven/org.xerial/sqlite-jdbc/pom.xml
+[WARNING]   - META-INF/native-image/org.xerial/sqlite-jdbc/native-image.properties
+[WARNING]   - org.sqlite.BusyHandler
+[WARNING]   - 145 more...
+[WARNING] control-module-1.0.0.jar, jetty-webapp-11.0.20.jar define 61 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-webapp/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-webapp/pom.xml
+[WARNING]   - org.eclipse.jetty.webapp.AbsoluteOrdering
+[WARNING]   - org.eclipse.jetty.webapp.AbstractConfiguration
+[WARNING]   - org.eclipse.jetty.webapp.CachingWebAppClassLoader
+[WARNING]   - org.eclipse.jetty.webapp.ClassMatcher
+[WARNING]   - org.eclipse.jetty.webapp.ClassMatcher$ByClass
+[WARNING]   - org.eclipse.jetty.webapp.ClassMatcher$ByLocation
+[WARNING]   - org.eclipse.jetty.webapp.ClassMatcher$ByLocationOrModule
+[WARNING]   - org.eclipse.jetty.webapp.ClassMatcher$ByModule
+[WARNING]   - 51 more...
+[WARNING] control-module-1.0.0.jar, slf4j-api-2.0.12.jar define 56 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.slf4j/slf4j-api/pom.properties
+[WARNING]   - META-INF/maven/org.slf4j/slf4j-api/pom.xml
+[WARNING]   - org.slf4j.ILoggerFactory
+[WARNING]   - org.slf4j.IMarkerFactory
+[WARNING]   - org.slf4j.Logger
+[WARNING]   - org.slf4j.LoggerFactory
+[WARNING]   - org.slf4j.LoggerFactoryFriend
+[WARNING]   - org.slf4j.MDC
+[WARNING]   - org.slf4j.MDC$1
+[WARNING]   - org.slf4j.MDC$MDCCloseable
+[WARNING]   - 46 more...
+[WARNING] control-module-1.0.0.jar, websocket-jetty-server-11.0.20.jar define 17 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-server/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-server/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyServerUpgradeRequest
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyServerUpgradeResponse
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketCreator
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketServerContainer
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketServerContainer$1
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketServlet
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketServlet$CustomizedWebSocketServletFactory
+[WARNING]   - org.eclipse.jetty.websocket.server.JettyWebSocketServlet$WrappedJettyCreator
+[WARNING]   - 7 more...
+[WARNING] control-module-1.0.0.jar, jetty-http-11.0.20.jar, jetty-io-11.0.20.jar, jetty-security-11.0.20.jar, jetty-server-11.0.20.jar, jetty-servlet-11.0.20.jar, jetty-util-11.0.20.jar, jetty-webapp-11.0.20.jar, jetty-xml-11.0.20.jar, websocket-core-common-11.0.20.jar, websocket-core-server-11.0.20.jar, websocket-jetty-api-11.0.20.jar, websocket-jetty-common-11.0.20.jar, websocket-jetty-server-11.0.20.jar, websocket-servlet-11.0.20.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE.txt
+[WARNING] control-module-1.0.0.jar, slf4j-simple-2.0.9.jar define 9 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.slf4j/slf4j-simple/pom.properties
+[WARNING]   - META-INF/maven/org.slf4j/slf4j-simple/pom.xml
+[WARNING]   - org.slf4j.simple.OutputChoice
+[WARNING]   - org.slf4j.simple.OutputChoice$1
+[WARNING]   - org.slf4j.simple.OutputChoice$OutputChoiceType
+[WARNING]   - org.slf4j.simple.SimpleLogger
+[WARNING]   - org.slf4j.simple.SimpleLoggerConfiguration
+[WARNING]   - org.slf4j.simple.SimpleLoggerFactory
+[WARNING]   - org.slf4j.simple.SimpleServiceProvider
+[WARNING] control-module-1.0.0.jar, websocket-jetty-api-11.0.20.jar define 44 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-api/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-api/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.api.BatchMode
+[WARNING]   - org.eclipse.jetty.websocket.api.CloseStatus
+[WARNING]   - org.eclipse.jetty.websocket.api.ExtensionConfig
+[WARNING]   - org.eclipse.jetty.websocket.api.ExtensionConfig$Parser
+[WARNING]   - org.eclipse.jetty.websocket.api.Frame
+[WARNING]   - org.eclipse.jetty.websocket.api.Frame$Type
+[WARNING]   - org.eclipse.jetty.websocket.api.RemoteEndpoint
+[WARNING]   - org.eclipse.jetty.websocket.api.Session
+[WARNING]   - 34 more...
+[WARNING] control-module-1.0.0.jar, jetty-http-11.0.20.jar define 130 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-http/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-http/pom.xml
+[WARNING]   - org.eclipse.jetty.http.BadMessageException
+[WARNING]   - org.eclipse.jetty.http.ComplianceViolation
+[WARNING]   - org.eclipse.jetty.http.ComplianceViolation$Listener
+[WARNING]   - org.eclipse.jetty.http.ComplianceViolation$Mode
+[WARNING]   - org.eclipse.jetty.http.CompressedContentFormat
+[WARNING]   - org.eclipse.jetty.http.CookieCompliance
+[WARNING]   - org.eclipse.jetty.http.CookieCompliance$Violation
+[WARNING]   - org.eclipse.jetty.http.CookieCutter
+[WARNING]   - 120 more...
+[WARNING] control-module-1.0.0.jar, websocket-core-common-11.0.20.jar define 103 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-core-common/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-core-common/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.core.AbstractExtension
+[WARNING]   - org.eclipse.jetty.websocket.core.Behavior
+[WARNING]   - org.eclipse.jetty.websocket.core.CloseStatus
+[WARNING]   - org.eclipse.jetty.websocket.core.CloseStatus$CloseFrame
+[WARNING]   - org.eclipse.jetty.websocket.core.CloseStatus$Supplier
+[WARNING]   - org.eclipse.jetty.websocket.core.Configuration
+[WARNING]   - org.eclipse.jetty.websocket.core.Configuration$ConfigurationCustomizer
+[WARNING]   - org.eclipse.jetty.websocket.core.Configuration$Customizer
+[WARNING]   - 93 more...
+[WARNING] control-module-1.0.0.jar, error_prone_annotations-2.27.0.jar, gson-2.11.0.jar, kotlin-stdlib-1.9.22.jar, kotlin-stdlib-jdk7-1.9.22.jar, kotlin-stdlib-jdk8-1.9.22.jar, slf4j-api-2.0.12.jar, slf4j-simple-2.0.9.jar, sqlite-jdbc-3.46.1.0.jar define 1 overlapping classes: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING] control-module-1.0.0.jar, jetty-jakarta-servlet-api-5.0.2.jar define 204 overlapping classes and resources: 
+[WARNING]   - META-INF/LICENSE.md
+[WARNING]   - META-INF/NOTICE.md
+[WARNING]   - jakarta.servlet.AsyncContext
+[WARNING]   - jakarta.servlet.AsyncEvent
+[WARNING]   - jakarta.servlet.AsyncListener
+[WARNING]   - jakarta.servlet.DispatcherType
+[WARNING]   - jakarta.servlet.Filter
+[WARNING]   - jakarta.servlet.FilterChain
+[WARNING]   - jakarta.servlet.FilterConfig
+[WARNING]   - jakarta.servlet.FilterRegistration
+[WARNING]   - 194 more...
+[WARNING] control-module-1.0.0.jar, websocket-servlet-11.0.20.jar define 4 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-servlet/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-servlet/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter
+[WARNING]   - org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter$1
+[WARNING] control-module-1.0.0.jar, jetty-util-11.0.20.jar define 308 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-util/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty/jetty-util/pom.xml
+[WARNING]   - org.eclipse.jetty.util.AbstractTrie
+[WARNING]   - org.eclipse.jetty.util.ArrayTernaryTrie
+[WARNING]   - org.eclipse.jetty.util.ArrayTernaryTrie$Growing
+[WARNING]   - org.eclipse.jetty.util.ArrayTrie
+[WARNING]   - org.eclipse.jetty.util.ArrayTrie$Node
+[WARNING]   - org.eclipse.jetty.util.ArrayUtil
+[WARNING]   - org.eclipse.jetty.util.AsciiLowerCaseSet
+[WARNING]   - org.eclipse.jetty.util.AtomicBiInteger
+[WARNING]   - 298 more...
+[WARNING] control-module-1.0.0.jar, error_prone_annotations-2.27.0.jar define 29 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.google.errorprone/error_prone_annotations/pom.properties
+[WARNING]   - META-INF/maven/com.google.errorprone/error_prone_annotations/pom.xml
+[WARNING]   - com.google.errorprone.annotations.CanIgnoreReturnValue
+[WARNING]   - com.google.errorprone.annotations.CheckReturnValue
+[WARNING]   - com.google.errorprone.annotations.CompatibleWith
+[WARNING]   - com.google.errorprone.annotations.CompileTimeConstant
+[WARNING]   - com.google.errorprone.annotations.DoNotCall
+[WARNING]   - com.google.errorprone.annotations.DoNotMock
+[WARNING]   - com.google.errorprone.annotations.ForOverride
+[WARNING]   - com.google.errorprone.annotations.FormatMethod
+[WARNING]   - 19 more...
+[WARNING] control-module-1.0.0.jar, websocket-jetty-common-11.0.20.jar define 14 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-common/pom.properties
+[WARNING]   - META-INF/maven/org.eclipse.jetty.websocket/websocket-jetty-common/pom.xml
+[WARNING]   - org.eclipse.jetty.websocket.common.ExtensionConfigParser
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyExtensionConfig
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrame
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandler
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandler$1
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandler$SuspendState
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandlerFactory
+[WARNING]   - org.eclipse.jetty.websocket.common.JettyWebSocketFrameHandlerMetadata
+[WARNING]   - 4 more...
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing C:\Users\herna\IdeaProjects\Stage_2\control-module\target\control-module-1.0.0.jar with C:\Users\herna\IdeaProjects\Stage_2\control-module\target\control-module-1.0.0-shaded.jar
+[INFO] 
+[INFO] -------------------------< ulpgc.bd:InverSeek >-------------------------
+[INFO] Building InverSeek 1.0-SNAPSHOT                                    [5/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] InverSeek Ingestion Service 1.0.0 .................. SUCCESS [ 10.049 s]
+[INFO] InverSeek Indexing Service 1.0.0 ................... SUCCESS [  7.616 s]
+[INFO] InverSeek Search Service 1.0.0 ..................... SUCCESS [  6.116 s]
+[INFO] InverSeek Control Module 1.0.0 ..................... SUCCESS [ 15.143 s]
+[INFO] InverSeek 1.0-SNAPSHOT ............................. SUCCESS [  0.000 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  39.020 s
+[INFO] Finished at: 2026-11-08T22:20:37Z
+[INFO] ------------------------------------------------------------------------

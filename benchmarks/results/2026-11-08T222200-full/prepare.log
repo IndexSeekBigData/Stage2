@@ -1,0 +1,12 @@
+Ready ingestion[0] PID=25912 http://localhost:7001 max_threads=250
+Ready indexing[0] PID=4172 http://localhost:7002 max_threads=250
+Ready search[0] PID=30100 http://localhost:7003 max_threads=250
+Ready control[0] PID=6052 http://localhost:7000 max_threads=250
+Configuration: C:\Users\herna\IdeaProjects\Stage_2\data\benchmark-campaigns\2026-11-08T222200-full\corpus\run-config.json
+Registered 100 books. Downloading and indexing...
+States: {"PENDING":0,"DOWNLOADING":0,"DOWNLOADED":0,"INDEXING":0,"INDEXED":100,"NOT_FOUND":0,"FAILED":0}
+Stopped control[0] PID=6052
+Stopped search[0] PID=30100
+Stopped indexing[0] PID=4172
+Stopped ingestion[0] PID=25912
+Snapshot ready in C:\Users\herna\IdeaProjects\Stage_2\data\benchmark-campaigns\2026-11-08T222200-full\snapshot. Indexed books: 100

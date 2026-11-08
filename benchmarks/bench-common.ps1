@@ -79,6 +79,10 @@ function Restore-Snapshot([string]$Snapshot, [string]$DataDir) {
     if (-not (Test-Path -LiteralPath (Join-Path $Snapshot "datamarts\datamarts.db"))) {
         throw "$Snapshot is not a corpus snapshot (missing datamarts\datamarts.db). Run prepare-corpus.ps1 first."
     }
+    $source = [IO.Path]::GetFullPath($Snapshot).TrimEnd('\')
+    $target = [IO.Path]::GetFullPath($DataDir).TrimEnd('\')
+    if (-not [IO.Path]::IsPathRooted($DataDir) -or $source -eq $target -or $target.StartsWith($source+"\",[StringComparison]::OrdinalIgnoreCase) -or $source.StartsWith($target+"\",[StringComparison]::OrdinalIgnoreCase)) { throw "Snapshot and destination must be separate absolute directories" }
+    if ((Test-Path -LiteralPath $target) -and @(Get-ChildItem -LiteralPath $target -Force).Count -gt 0) { throw "Snapshot destination must be empty: $target" }
     New-Item -ItemType Directory -Path $DataDir -Force | Out-Null
     $copy = Invoke-Native { robocopy $Snapshot $DataDir /MIR /R:2 /W:1 /NFL /NDL /NJH /NJS /NP /XD logs /XF run-config.json pids.txt deployment.lock }
     if ($copy.ExitCode -ge 8) { throw "robocopy failed with code $($copy.ExitCode): $($copy.Output -join ' ')" }
@@ -100,7 +104,7 @@ function Start-Deployment([hashtable]$Parameters) {
 
 function Stop-Deployment([string]$DataDir) {
     try { & (Join-Path $script:RepoDir "scripts\stop-all.ps1") -DataDir $DataDir }
-    catch { Write-Warning ("stop-all: " + $_.Exception.Message) }
+    catch { throw ("stop-all failed: " + $_.Exception.Message) }
 }
 
 function Save-RunConfig([string]$DataDir, [string]$Target) {

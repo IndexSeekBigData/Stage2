@@ -90,14 +90,14 @@ standard deviation is high) and the whole system is restarted between repetition
 | --- | --- | --- | --- |
 | A. Load | clients 1, 4, 16, 64, 128 | 1 Search replica, default threads | `.\benchmarks\run-search.ps1 -Snapshot C:\BD\bench\snapshot -Experiments A` |
 | B. Replicas | 1, 2, 3 Search replicas | clients = saturation point of A | `... -Experiments B -SaturationClients <from A>` |
-| C. HTTP threads | `SERVER_MAX_THREADS` 8, 32, 250 | 1 replica, 128 clients | `... -Experiments C` |
+| C. HTTP threads | `SERVER_MAX_THREADS` 16, 32, 250 | 1 replica, 128 clients | `... -Experiments C` |
 | D. Indexing | `CONTROL_WORKERS` 1, 2, 4, 8 | corpus already downloaded | `.\benchmarks\run-pipeline-bench.ps1 -Snapshot C:\BD\bench\snapshot -Experiments D` |
 | E. Ingestion | `CONTROL_WORKERS` 1, 2, 4, 8 (and `-IngestionReplicas 1,2`) | 20 new books per run | `.\benchmarks\run-pipeline-bench.ps1 -Experiments E` |
 | F. Coordination | from D and E | | computed by `plot.py` |
 
 - **Load client**: N threads, each sends a request, waits for the answer and sends the next one
   (N = concurrent clients). Requests alternate between the Search replicas and cycle through
-  `queries.txt`. 10 s warm-up (not measured) and 60 s of measurement by default. It writes one row
+  `queries.txt`. 5 s warm-up (not measured) and 20 s of measurement by default. It writes one row
   per run with throughput, mean/p50/p95/p99/max latency, errors (non-200 or timeout) and its own CPU.
   Check that the client CPU stays clearly below the Search CPU at high N, otherwise the client is
   the bottleneck. It can be run alone:
@@ -111,7 +111,7 @@ standard deviation is high) and the whole system is restarted between repetition
   `downloaded_at`, `index_started_at`, `indexed_at`) of the books of each run, saved in `raw/`.
   `GET /control/metrics` is saved too, but it averages over every INDEXED book in the database, so in
   D it also counts the old download timestamps of the snapshot.
-- Approximate duration: A 18 min, B and C 10 min each, D and E 20 to 40 min.
+- Duration varies with the host, SQLite contention and Gutenberg response times. The recorded full campaign took about 80 minutes, including corpus preparation.
 
 ## 5. Plots and tables
 
@@ -149,3 +149,15 @@ results/<date>/
 ```
 
 Commit the summary CSV files, `host.txt` and `plots/`; `raw/` stays out of Git (`.gitignore`).
+
+## Measurement boundaries and retained runs
+
+Search CSV rows include explicit UTC measurement start/end timestamps. CPU/memory aggregation uses these boundaries, not the time when outstanding requests finish and the CSV is written. Successful requests started during the measurement window are counted, including their final latency; errors are reported separately. This is a closed-loop workload, not an open-loop arrival-rate test.
+
+Pipeline results retain end-to-end throughput through indexing. Experiment E additionally reports completed downloads per elapsed second from registration to the last download completion, including scheduling and interleaved indexing effects. It is not isolated download service capacity.
+
+Each repetition uses a fresh child directory inside the given working root. Snapshot destinations must be empty and separate from their source. Scripts report failed runs and return an error if a campaign is incomplete. Use a new OutDir for each campaign and keep full measurement results separate from `-Quick` checks.
+
+The [recorded campaign](results/2026-11-08T222200-full/README.md) contains the measured results. To run the full campaign sequentially, prepare the snapshot and invoke `run-campaign.ps1` with a new output and working directory, as shown in the [project guide](../README.md).
+
+The additional plots show the JMH per-iteration distribution and CPU/memory over time at the selected Search concurrency. Their CSVs include the source iteration scores or the mean and sample standard deviation across repetitions. The recorded campaign archives raw samples separately as `raw-evidence.zip` so its figures can be regenerated without rerunning the benchmarks.

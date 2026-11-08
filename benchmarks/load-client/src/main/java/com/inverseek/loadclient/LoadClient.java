@@ -38,7 +38,7 @@ public final class LoadClient {
 
     static final String HEADER = "timestamp,experiment,label,repetition,targets,search_replicas,server_threads,"
             + "concurrency,warmup_s,duration_s,requests,errors,throughput_rps,mean_ms,p50_ms,p95_ms,p99_ms,max_ms,"
-            + "client_cpu_pct";
+            + "client_cpu_pct,measurement_started_at,measurement_finished_at";
 
     private LoadClient() {
     }
@@ -98,6 +98,7 @@ public final class LoadClient {
             for (String query : queries) uris.add(URI.create(options.targets.get(t) + "/search?" + query));
         }
         AtomicLong next = new AtomicLong();
+        Instant wallStart = Instant.now();
         long start = System.nanoTime();
         long measureFrom = start + options.warmup.toNanos();
         long measureTo = measureFrom + options.duration.toNanos();
@@ -132,7 +133,8 @@ public final class LoadClient {
         int cores = Runtime.getRuntime().availableProcessors();
         double cpu = cpuStart < 0 || cpuEnd < 0 ? Double.NaN
                 : 100.0 * (cpuEnd - cpuStart) / (options.duration.toNanos() * (double) cores);
-        return new Result(total, total.getTotalCount(), errors, seconds, cpu);
+        return new Result(total, total.getTotalCount(), errors, seconds, cpu,
+                wallStart.plus(options.warmup), wallStart.plus(options.warmup).plus(options.duration));
     }
 
     private static void sleepUntil(long nanoTime) throws InterruptedException {
@@ -156,11 +158,11 @@ public final class LoadClient {
                 Instant.now().toString(), csv(options.experiment), csv(options.label), Integer.toString(options.repetition),
                 csv(String.join(" ", options.targets)), Integer.toString(options.searchReplicas),
                 Integer.toString(options.serverThreads), Integer.toString(options.concurrency),
-                Long.toString(options.warmup.toSeconds()), Long.toString(options.duration.toSeconds()),
+                format(options.warmup.toNanos() / 1e9), format(options.duration.toNanos() / 1e9),
                 Long.toString(result.requests), Long.toString(result.errors),
                 format(result.throughput()), format(result.meanMs()), format(result.percentileMs(50)),
                 format(result.percentileMs(95)), format(result.percentileMs(99)), format(result.maxMs()),
-                format(result.clientCpuPct));
+                format(result.clientCpuPct), result.measurementStarted.toString(), result.measurementFinished.toString());
         String line = String.join(",", row) + System.lineSeparator();
         Files.writeString(out, (header ? HEADER + System.lineSeparator() : "") + line, StandardCharsets.UTF_8,
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND);
@@ -231,7 +233,8 @@ public final class LoadClient {
         }
     }
 
-    record Result(Histogram histogram, long requests, long errors, double seconds, double clientCpuPct) {
+    record Result(Histogram histogram, long requests, long errors, double seconds, double clientCpuPct,
+                  Instant measurementStarted, Instant measurementFinished) {
         double throughput() {
             return requests / seconds;
         }
@@ -300,7 +303,9 @@ public final class LoadClient {
             if (o.targets.isEmpty()) throw new IllegalArgumentException("--targets is required");
             if (o.queries == null) throw new IllegalArgumentException("--queries is required");
             if (o.out == null) throw new IllegalArgumentException("--out is required");
-            if (o.duration.isZero()) throw new IllegalArgumentException("--duration must be positive");
+            if (o.warmup.isNegative() || o.timeout.isNegative() || o.timeout.isZero())
+                throw new IllegalArgumentException("Warmup must be non-negative and timeout must be positive");
+            if (o.duration.isNegative() || o.duration.isZero()) throw new IllegalArgumentException("--duration must be positive");
             return o;
         }
 

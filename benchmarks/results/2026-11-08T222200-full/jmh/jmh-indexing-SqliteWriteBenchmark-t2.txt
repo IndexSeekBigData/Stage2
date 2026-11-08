@@ -1,0 +1,251 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = SMALL)
+
+# Run progress: 0,00% complete, ETA 00:01:30
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,044 ops/ms
+# Warmup Iteration   2: 0,048 ops/ms
+# Warmup Iteration   3: 0,049 ops/ms
+# Warmup Iteration   4: 0,051 ops/ms
+# Warmup Iteration   5: 0,044 ops/ms
+Iteration   1: 0,103 ops/ms
+Iteration   2: 0,048 ops/ms
+Iteration   3: 0,048 ops/ms
+Iteration   4: 0,035 ops/ms
+Iteration   5: 0,048 ops/ms
+Iteration   6: 0,054 ops/ms
+Iteration   7: 0,051 ops/ms
+Iteration   8: 0,036 ops/ms
+Iteration   9: 0,044 ops/ms
+Iteration  10: 0,053 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  0,052 ±(99.9%) 0,029 ops/ms [Average]
+  (min, avg, max) = (0,035, 0,052, 0,103), stdev = 0,019
+  CI (99.9%): [0,023, 0,080] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = MEDIUM)
+
+# Run progress: 16,67% complete, ETA 00:02:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,021 ops/ms
+# Warmup Iteration   2: 0,022 ops/ms
+# Warmup Iteration   3: 0,021 ops/ms
+# Warmup Iteration   4: 0,015 ops/ms
+# Warmup Iteration   5: 0,022 ops/ms
+Iteration   1: 0,022 ops/ms
+Iteration   2: 0,024 ops/ms
+Iteration   3: 0,021 ops/ms
+Iteration   4: 0,025 ops/ms
+Iteration   5: 0,033 ops/ms
+Iteration   6: 0,046 ops/ms
+Iteration   7: 0,014 ops/ms
+Iteration   8: 0,021 ops/ms
+Iteration   9: 0,022 ops/ms
+Iteration  10: 0,028 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  0,026 ±(99.9%) 0,013 ops/ms [Average]
+  (min, avg, max) = (0,014, 0,026, 0,046), stdev = 0,009
+  CI (99.9%): [0,012, 0,039] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = LARGE)
+
+# Run progress: 33,33% complete, ETA 00:02:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,009 ops/ms
+# Warmup Iteration   2: 0,001 ops/ms
+# Warmup Iteration   3: 0,015 ops/ms
+# Warmup Iteration   4: 0,013 ops/ms
+# Warmup Iteration   5: 0,016 ops/ms
+Iteration   1: 0,013 ops/ms
+Iteration   2: 0,014 ops/ms
+Iteration   3: 0,017 ops/ms
+Iteration   4: 0,016 ops/ms
+Iteration   5: 0,013 ops/ms
+Iteration   6: 0,015 ops/ms
+Iteration   7: 0,015 ops/ms
+Iteration   8: 0,015 ops/ms
+Iteration   9: 0,016 ops/ms
+Iteration  10: 0,016 ops/ms
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  0,015 ±(99.9%) 0,002 ops/ms [Average]
+  (min, avg, max) = (0,013, 0,015, 0,017), stdev = 0,001
+  CI (99.9%): [0,013, 0,017] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = SMALL)
+
+# Run progress: 50,00% complete, ETA 00:01:29
+# Fork: 1 of 1
+# Warmup Iteration   1: 73,339 ms/op
+# Warmup Iteration   2: 48,202 ms/op
+# Warmup Iteration   3: 844,464 ms/op
+# Warmup Iteration   4: 620,209 ms/op
+# Warmup Iteration   5: 1657,702 ms/op
+Iteration   1: 43,971 ms/op
+Iteration   2: 483,692 ms/op
+Iteration   3: 348,040 ms/op
+Iteration   4: 20,267 ms/op
+Iteration   5: 71,898 ms/op
+Iteration   6: 55,101 ms/op
+Iteration   7: 784,822 ms/op
+Iteration   8: 19,563 ms/op
+Iteration   9: 115,792 ms/op
+Iteration  10: 255,693 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  219,884 ±(99.9%) 382,893 ms/op [Average]
+  (min, avg, max) = (19,563, 219,884, 784,822), stdev = 253,260
+  CI (99.9%): [? 0, 602,777] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = MEDIUM)
+
+# Run progress: 66,67% complete, ETA 00:01:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 405,666 ms/op
+# Warmup Iteration   2: 3884,300 ms/op
+# Warmup Iteration   3: 173,160 ms/op
+# Warmup Iteration   4: 388,478 ms/op
+# Warmup Iteration   5: 66,890 ms/op
+Iteration   1: 700,706 ms/op
+Iteration   2: 64,328 ms/op
+Iteration   3: 1958,170 ms/op
+Iteration   4: 203,308 ms/op
+Iteration   5: 43,318 ms/op
+Iteration   6: 153,874 ms/op
+Iteration   7: 402,415 ms/op
+Iteration   8: 67,930 ms/op
+Iteration   9: 1144,339 ms/op
+Iteration  10: 707,724 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  544,611 ±(99.9%) 930,249 ms/op [Average]
+  (min, avg, max) = (43,318, 544,611, 1958,170), stdev = 615,302
+  CI (99.9%): [? 0, 1474,860] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 2 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook
+# Parameters: (size = LARGE)
+
+# Run progress: 83,33% complete, ETA 00:00:32
+# Fork: 1 of 1
+# Warmup Iteration   1: 123,719 ms/op
+# Warmup Iteration   2: 1714,447 ms/op
+# Warmup Iteration   3: 335,905 ms/op
+# Warmup Iteration   4: 385,838 ms/op
+# Warmup Iteration   5: 256,937 ms/op
+Iteration   1: 129,089 ms/op
+Iteration   2: 419,083 ms/op
+Iteration   3: 2761,348 ms/op
+Iteration   4: 1659,387 ms/op
+Iteration   5: 285,402 ms/op
+Iteration   6: 126,370 ms/op
+Iteration   7: 139,029 ms/op
+Iteration   8: 733,427 ms/op
+Iteration   9: 213,713 ms/op
+Iteration  10: 2106,972 ms/op
+
+
+Result "com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook":
+  857,382 ±(99.9%) 1457,071 ms/op [Average]
+  (min, avg, max) = (126,370, 857,382, 2761,348), stdev = 963,762
+  CI (99.9%): [? 0, 2314,453] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:03:26
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                      (size)   Mode  Cnt    Score      Error   Units
+SqliteWriteBenchmark.saveBook   SMALL  thrpt   10    0,052 ±    0,029  ops/ms
+SqliteWriteBenchmark.saveBook  MEDIUM  thrpt   10    0,026 ±    0,013  ops/ms
+SqliteWriteBenchmark.saveBook   LARGE  thrpt   10    0,015 ±    0,002  ops/ms
+SqliteWriteBenchmark.saveBook   SMALL   avgt   10  219,884 ±  382,893   ms/op
+SqliteWriteBenchmark.saveBook  MEDIUM   avgt   10  544,611 ±  930,249   ms/op
+SqliteWriteBenchmark.saveBook   LARGE   avgt   10  857,382 ± 1457,071   ms/op
+
+Benchmark result is saved to target/jmh-indexing-SqliteWriteBenchmark-t2.csv

@@ -39,6 +39,7 @@ $csv = Join-Path $OutDir "pipeline.csv"
 $failures = Join-Path $OutDir "failures.csv"
 $header = "started_at,finished_at,experiment,label,control_workers,ingestion_replicas,repetition,books,indexed,failed,not_found,elapsed_s,books_per_s"
 
+$failedRuns = 0
 $runs = @()
 foreach ($experiment in (Split-List $Experiments)) {
     switch ($experiment.ToUpperInvariant()) {
@@ -61,12 +62,12 @@ foreach ($run in $runs) {
         $name = "{0}-workers{1}-ingestion{2}-rep{3}" -f $run.Experiment, $run.Workers, $run.Ingestion, $repetition
         Write-Host ""
         Write-Host ("=== {0} ({1:HH:mm:ss})" -f $name, (Get-Date))
-        $dataDir = Join-Path $WorkRoot ("pipeline-" + $run.Experiment)
+        $dataDir = Join-Path $WorkRoot $name
         if ($run.Experiment -eq "D") {
             Restore-Snapshot $Snapshot $dataDir
         } else {
             # A fresh, empty data folder: every book is new and must be downloaded.
-            if (Test-Path -LiteralPath $dataDir) { Remove-Item -LiteralPath $dataDir -Recurse -Force }
+            if (Test-Path -LiteralPath $dataDir) { throw "Run directory already exists: $dataDir" }
             New-Item -ItemType Directory -Path $dataDir -Force | Out-Null
         }
         $monitor = $null
@@ -101,9 +102,11 @@ foreach ($run in $runs) {
             Add-CsvLine $csv $header @($started.ToString("o"), $finished.ToString("o"), $run.Experiment, $name, $run.Workers,
                 $run.Ingestion, $repetition, $ids.Count, $indexed, $failed, $notFound,
                 (Format-Number $elapsed), (Format-Number ($indexed / $elapsed)))
+            if ($failed -gt 0) { throw "$failed books FAILED in $name; run is not valid" }
             Write-Host ("    books={0} indexed={1} failed={2} not_found={3} elapsed={4}s books/s={5}" -f $ids.Count, $indexed,
                 $failed, $notFound, (Format-Number $elapsed "0.0"), (Format-Number ($indexed / $elapsed) "0.00"))
         } catch {
+            $failedRuns++
             Write-Warning "$name failed: $($_.Exception.Message)"
             Add-CsvLine $failures "timestamp,run,error" @((Get-Date).ToString("o"), $name, $_.Exception.Message)
         } finally {
@@ -115,3 +118,5 @@ foreach ($run in $runs) {
 }
 Write-Host ""
 Write-Host "Results: $csv. Next: python benchmarks\plots\plot.py $OutDir"
+
+if ($failedRuns -gt 0) { throw "$failedRuns pipeline runs failed; inspect failures.csv" }

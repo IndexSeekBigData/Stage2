@@ -1,0 +1,329 @@
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = ONE_WORD)
+
+# Run progress: 0,00% complete, ETA 00:02:00
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,328 ops/ms
+# Warmup Iteration   2: 1,668 ops/ms
+# Warmup Iteration   3: 1,879 ops/ms
+# Warmup Iteration   4: 1,685 ops/ms
+# Warmup Iteration   5: 2,053 ops/ms
+Iteration   1: 2,095 ops/ms
+Iteration   2: 2,187 ops/ms
+Iteration   3: 2,070 ops/ms
+Iteration   4: 2,143 ops/ms
+Iteration   5: 2,082 ops/ms
+Iteration   6: 2,184 ops/ms
+Iteration   7: 2,075 ops/ms
+Iteration   8: 1,862 ops/ms
+Iteration   9: 2,174 ops/ms
+Iteration  10: 2,211 ops/ms
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  2,108 ±(99.9%) 0,153 ops/ms [Average]
+  (min, avg, max) = (1,862, 2,108, 2,211), stdev = 0,101
+  CI (99.9%): [1,956, 2,261] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = TWO_WORDS)
+
+# Run progress: 12,50% complete, ETA 00:01:58
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,996 ops/ms
+# Warmup Iteration   2: 1,196 ops/ms
+# Warmup Iteration   3: 1,236 ops/ms
+# Warmup Iteration   4: 1,331 ops/ms
+# Warmup Iteration   5: 1,375 ops/ms
+Iteration   1: 1,282 ops/ms
+Iteration   2: 1,420 ops/ms
+Iteration   3: 1,424 ops/ms
+Iteration   4: 1,377 ops/ms
+Iteration   5: 1,430 ops/ms
+Iteration   6: 1,432 ops/ms
+Iteration   7: 1,361 ops/ms
+Iteration   8: 1,363 ops/ms
+Iteration   9: 1,245 ops/ms
+Iteration  10: 1,209 ops/ms
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  1,354 ±(99.9%) 0,123 ops/ms [Average]
+  (min, avg, max) = (1,209, 1,354, 1,432), stdev = 0,082
+  CI (99.9%): [1,231, 1,478] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = ONE_WORD_FILTERED)
+
+# Run progress: 25,00% complete, ETA 00:01:41
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,030 ops/ms
+# Warmup Iteration   2: 1,681 ops/ms
+# Warmup Iteration   3: 1,949 ops/ms
+# Warmup Iteration   4: 1,856 ops/ms
+# Warmup Iteration   5: 1,695 ops/ms
+Iteration   1: 2,104 ops/ms
+Iteration   2: 1,963 ops/ms
+Iteration   3: 1,927 ops/ms
+Iteration   4: 2,097 ops/ms
+Iteration   5: 2,076 ops/ms
+Iteration   6: 1,924 ops/ms
+Iteration   7: 1,834 ops/ms
+Iteration   8: 2,124 ops/ms
+Iteration   9: 2,107 ops/ms
+Iteration  10: 1,849 ops/ms
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  2,000 ±(99.9%) 0,171 ops/ms [Average]
+  (min, avg, max) = (1,834, 2,000, 2,124), stdev = 0,113
+  CI (99.9%): [1,829, 2,172] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = TWO_WORDS_FILTERED)
+
+# Run progress: 37,50% complete, ETA 00:01:24
+# Fork: 1 of 1
+# Warmup Iteration   1: 1,743 ops/ms
+# Warmup Iteration   2: 2,005 ops/ms
+# Warmup Iteration   3: 2,176 ops/ms
+# Warmup Iteration   4: 2,343 ops/ms
+# Warmup Iteration   5: 2,349 ops/ms
+Iteration   1: 2,350 ops/ms
+Iteration   2: 2,361 ops/ms
+Iteration   3: 2,382 ops/ms
+Iteration   4: 2,514 ops/ms
+Iteration   5: 2,323 ops/ms
+Iteration   6: 2,488 ops/ms
+Iteration   7: 2,226 ops/ms
+Iteration   8: 2,372 ops/ms
+Iteration   9: 2,218 ops/ms
+Iteration  10: 2,400 ops/ms
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  2,363 ±(99.9%) 0,144 ops/ms [Average]
+  (min, avg, max) = (2,218, 2,363, 2,514), stdev = 0,095
+  CI (99.9%): [2,219, 2,507] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = ONE_WORD)
+
+# Run progress: 50,00% complete, ETA 00:01:06
+# Fork: 1 of 1
+# Warmup Iteration   1: 2,923 ±(99.9%) 0,847 ms/op
+# Warmup Iteration   2: 2,549 ±(99.9%) 0,862 ms/op
+# Warmup Iteration   3: 2,103 ±(99.9%) 0,391 ms/op
+# Warmup Iteration   4: 1,963 ±(99.9%) 0,324 ms/op
+# Warmup Iteration   5: 2,193 ±(99.9%) 0,322 ms/op
+Iteration   1: 2,376 ±(99.9%) 0,742 ms/op
+Iteration   2: 2,292 ±(99.9%) 0,563 ms/op
+Iteration   3: 2,260 ±(99.9%) 0,429 ms/op
+Iteration   4: 1,858 ±(99.9%) 0,064 ms/op
+Iteration   5: 2,008 ±(99.9%) 0,247 ms/op
+Iteration   6: 2,039 ±(99.9%) 0,402 ms/op
+Iteration   7: 1,896 ±(99.9%) 0,208 ms/op
+Iteration   8: 2,448 ±(99.9%) 1,722 ms/op
+Iteration   9: 1,864 ±(99.9%) 0,437 ms/op
+Iteration  10: 2,096 ±(99.9%) 0,276 ms/op
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  2,114 ±(99.9%) 0,329 ms/op [Average]
+  (min, avg, max) = (1,858, 2,114, 2,448), stdev = 0,218
+  CI (99.9%): [1,785, 2,443] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = TWO_WORDS)
+
+# Run progress: 62,50% complete, ETA 00:00:50
+# Fork: 1 of 1
+# Warmup Iteration   1: 4,092 ±(99.9%) 1,077 ms/op
+# Warmup Iteration   2: 2,972 ±(99.9%) 0,258 ms/op
+# Warmup Iteration   3: 2,822 ±(99.9%) 0,221 ms/op
+# Warmup Iteration   4: 2,844 ±(99.9%) 0,259 ms/op
+# Warmup Iteration   5: 2,855 ±(99.9%) 0,288 ms/op
+Iteration   1: 3,277 ±(99.9%) 1,085 ms/op
+Iteration   2: 2,910 ±(99.9%) 0,241 ms/op
+Iteration   3: 2,810 ±(99.9%) 0,423 ms/op
+Iteration   4: 2,904 ±(99.9%) 0,324 ms/op
+Iteration   5: 3,490 ±(99.9%) 0,933 ms/op
+Iteration   6: 3,005 ±(99.9%) 0,657 ms/op
+Iteration   7: 3,078 ±(99.9%) 0,782 ms/op
+Iteration   8: 3,450 ±(99.9%) 1,578 ms/op
+Iteration   9: 3,407 ±(99.9%) 0,528 ms/op
+Iteration  10: 3,554 ±(99.9%) 1,048 ms/op
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  3,188 ±(99.9%) 0,421 ms/op [Average]
+  (min, avg, max) = (2,810, 3,188, 3,554), stdev = 0,278
+  CI (99.9%): [2,768, 3,609] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = ONE_WORD_FILTERED)
+
+# Run progress: 75,00% complete, ETA 00:00:33
+# Fork: 1 of 1
+# Warmup Iteration   1: 3,557 ±(99.9%) 1,378 ms/op
+# Warmup Iteration   2: 2,422 ±(99.9%) 0,291 ms/op
+# Warmup Iteration   3: 2,120 ±(99.9%) 0,493 ms/op
+# Warmup Iteration   4: 2,249 ±(99.9%) 0,476 ms/op
+# Warmup Iteration   5: 1,922 ±(99.9%) 0,274 ms/op
+Iteration   1: 1,896 ±(99.9%) 0,199 ms/op
+Iteration   2: 2,117 ±(99.9%) 0,823 ms/op
+Iteration   3: 1,969 ±(99.9%) 0,131 ms/op
+Iteration   4: 1,953 ±(99.9%) 0,414 ms/op
+Iteration   5: 1,882 ±(99.9%) 0,111 ms/op
+Iteration   6: 2,078 ±(99.9%) 0,380 ms/op
+Iteration   7: 1,983 ±(99.9%) 0,465 ms/op
+Iteration   8: 2,461 ±(99.9%) 0,944 ms/op
+Iteration   9: 1,956 ±(99.9%) 0,398 ms/op
+Iteration  10: 1,905 ±(99.9%) 0,146 ms/op
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  2,020 ±(99.9%) 0,261 ms/op [Average]
+  (min, avg, max) = (1,882, 2,020, 2,461), stdev = 0,172
+  CI (99.9%): [1,759, 2,281] (assumes normal distribution)
+
+
+# JMH version: 1.37
+# VM version: JDK 17.0.21, OpenJDK 64-Bit Server VM, 17.0.21+9
+# VM invoker: C:\Users\herna\.jdks\temurin-17.0.21\bin\java.exe
+# VM options: -Xms1G -Xmx4G
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 5 iterations, 1 s each
+# Measurement: 10 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: com.inverseek.search.benchmark.SearchBenchmark.search
+# Parameters: (kind = TWO_WORDS_FILTERED)
+
+# Run progress: 87,50% complete, ETA 00:00:16
+# Fork: 1 of 1
+# Warmup Iteration   1: 2,077 ±(99.9%) 0,818 ms/op
+# Warmup Iteration   2: 1,924 ±(99.9%) 0,760 ms/op
+# Warmup Iteration   3: 1,832 ±(99.9%) 0,571 ms/op
+# Warmup Iteration   4: 1,758 ±(99.9%) 1,110 ms/op
+# Warmup Iteration   5: 1,713 ±(99.9%) 0,942 ms/op
+Iteration   1: 1,673 ±(99.9%) 0,953 ms/op
+Iteration   2: 1,787 ±(99.9%) 0,880 ms/op
+Iteration   3: 1,764 ±(99.9%) 1,049 ms/op
+Iteration   4: 1,698 ±(99.9%) 0,697 ms/op
+Iteration   5: 1,812 ±(99.9%) 0,377 ms/op
+Iteration   6: 1,793 ±(99.9%) 0,724 ms/op
+Iteration   7: 1,772 ±(99.9%) 0,892 ms/op
+Iteration   8: 1,773 ±(99.9%) 0,634 ms/op
+Iteration   9: 1,668 ±(99.9%) 0,917 ms/op
+Iteration  10: 1,671 ±(99.9%) 0,673 ms/op
+
+
+Result "com.inverseek.search.benchmark.SearchBenchmark.search":
+  1,741 ±(99.9%) 0,086 ms/op [Average]
+  (min, avg, max) = (1,668, 1,741, 1,812), stdev = 0,057
+  CI (99.9%): [1,655, 1,827] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:02:13
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                           (kind)   Mode  Cnt  Score   Error   Units
+SearchBenchmark.search            ONE_WORD  thrpt   10  2,108 ± 0,153  ops/ms
+SearchBenchmark.search           TWO_WORDS  thrpt   10  1,354 ± 0,123  ops/ms
+SearchBenchmark.search   ONE_WORD_FILTERED  thrpt   10  2,000 ± 0,171  ops/ms
+SearchBenchmark.search  TWO_WORDS_FILTERED  thrpt   10  2,363 ± 0,144  ops/ms
+SearchBenchmark.search            ONE_WORD   avgt   10  2,114 ± 0,329   ms/op
+SearchBenchmark.search           TWO_WORDS   avgt   10  3,188 ± 0,421   ms/op
+SearchBenchmark.search   ONE_WORD_FILTERED   avgt   10  2,020 ± 0,261   ms/op
+SearchBenchmark.search  TWO_WORDS_FILTERED   avgt   10  1,741 ± 0,086   ms/op
+
+Benchmark result is saved to target/jmh-search-SearchBenchmark-t4.csv

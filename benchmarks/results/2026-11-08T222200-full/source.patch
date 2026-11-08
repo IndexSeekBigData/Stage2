@@ -1,0 +1,436 @@
+diff --git a/benchmarks/README.md b/benchmarks/README.md
+index 36c48f6..2604df3 100644
+--- a/benchmarks/README.md
++++ b/benchmarks/README.md
+@@ -149,3 +149,11 @@ results/<date>/
+ ```
+ 
+ Commit the summary CSV files, `host.txt` and `plots/`; `raw/` stays out of Git (`.gitignore`).
++
++## Measurement boundaries and retained runs
++
++Search CSV rows include explicit UTC measurement start/end timestamps. CPU/memory aggregation uses these boundaries, not the time when outstanding requests finish and the CSV is written. Successful requests started during the measurement window are counted, including their final latency; errors are reported separately. This is a closed-loop workload, not an open-loop arrival-rate test.
++
++Pipeline results retain end-to-end throughput through indexing. Experiment E additionally reports completed downloads per elapsed second from registration to the last download completion, including scheduling and interleaved indexing effects. It is not isolated download service capacity.
++
++Each repetition uses a fresh child directory inside the given working root. Snapshot destinations must be empty and separate from their source. Scripts report failed runs and return an error if a campaign is incomplete. Use a new OutDir for each campaign and keep full measurement results separate from `-Quick` checks.
+diff --git a/benchmarks/bench-common.ps1 b/benchmarks/bench-common.ps1
+index ca1dff6..876dc91 100644
+--- a/benchmarks/bench-common.ps1
++++ b/benchmarks/bench-common.ps1
+@@ -79,6 +79,10 @@ function Restore-Snapshot([string]$Snapshot, [string]$DataDir) {
+     if (-not (Test-Path -LiteralPath (Join-Path $Snapshot "datamarts\datamarts.db"))) {
+         throw "$Snapshot is not a corpus snapshot (missing datamarts\datamarts.db). Run prepare-corpus.ps1 first."
+     }
++    $source = [IO.Path]::GetFullPath($Snapshot).TrimEnd('\')
++    $target = [IO.Path]::GetFullPath($DataDir).TrimEnd('\')
++    if (-not [IO.Path]::IsPathRooted($DataDir) -or $source -eq $target -or $target.StartsWith($source+"\",[StringComparison]::OrdinalIgnoreCase) -or $source.StartsWith($target+"\",[StringComparison]::OrdinalIgnoreCase)) { throw "Snapshot and destination must be separate absolute directories" }
++    if ((Test-Path -LiteralPath $target) -and @(Get-ChildItem -LiteralPath $target -Force).Count -gt 0) { throw "Snapshot destination must be empty: $target" }
+     New-Item -ItemType Directory -Path $DataDir -Force | Out-Null
+     $copy = Invoke-Native { robocopy $Snapshot $DataDir /MIR /R:2 /W:1 /NFL /NDL /NJH /NJS /NP /XD logs /XF run-config.json pids.txt deployment.lock }
+     if ($copy.ExitCode -ge 8) { throw "robocopy failed with code $($copy.ExitCode): $($copy.Output -join ' ')" }
+@@ -100,7 +104,7 @@ function Start-Deployment([hashtable]$Parameters) {
+ 
+ function Stop-Deployment([string]$DataDir) {
+     try { & (Join-Path $script:RepoDir "scripts\stop-all.ps1") -DataDir $DataDir }
+-    catch { Write-Warning ("stop-all: " + $_.Exception.Message) }
++    catch { throw ("stop-all failed: " + $_.Exception.Message) }
+ }
+ 
+ function Save-RunConfig([string]$DataDir, [string]$Target) {
+diff --git a/benchmarks/load-client/src/main/java/com/inverseek/loadclient/LoadClient.java b/benchmarks/load-client/src/main/java/com/inverseek/loadclient/LoadClient.java
+index dfc550f..e17085a 100644
+--- a/benchmarks/load-client/src/main/java/com/inverseek/loadclient/LoadClient.java
++++ b/benchmarks/load-client/src/main/java/com/inverseek/loadclient/LoadClient.java
+@@ -38,7 +38,7 @@ public final class LoadClient {
+ 
+     static final String HEADER = "timestamp,experiment,label,repetition,targets,search_replicas,server_threads,"
+             + "concurrency,warmup_s,duration_s,requests,errors,throughput_rps,mean_ms,p50_ms,p95_ms,p99_ms,max_ms,"
+-            + "client_cpu_pct";
++            + "client_cpu_pct,measurement_started_at,measurement_finished_at";
+ 
+     private LoadClient() {
+     }
+@@ -98,6 +98,7 @@ public final class LoadClient {
+             for (String query : queries) uris.add(URI.create(options.targets.get(t) + "/search?" + query));
+         }
+         AtomicLong next = new AtomicLong();
++        Instant wallStart = Instant.now();
+         long start = System.nanoTime();
+         long measureFrom = start + options.warmup.toNanos();
+         long measureTo = measureFrom + options.duration.toNanos();
+@@ -132,7 +133,8 @@ public final class LoadClient {
+         int cores = Runtime.getRuntime().availableProcessors();
+         double cpu = cpuStart < 0 || cpuEnd < 0 ? Double.NaN
+                 : 100.0 * (cpuEnd - cpuStart) / (options.duration.toNanos() * (double) cores);
+-        return new Result(total, total.getTotalCount(), errors, seconds, cpu);
++        return new Result(total, total.getTotalCount(), errors, seconds, cpu,
++                wallStart.plus(options.warmup), wallStart.plus(options.warmup).plus(options.duration));
+     }
+ 
+     private static void sleepUntil(long nanoTime) throws InterruptedException {
+@@ -156,11 +158,11 @@ public final class LoadClient {
+                 Instant.now().toString(), csv(options.experiment), csv(options.label), Integer.toString(options.repetition),
+                 csv(String.join(" ", options.targets)), Integer.toString(options.searchReplicas),
+                 Integer.toString(options.serverThreads), Integer.toString(options.concurrency),
+-                Long.toString(options.warmup.toSeconds()), Long.toString(options.duration.toSeconds()),
++                format(options.warmup.toNanos() / 1e9), format(options.duration.toNanos() / 1e9),
+                 Long.toString(result.requests), Long.toString(result.errors),
+                 format(result.throughput()), format(result.meanMs()), format(result.percentileMs(50)),
+                 format(result.percentileMs(95)), format(result.percentileMs(99)), format(result.maxMs()),
+-                format(result.clientCpuPct));
++                format(result.clientCpuPct), result.measurementStarted.toString(), result.measurementFinished.toString());
+         String line = String.join(",", row) + System.lineSeparator();
+         Files.writeString(out, (header ? HEADER + System.lineSeparator() : "") + line, StandardCharsets.UTF_8,
+                 StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+@@ -231,7 +233,8 @@ public final class LoadClient {
+         }
+     }
+ 
+-    record Result(Histogram histogram, long requests, long errors, double seconds, double clientCpuPct) {
++    record Result(Histogram histogram, long requests, long errors, double seconds, double clientCpuPct,
++                  Instant measurementStarted, Instant measurementFinished) {
+         double throughput() {
+             return requests / seconds;
+         }
+@@ -300,7 +303,9 @@ public final class LoadClient {
+             if (o.targets.isEmpty()) throw new IllegalArgumentException("--targets is required");
+             if (o.queries == null) throw new IllegalArgumentException("--queries is required");
+             if (o.out == null) throw new IllegalArgumentException("--out is required");
+-            if (o.duration.isZero()) throw new IllegalArgumentException("--duration must be positive");
++            if (o.warmup.isNegative() || o.timeout.isNegative() || o.timeout.isZero())
++                throw new IllegalArgumentException("Warmup must be non-negative and timeout must be positive");
++            if (o.duration.isNegative() || o.duration.isZero()) throw new IllegalArgumentException("--duration must be positive");
+             return o;
+         }
+ 
+diff --git a/benchmarks/plots/plot.py b/benchmarks/plots/plot.py
+index bd959ca..d79ce02 100644
+--- a/benchmarks/plots/plot.py
++++ b/benchmarks/plots/plot.py
+@@ -14,6 +14,7 @@ Usage: python benchmarks/plots/plot.py benchmarks/results/<date>
+ Requires: pandas, matplotlib
+ """
+ import json
++import re
+ import sys
+ from pathlib import Path
+ 
+@@ -51,6 +52,10 @@ def jmh(results, out):
+     frames = []
+     for file in files:
+         frame = read_csv(file)
++        # JMH follows the host locale, including decimal commas inside quoted CSV values.
++        frame.columns = [c.replace("99,9%", "99.9%") for c in frame.columns]
++        for column in ("Score", "Score Error (99.9%)"):
++            frame[column] = frame[column].map(lambda value: float(str(value).replace(",", ".")))
+         params = [c for c in frame.columns if c.startswith("Param: ")]
+         frame["param"] = frame[params].bfill(axis=1).iloc[:, 0].astype(str) if params else ""
+         frames.append(frame)
+@@ -98,6 +103,48 @@ def jmh(results, out):
+         save(fig, out, "jmh-throughput-vs-threads.png")
+ 
+ 
++def jmh_iterations(results, out):
++    """Recover iteration values from the JMH logs (as printed, with their rounding)."""
++    rows = []
++    pattern = re.compile(r"^Iteration\s+(\d+):\s+([0-9.,]+).*?\s(ms/op|ops/ms)\s*$")
++    for path in sorted((results / "jmh").glob("*.txt")):
++        metadata = {}
++        for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
++            if line.startswith("# Threads: "):
++                metadata["threads"] = int(line.split()[2])
++                metadata["param"] = ""
++            elif line.startswith("# Benchmark mode: "):
++                metadata["mode"] = "avgt" if "Average time" in line else "thrpt"
++            elif line.startswith("# Benchmark: "):
++                metadata["benchmark"] = ".".join(line.split()[-1].split(".")[-2:])
++            elif line.startswith("# Parameters: "):
++                metadata["param"] = line.split(" = ", 1)[-1].rstrip(")")
++            elif match := pattern.match(line):
++                iteration, value, unit = match.groups()
++                rows.append(dict(metadata, iteration=int(iteration), score=float(value.replace(",", ".")), unit=unit))
++    if not rows:
++        return
++    data = pd.DataFrame(rows)
++    data.to_csv(out / "jmh-iterations.csv", index=False)
++    groups = data[(data["mode"] == "avgt") & (data["threads"] == 1)].groupby(["benchmark", "param"])
++    if not groups.ngroups:
++        return
++    fig, ax = plt.subplots(figsize=(10, 0.45 * groups.ngroups + 1.8))
++    labels = []
++    for index, ((benchmark, param), group) in enumerate(groups):
++        scores = group["score"]
++        labels.append(f"{benchmark} [{param}]")
++        ax.scatter(scores, np.full(len(scores), index), color="#4C72B0", alpha=0.55)
++        ax.errorbar(scores.mean(), index, xerr=scores.std() if len(scores) > 1 else 0,
++                    fmt="D", color="#C44E52", capsize=3)
++    ax.set_yticks(range(len(labels)), labels)
++    ax.invert_yaxis()
++    ax.set_xscale("log")
++    ax.set_xlabel("ms/op (log scale); dots: iterations; diamonds and bars: mean and sample SD")
++    ax.set_title("JMH: measured iteration distribution at one thread")
++    save(fig, out, "jmh-iteration-distribution.png")
++
++
+ # ----------------------------------------------------------------------- monitor
+ 
+ def monitor_window(results, label, start, end):
+@@ -126,6 +173,51 @@ def monitor_window(results, label, start, end):
+     return values
+ 
+ 
++def search_monitor_series(results, out, runs):
++    """Align repetitions to the start of measurement, then summarize CPU/RSS over time."""
++    selection = results / "saturation-selection.json"
++    if not selection.exists():
++        return
++    clients = json.loads(selection.read_text(encoding="utf-8-sig"))["clients"]
++    selected = runs[(runs["experiment"] == "A") & (runs["concurrency"] == clients)]
++    traces = []
++    for row in selected.itertuples():
++        path = results / "raw" / f"{row.label}.monitor.csv"
++        if not path.exists():
++            continue
++        samples = read_csv(path)
++        stamps = pd.to_datetime(samples["timestamp"], utc=True, format="ISO8601")
++        samples["elapsed_s"] = (stamps - row.start).dt.total_seconds()
++        grid = np.arange(0, (row.end - row.start).total_seconds() + 0.01)
++        for name in ("host", "search-0", "control-0", "indexing-0", "ingestion-0"):
++            series = samples[samples["name"] == name].sort_values("elapsed_s")
++            if series.empty:
++                continue
++            interpolated = {metric: np.interp(grid, series["elapsed_s"], series[metric], left=np.nan, right=np.nan)
++                            for metric in ("cpu_pct", "memory_mb")}
++            traces.append(pd.DataFrame(dict(name=name, elapsed_s=grid, **interpolated)))
++    if not traces:
++        return
++    summary = mean_std(pd.concat(traces), ["name", "elapsed_s"], ["cpu_pct", "memory_mb"])
++    summary.to_csv(out / "search-monitor-series.csv", index=False)
++    fig, axes = plt.subplots(3, 1, figsize=(8, 8), sharex=True)
++    for name, series in summary.groupby("name"):
++        for ax, metric in ((axes[0], "cpu_pct"), (axes[1] if name == "host" else axes[2], "memory_mb")):
++            avg = series[f"{metric}_mean"]
++            std = series[f"{metric}_std"].fillna(0)
++            line, = ax.plot(series["elapsed_s"], avg, label=name)
++            ax.fill_between(series["elapsed_s"], (avg - std).clip(lower=0), avg + std,
++                            color=line.get_color(), alpha=0.15)
++    axes[0].set_ylabel("CPU (% of host)")
++    axes[1].set_ylabel("Host used memory (MiB)")
++    axes[2].set_ylabel("Process working set (MiB)")
++    axes[2].set_xlabel("Seconds since measurement started")
++    for ax in axes:
++        ax.legend(loc="best", fontsize=8)
++    fig.suptitle(f"Search at {clients} clients: mean and sample SD across repetitions")
++    save(fig, out, "search-cpu-memory-over-time.png")
++
++
+ # ------------------------------------------------------------------------ search
+ 
+ def search(results, out):
+@@ -133,11 +225,14 @@ def search(results, out):
+     if not path.exists():
+         return
+     runs = read_csv(path)
+-    runs["end"] = pd.to_datetime(runs["timestamp"], utc=True, format="ISO8601")
+-    runs["start"] = runs["end"] - pd.to_timedelta(runs["duration_s"], unit="s")
++    if not {"measurement_started_at", "measurement_finished_at"}.issubset(runs.columns):
++        raise ValueError("Search results need explicit measurement timestamps; rerun the updated load client")
++    runs["start"] = pd.to_datetime(runs["measurement_started_at"], utc=True, format="ISO8601")
++    runs["end"] = pd.to_datetime(runs["measurement_finished_at"], utc=True, format="ISO8601")
+     extra = [monitor_window(results, row.label, row.start, row.end) for row in runs.itertuples()]
+     runs = pd.concat([runs, pd.DataFrame(extra)], axis=1)
+     runs.to_csv(out / "search-runs.csv", index=False)
++    search_monitor_series(results, out, runs)
+ 
+     metrics = ["throughput_rps", "mean_ms", "p50_ms", "p95_ms", "p99_ms", "max_ms", "errors", "client_cpu_pct",
+                "host_cpu_pct", "search_cpu_pct", "search_memory_mb"]
+@@ -244,6 +339,7 @@ def phases(results, row):
+             "index_ms": ms("index_started_at", "indexed_at"),
+             "end_to_end_ms": ms("downloaded_at", "indexed_at") if reindex else ms("queued_at", "indexed_at"),
+             "indexed_at": times["indexed_at"],
++            "downloaded_at": times["downloaded_at"],
+         })
+     return pd.DataFrame(rows)
+ 
+@@ -260,6 +356,8 @@ def pipeline(results, out):
+         if not books.empty:
+             span = (books["indexed_at"].max() - to_time(row.started_at)).total_seconds()
+             values["books_per_s_exact"] = len(books) / span if span > 0 else np.nan
++            ingest_span = (books["downloaded_at"].max() - to_time(row.started_at)).total_seconds()
++            values["ingestion_books_per_s"] = len(books) / ingest_span if row.experiment == "E" and ingest_span > 0 else np.nan
+             for column in ("queue_wait_ms", "ingest_ms", "index_wait_ms", "index_ms", "end_to_end_ms"):
+                 values[f"avg_{column}"] = books[column].mean()
+             values["p95_index_ms"] = books["index_ms"].quantile(0.95)
+@@ -267,17 +365,17 @@ def pipeline(results, out):
+         details.append(values)
+     runs = pd.concat([runs, pd.DataFrame(details)], axis=1)
+     runs.to_csv(out / "pipeline-runs.csv", index=False)
+-    metrics = [c for c in runs.columns if c in ("books_per_s", "books_per_s_exact", "elapsed_s", "avg_queue_wait_ms",
++    metrics = [c for c in runs.columns if c in ("books_per_s", "books_per_s_exact", "ingestion_books_per_s", "elapsed_s", "avg_queue_wait_ms",
+                                                 "avg_ingest_ms", "avg_index_wait_ms", "avg_index_ms",
+                                                 "avg_end_to_end_ms", "p95_index_ms", "host_cpu_pct",
+                                                 "indexing_cpu_pct", "control_cpu_pct", "ingestion_cpu_pct")]
+     summary = mean_std(runs, ["experiment", "ingestion_replicas", "control_workers"], metrics)
+     summary.to_csv(out / "pipeline-summary.csv", index=False)
+     print("  table", out / "pipeline-summary.csv")
+-    rate = "books_per_s_exact" if "books_per_s_exact_mean" in summary else "books_per_s"
+ 
+     for experiment, title in (("D", "D. Indexing throughput vs Control workers"),
+-                              ("E", "E. Ingestion throughput vs Control workers (network-bound)")):
++                              ("E", "E. Completed downloads vs Control workers (includes scheduling)")):
++        rate = "ingestion_books_per_s" if experiment == "E" else "books_per_s_exact"
+         subset = summary[summary["experiment"] == experiment]
+         if subset.empty:
+             continue
+@@ -327,6 +425,7 @@ def main():
+     out.mkdir(exist_ok=True)
+     print("Results:", results)
+     jmh(results, out)
++    jmh_iterations(results, out)
+     search(results, out)
+     pipeline(results, out)
+ 
+diff --git a/benchmarks/run-jmh.ps1 b/benchmarks/run-jmh.ps1
+index e980bc0..b1e5eb7 100644
+--- a/benchmarks/run-jmh.ps1
++++ b/benchmarks/run-jmh.ps1
+@@ -45,6 +45,7 @@ if ($Datamart) {
+ }
+ $extra = if ($Quick) { " -wi 1 -i 1 -w 1s -r 1s" } else { "" }
+ 
++$failedRuns = 0
+ foreach ($name in (Split-List $Modules)) {
+     if (-not $plan.ContainsKey($name)) { throw "Unknown module '$name'. Use ingestion, indexing or search." }
+     $entry = $plan[$name]
+@@ -58,11 +59,12 @@ foreach ($name in (Split-List $Modules)) {
+         foreach ($benchmark in $entry.Benchmarks) {
+             foreach ($count in $counts) {
+                 $base = "jmh-$name-$benchmark-t$count"
+-                $jmhArgs = "-cp %classpath org.openjdk.jmh.Main $benchmark -t $count -rf csv -rff target/$base.csv -o target/$base.txt$extra"
++                $jmhArgs = "-cp %classpath org.openjdk.jmh.Main $benchmark -foe true -t $count -rf csv -rff target/$base.csv -o target/$base.txt$extra"
+                 Write-Host ("[{0}] {1} threads={2} ({3:HH:mm:ss})" -f $name, $benchmark, $count, (Get-Date))
+                 $run = Invoke-Native { mvn -q -B exec:exec "-Dexec.executable=java" "-Dexec.classpathScope=test" "-Dexec.args=$jmhArgs" }
+                 if (Test-Path -LiteralPath "target\$base.txt") { Move-Item -LiteralPath "target\$base.txt" -Destination $jmhDir -Force }
+                 if ($run.ExitCode -ne 0 -or -not (Test-Path -LiteralPath "target\$base.csv")) {
++                    $failedRuns++
+                     Write-Warning "$benchmark failed (exit $($run.ExitCode)). Log: $(Join-Path $jmhDir "$base.txt")`n$($run.Output -join "`n")"
+                     continue
+                 }
+@@ -75,3 +77,5 @@ foreach ($name in (Split-List $Modules)) {
+     }
+ }
+ Write-Host "JMH results in $jmhDir"
++
++if ($failedRuns -gt 0) { throw "$failedRuns JMH runs failed; inspect their logs" }
+diff --git a/benchmarks/run-pipeline-bench.ps1 b/benchmarks/run-pipeline-bench.ps1
+index 01842fe..9695ad3 100644
+--- a/benchmarks/run-pipeline-bench.ps1
++++ b/benchmarks/run-pipeline-bench.ps1
+@@ -39,6 +39,7 @@ $csv = Join-Path $OutDir "pipeline.csv"
+ $failures = Join-Path $OutDir "failures.csv"
+ $header = "started_at,finished_at,experiment,label,control_workers,ingestion_replicas,repetition,books,indexed,failed,not_found,elapsed_s,books_per_s"
+ 
++$failedRuns = 0
+ $runs = @()
+ foreach ($experiment in (Split-List $Experiments)) {
+     switch ($experiment.ToUpperInvariant()) {
+@@ -61,12 +62,12 @@ foreach ($run in $runs) {
+         $name = "{0}-workers{1}-ingestion{2}-rep{3}" -f $run.Experiment, $run.Workers, $run.Ingestion, $repetition
+         Write-Host ""
+         Write-Host ("=== {0} ({1:HH:mm:ss})" -f $name, (Get-Date))
+-        $dataDir = Join-Path $WorkRoot ("pipeline-" + $run.Experiment)
++        $dataDir = Join-Path $WorkRoot $name
+         if ($run.Experiment -eq "D") {
+             Restore-Snapshot $Snapshot $dataDir
+         } else {
+             # A fresh, empty data folder: every book is new and must be downloaded.
+-            if (Test-Path -LiteralPath $dataDir) { Remove-Item -LiteralPath $dataDir -Recurse -Force }
++            if (Test-Path -LiteralPath $dataDir) { throw "Run directory already exists: $dataDir" }
+             New-Item -ItemType Directory -Path $dataDir -Force | Out-Null
+         }
+         $monitor = $null
+@@ -101,9 +102,11 @@ foreach ($run in $runs) {
+             Add-CsvLine $csv $header @($started.ToString("o"), $finished.ToString("o"), $run.Experiment, $name, $run.Workers,
+                 $run.Ingestion, $repetition, $ids.Count, $indexed, $failed, $notFound,
+                 (Format-Number $elapsed), (Format-Number ($indexed / $elapsed)))
++            if ($failed -gt 0) { throw "$failed books FAILED in $name; run is not valid" }
+             Write-Host ("    books={0} indexed={1} failed={2} not_found={3} elapsed={4}s books/s={5}" -f $ids.Count, $indexed,
+                 $failed, $notFound, (Format-Number $elapsed "0.0"), (Format-Number ($indexed / $elapsed) "0.00"))
+         } catch {
++            $failedRuns++
+             Write-Warning "$name failed: $($_.Exception.Message)"
+             Add-CsvLine $failures "timestamp,run,error" @((Get-Date).ToString("o"), $name, $_.Exception.Message)
+         } finally {
+@@ -115,3 +118,5 @@ foreach ($run in $runs) {
+ }
+ Write-Host ""
+ Write-Host "Results: $csv. Next: python benchmarks\plots\plot.py $OutDir"
++
++if ($failedRuns -gt 0) { throw "$failedRuns pipeline runs failed; inspect failures.csv" }
+diff --git a/benchmarks/run-search.ps1 b/benchmarks/run-search.ps1
+index df05513..ad184d2 100644
+--- a/benchmarks/run-search.ps1
++++ b/benchmarks/run-search.ps1
+@@ -24,12 +24,12 @@ param(
+     [string[]]$Experiments = @("A", "B", "C"),
+     [string[]]$Clients = @("1", "4", "16", "64", "128"),
+     [string[]]$Replicas = @("1", "2", "3"),
+-    [string[]]$ServerThreads = @("8", "32", "250"),
++    [string[]]$ServerThreads = @("16", "32", "250"),
+     [int]$SaturationClients = 64,
+     [int]$ThreadClients = 128,
+     [ValidateRange(1, 20)][int]$Repetitions = 3,
+-    [int]$WarmupSeconds = 10,
+-    [int]$DurationSeconds = 60,
++    [int]$WarmupSeconds = 5,
++    [int]$DurationSeconds = 20,
+     [string]$Queries = (Join-Path $PSScriptRoot "queries.txt"),
+     [string]$JavaExe = ""
+ )
+@@ -43,6 +43,7 @@ $Queries = (Resolve-Path -LiteralPath $Queries).Path
+ $csv = Join-Path $OutDir "search.csv"
+ $failures = Join-Path $OutDir "failures.csv"
+ 
++$failedRuns = 0
+ $runs = @()
+ foreach ($experiment in (Split-List $Experiments)) {
+     switch ($experiment.ToUpperInvariant()) {
+@@ -60,13 +61,14 @@ foreach ($run in $runs) {
+         $name = "{0}-clients{1}-replicas{2}-threads{3}-rep{4}" -f $run.Experiment, $run.Clients, $run.Replicas, $run.Threads, $repetition
+         Write-Host ""
+         Write-Host ("=== {0} ({1:HH:mm:ss})" -f $name, (Get-Date))
+-        Restore-Snapshot $Snapshot $DataDir
++        $runData = Join-Path $DataDir $name
++        Restore-Snapshot $Snapshot $runData
+         $monitor = $null
+         try {
+-            $parameters = @{ DataDir = $DataDir; SearchReplicas = $run.Replicas; ServerThreads = $run.Threads; IngestionReplicas = 1; ControlWorkers = 1 }
++            $parameters = @{ DataDir = $runData; SearchReplicas = $run.Replicas; ServerThreads = $run.Threads; IngestionReplicas = 1; ControlWorkers = 1 }
+             if ($JavaExe) { $parameters.JavaExe = $JavaExe }
+             $config = Start-Deployment $parameters
+-            $monitor = Start-Monitor $DataDir (Join-Path $OutDir "raw\$name.monitor.csv")
++            $monitor = Start-Monitor $runData (Join-Path $OutDir "raw\$name.monitor.csv")
+             $targets = @($config.endpoints.search) -join ","
+             $load = Invoke-Native {
+                 java -Xms512m -Xmx2G -jar $client --targets $targets --concurrency $run.Clients `
+@@ -77,14 +79,17 @@ foreach ($run in $runs) {
+             $load.Output | Where-Object { $_ -notmatch "JAVA_TOOL_OPTIONS" } | ForEach-Object { Write-Host "    $_" }
+             if ($load.ExitCode -ne 0) { throw "Load client exit code $($load.ExitCode)" }
+         } catch {
++            $failedRuns++
+             Write-Warning "$name failed: $($_.Exception.Message)"
+             Add-CsvLine $failures "timestamp,run,error" @((Get-Date).ToString("o"), $name, $_.Exception.Message)
+         } finally {
+             Stop-Monitor $monitor
+-            Stop-Deployment $DataDir
+-            Save-RunConfig $DataDir (Join-Path $OutDir "raw\$name.run-config.json")
++            Stop-Deployment $runData
++            Save-RunConfig $runData (Join-Path $OutDir "raw\$name.run-config.json")
+         }
+     }
+ }
+ Write-Host ""
+ Write-Host "Results: $csv. Next: python benchmarks\plots\plot.py $OutDir"
++
++if ($failedRuns -gt 0) { throw "$failedRuns search runs failed; inspect failures.csv" }

@@ -24,12 +24,12 @@ param(
     [string[]]$Experiments = @("A", "B", "C"),
     [string[]]$Clients = @("1", "4", "16", "64", "128"),
     [string[]]$Replicas = @("1", "2", "3"),
-    [string[]]$ServerThreads = @("8", "32", "250"),
+    [string[]]$ServerThreads = @("16", "32", "250"),
     [int]$SaturationClients = 64,
     [int]$ThreadClients = 128,
     [ValidateRange(1, 20)][int]$Repetitions = 3,
-    [int]$WarmupSeconds = 10,
-    [int]$DurationSeconds = 60,
+    [int]$WarmupSeconds = 5,
+    [int]$DurationSeconds = 20,
     [string]$Queries = (Join-Path $PSScriptRoot "queries.txt"),
     [string]$JavaExe = ""
 )
@@ -43,6 +43,7 @@ $Queries = (Resolve-Path -LiteralPath $Queries).Path
 $csv = Join-Path $OutDir "search.csv"
 $failures = Join-Path $OutDir "failures.csv"
 
+$failedRuns = 0
 $runs = @()
 foreach ($experiment in (Split-List $Experiments)) {
     switch ($experiment.ToUpperInvariant()) {
@@ -60,13 +61,14 @@ foreach ($run in $runs) {
         $name = "{0}-clients{1}-replicas{2}-threads{3}-rep{4}" -f $run.Experiment, $run.Clients, $run.Replicas, $run.Threads, $repetition
         Write-Host ""
         Write-Host ("=== {0} ({1:HH:mm:ss})" -f $name, (Get-Date))
-        Restore-Snapshot $Snapshot $DataDir
+        $runData = Join-Path $DataDir $name
+        Restore-Snapshot $Snapshot $runData
         $monitor = $null
         try {
-            $parameters = @{ DataDir = $DataDir; SearchReplicas = $run.Replicas; ServerThreads = $run.Threads; IngestionReplicas = 1; ControlWorkers = 1 }
+            $parameters = @{ DataDir = $runData; SearchReplicas = $run.Replicas; ServerThreads = $run.Threads; IngestionReplicas = 1; ControlWorkers = 1 }
             if ($JavaExe) { $parameters.JavaExe = $JavaExe }
             $config = Start-Deployment $parameters
-            $monitor = Start-Monitor $DataDir (Join-Path $OutDir "raw\$name.monitor.csv")
+            $monitor = Start-Monitor $runData (Join-Path $OutDir "raw\$name.monitor.csv")
             $targets = @($config.endpoints.search) -join ","
             $load = Invoke-Native {
                 java -Xms512m -Xmx2G -jar $client --targets $targets --concurrency $run.Clients `
@@ -77,14 +79,17 @@ foreach ($run in $runs) {
             $load.Output | Where-Object { $_ -notmatch "JAVA_TOOL_OPTIONS" } | ForEach-Object { Write-Host "    $_" }
             if ($load.ExitCode -ne 0) { throw "Load client exit code $($load.ExitCode)" }
         } catch {
+            $failedRuns++
             Write-Warning "$name failed: $($_.Exception.Message)"
             Add-CsvLine $failures "timestamp,run,error" @((Get-Date).ToString("o"), $name, $_.Exception.Message)
         } finally {
             Stop-Monitor $monitor
-            Stop-Deployment $DataDir
-            Save-RunConfig $DataDir (Join-Path $OutDir "raw\$name.run-config.json")
+            Stop-Deployment $runData
+            Save-RunConfig $runData (Join-Path $OutDir "raw\$name.run-config.json")
         }
     }
 }
 Write-Host ""
 Write-Host "Results: $csv. Next: python benchmarks\plots\plot.py $OutDir"
+
+if ($failedRuns -gt 0) { throw "$failedRuns search runs failed; inspect failures.csv" }

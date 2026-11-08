@@ -1,0 +1,9 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: kind"
+"com.inverseek.search.benchmark.SearchBenchmark.search","thrpt",2,10,"0,833774","0,025662","ops/ms",ONE_WORD
+"com.inverseek.search.benchmark.SearchBenchmark.search","thrpt",2,10,"0,728924","0,045004","ops/ms",TWO_WORDS
+"com.inverseek.search.benchmark.SearchBenchmark.search","thrpt",2,10,"0,804863","0,055584","ops/ms",ONE_WORD_FILTERED
+"com.inverseek.search.benchmark.SearchBenchmark.search","thrpt",2,10,"0,998355","0,045260","ops/ms",TWO_WORDS_FILTERED
+"com.inverseek.search.benchmark.SearchBenchmark.search","avgt",2,10,"2,446190","0,165377","ms/op",ONE_WORD
+"com.inverseek.search.benchmark.SearchBenchmark.search","avgt",2,10,"2,846588","0,224061","ms/op",TWO_WORDS
+"com.inverseek.search.benchmark.SearchBenchmark.search","avgt",2,10,"2,490987","0,157491","ms/op",ONE_WORD_FILTERED
+"com.inverseek.search.benchmark.SearchBenchmark.search","avgt",2,10,"2,005918","0,060929","ms/op",TWO_WORDS_FILTERED

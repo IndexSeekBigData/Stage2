@@ -1,0 +1,906 @@
+{
+  "source": "https://www.gutenberg.org",
+  "books": [
+    {
+      "bookId": 10,
+      "headerPath": "20261108/22/10.header.txt",
+      "bodyPath": "20261108/22/10.body.txt",
+      "headerBytes": 746,
+      "bodyBytes": 4336576,
+      "bodySha256": "8d4cd267149795cdb66793a4728da9320bcbe7799a81e4d80ccb78b0eb2029b1",
+      "ingestedAt": "2026-11-08T22:21:36.268029900Z"
+    },
+    {
+      "bookId": 11,
+      "headerPath": "20261108/22/11.header.txt",
+      "bodyPath": "20261108/22/11.body.txt",
+      "headerBytes": 802,
+      "bodyBytes": 151095,
+      "bodySha256": "b44b499274ef98e0bc12c190ee08d9c63480b7c96946101a540a0cb24b3a944c",
+      "ingestedAt": "2026-11-08T22:21:35.487428700Z"
+    },
+    {
+      "bookId": 16,
+      "headerPath": "20261108/22/16.header.txt",
+      "bodyPath": "20261108/22/16.body.txt",
+      "headerBytes": 767,
+      "bodyBytes": 262746,
+      "bodySha256": "f093a7678a91786d3d4b22cbf82f16f9ddb917939db0c4b102a4c90fcf855240",
+      "ingestedAt": "2026-11-08T22:21:35.611752100Z"
+    },
+    {
+      "bookId": 23,
+      "headerPath": "20261108/22/23.header.txt",
+      "bodyPath": "20261108/22/23.body.txt",
+      "headerBytes": 877,
+      "bodyBytes": 225366,
+      "bodySha256": "5d1c5ee5c447066c474148283ae0654bad1a132390202764c2de10888209d457",
+      "ingestedAt": "2026-11-08T22:21:35.622750500Z"
+    },
+    {
+      "bookId": 33,
+      "headerPath": "20261108/22/33.header.txt",
+      "bodyPath": "20261108/22/33.body.txt",
+      "headerBytes": 763,
+      "bodyBytes": 485739,
+      "bodySha256": "27809bf10859367f7967f0e60b5901ce9238329541f13fe9223adf0a5c5249d9",
+      "ingestedAt": "2026-11-08T22:21:36.021599100Z"
+    },
+    {
+      "bookId": 35,
+      "headerPath": "20261108/22/35.header.txt",
+      "bodyPath": "20261108/22/35.body.txt",
+      "headerBytes": 727,
+      "bodyBytes": 181475,
+      "bodySha256": "694d1369ab9bd8399dbb37e676b74e55cd058790551546eae7c55d54f608a952",
+      "ingestedAt": "2026-11-08T22:21:36.056499500Z"
+    },
+    {
+      "bookId": 36,
+      "headerPath": "20261108/22/36.header.txt",
+      "bodyPath": "20261108/22/36.body.txt",
+      "headerBytes": 738,
+      "bodyBytes": 340504,
+      "bodySha256": "029c1790450e9437aacdde1d70cc51a884cbfcc0b57e266f378070e88e4b3dee",
+      "ingestedAt": "2026-11-08T22:21:36.197503300Z"
+    },
+    {
+      "bookId": 41,
+      "headerPath": "20261108/22/41.header.txt",
+      "bodyPath": "20261108/22/41.body.txt",
+      "headerBytes": 808,
+      "bodyBytes": 69928,
+      "bodySha256": "14dfbab6784099770a04cfc20b67213929595d47078f14143980e0f87b4e1338",
+      "ingestedAt": "2026-11-08T22:21:36.337577300Z"
+    },
+    {
+      "bookId": 43,
+      "headerPath": "20261108/22/43.header.txt",
+      "bodyPath": "20261108/22/43.body.txt",
+      "headerBytes": 812,
+      "bodyBytes": 141074,
+      "bodySha256": "688062a341d34e7ef6718ecb5e352978b136766ea4131966f4245ccff9ac6000",
+      "ingestedAt": "2026-11-08T22:21:36.384870Z"
+    },
+    {
+      "bookId": 46,
+      "headerPath": "20261108/22/46.header.txt",
+      "bodyPath": "20261108/22/46.body.txt",
+      "headerBytes": 888,
+      "bodyBytes": 158416,
+      "bodySha256": "9a17e3fa751c44022b9f9b282ca3551780b6c7385aea8ac162a59d773de2e3cd",
+      "ingestedAt": "2026-11-08T22:21:36.965069100Z"
+    },
+    {
+      "bookId": 55,
+      "headerPath": "20261108/22/55.header.txt",
+      "bodyPath": "20261108/22/55.body.txt",
+      "headerBytes": 754,
+      "bodyBytes": 212704,
+      "bodySha256": "94a11d5818c4e3367290d16ab4e9cd909a67ea544afd271be92309e90b31fbbf",
+      "ingestedAt": "2026-11-08T22:21:37.469913600Z"
+    },
+    {
+      "bookId": 74,
+      "headerPath": "20261108/22/74.header.txt",
+      "bodyPath": "20261108/22/74.body.txt",
+      "headerBytes": 789,
+      "bodyBytes": 405626,
+      "bodySha256": "1dade7b8e9e86fae3dd0173c058501c07881229b824f23947641ec099482d3ef",
+      "ingestedAt": "2026-11-08T22:21:38.707183200Z"
+    },
+    {
+      "bookId": 76,
+      "headerPath": "20261108/22/76.header.txt",
+      "bodyPath": "20261108/22/76.body.txt",
+      "headerBytes": 801,
+      "bodyBytes": 590657,
+      "bodySha256": "8c3f8b1b64e9d4390411b5df69b26246560a3c42a7d264deb8f1f91929b7fd4c",
+      "ingestedAt": "2026-11-08T22:21:38.854762800Z"
+    },
+    {
+      "bookId": 84,
+      "headerPath": "20261108/22/84.header.txt",
+      "bodyPath": "20261108/22/84.body.txt",
+      "headerBytes": 941,
+      "bodyBytes": 421536,
+      "bodySha256": "bde72e6909fb0caebf375b81f7a63140d2b6ffab49a473c670a498dee96934a8",
+      "ingestedAt": "2026-11-08T22:21:38.872773700Z"
+    },
+    {
+      "bookId": 98,
+      "headerPath": "20261108/22/98.header.txt",
+      "bodyPath": "20261108/22/98.body.txt",
+      "headerBytes": 782,
+      "bodyBytes": 771503,
+      "bodySha256": "d614b101548dd9271afa7f63f0899640cf0b91ccf3daae0ac46e5bf09d62105c",
+      "ingestedAt": "2026-11-08T22:21:39.148905100Z"
+    },
+    {
+      "bookId": 100,
+      "headerPath": "20261108/22/100.header.txt",
+      "bodyPath": "20261108/22/100.body.txt",
+      "headerBytes": 790,
+      "bodyBytes": 5422620,
+      "bodySha256": "bfb5a5764506115cbae33bfdf66014697ef69d06339f001db209d3f2a56c83fc",
+      "ingestedAt": "2026-11-08T22:21:40.245461900Z"
+    },
+    {
+      "bookId": 103,
+      "headerPath": "20261108/22/103.header.txt",
+      "bodyPath": "20261108/22/103.body.txt",
+      "headerBytes": 791,
+      "bodyBytes": 375959,
+      "bodySha256": "0745703db5e163fd3514bd89bc2323da2dde08729fb4fef7f557a805234cf9fd",
+      "ingestedAt": "2026-11-08T22:21:40.264651800Z"
+    },
+    {
+      "bookId": 105,
+      "headerPath": "20261108/22/105.header.txt",
+      "bodyPath": "20261108/22/105.body.txt",
+      "headerBytes": 800,
+      "bodyBytes": 469407,
+      "bodySha256": "363b7657367596bb3bab9cf4a5878422d3104832418c540d38d545279ad8d66b",
+      "ingestedAt": "2026-11-08T22:21:40.571847500Z"
+    },
+    {
+      "bookId": 108,
+      "headerPath": "20261108/22/108.header.txt",
+      "bodyPath": "20261108/22/108.body.txt",
+      "headerBytes": 794,
+      "bodyBytes": 686375,
+      "bodySha256": "6eda8c3eb37f82246349e002fb4c7988bcc9195510b4aa030417f43f577d00f7",
+      "ingestedAt": "2026-11-08T22:21:41.092908800Z"
+    },
+    {
+      "bookId": 113,
+      "headerPath": "20261108/22/113.header.txt",
+      "bodyPath": "20261108/22/113.body.txt",
+      "headerBytes": 744,
+      "bodyBytes": 446098,
+      "bodySha256": "ce9f6ca3aa4d658e54b68f666eff354b27a9006f017faa7537ef66765d5f7a1f",
+      "ingestedAt": "2026-11-08T22:21:41.599119100Z"
+    },
+    {
+      "bookId": 120,
+      "headerPath": "20261108/22/120.header.txt",
+      "bodyPath": "20261108/22/120.body.txt",
+      "headerBytes": 770,
+      "bodyBytes": 372620,
+      "bodySha256": "ef67b01f998cbd2c75650bd8aad781ddedb50dccc9d4725eefb93efa68a72f71",
+      "ingestedAt": "2026-11-08T22:21:41.825305300Z"
+    },
+    {
+      "bookId": 121,
+      "headerPath": "20261108/22/121.header.txt",
+      "bodyPath": "20261108/22/121.body.txt",
+      "headerBytes": 810,
+      "bodyBytes": 440229,
+      "bodySha256": "90b5c714851bd45957871b9efe30ccfb0c7df0acc9a73c4eb7735aadbc89711c",
+      "ingestedAt": "2026-11-08T22:21:41.990324900Z"
+    },
+    {
+      "bookId": 132,
+      "headerPath": "20261108/22/132.header.txt",
+      "bodyPath": "20261108/22/132.body.txt",
+      "headerBytes": 798,
+      "bodyBytes": 315552,
+      "bodySha256": "177f57b6f7249188f0ed2745691f1c8c32f18fe7aae2862a9be7ba79c4f4045a",
+      "ingestedAt": "2026-11-08T22:21:42.090312Z"
+    },
+    {
+      "bookId": 135,
+      "headerPath": "20261108/22/135.header.txt",
+      "bodyPath": "20261108/22/135.body.txt",
+      "headerBytes": 804,
+      "bodyBytes": 3276195,
+      "bodySha256": "3790b506959d4d8e91083ade2d91092cf56e93ca9027418e6bedbe8b34386ed7",
+      "ingestedAt": "2026-11-08T22:21:42.476850300Z"
+    },
+    {
+      "bookId": 140,
+      "headerPath": "20261108/22/140.header.txt",
+      "bodyPath": "20261108/22/140.body.txt",
+      "headerBytes": 809,
+      "bodyBytes": 820472,
+      "bodySha256": "75ebbaf187c1e1f584399a0ef61c89b582fc1e304248078d865e3026f7463f4d",
+      "ingestedAt": "2026-11-08T22:21:42.586953500Z"
+    },
+    {
+      "bookId": 141,
+      "headerPath": "20261108/22/141.header.txt",
+      "bodyPath": "20261108/22/141.body.txt",
+      "headerBytes": 775,
+      "bodyBytes": 893690,
+      "bodySha256": "74590df7cef7953789113ee5dfe2886b290a724ea509f9a1286140c52baa2999",
+      "ingestedAt": "2026-11-08T22:21:42.603952600Z"
+    },
+    {
+      "bookId": 145,
+      "headerPath": "20261108/22/145.header.txt",
+      "bodyPath": "20261108/22/145.body.txt",
+      "headerBytes": 718,
+      "bodyBytes": 1812691,
+      "bodySha256": "db33091e5dfb388041d13c5037409b0b08833628d3b06c24ab7fd9f522249923",
+      "ingestedAt": "2026-11-08T22:21:42.754005700Z"
+    },
+    {
+      "bookId": 147,
+      "headerPath": "20261108/22/147.header.txt",
+      "bodyPath": "20261108/22/147.body.txt",
+      "headerBytes": 799,
+      "bodyBytes": 126471,
+      "bodySha256": "2b10b12d4670a2a7f2eada3427f0c5bc89d514f7f7a92b58f268ab7b840ba607",
+      "ingestedAt": "2026-11-08T22:21:43.069148600Z"
+    },
+    {
+      "bookId": 158,
+      "headerPath": "20261108/22/158.header.txt",
+      "bodyPath": "20261108/22/158.body.txt",
+      "headerBytes": 754,
+      "bodyBytes": 897480,
+      "bodySha256": "17df39a0375ebac2959aef48ab763bd68f69557a6004aede94d43cc91e04b85a",
+      "ingestedAt": "2026-11-08T22:21:43.224748500Z"
+    },
+    {
+      "bookId": 160,
+      "headerPath": "20261108/22/160.header.txt",
+      "bodyPath": "20261108/22/160.body.txt",
+      "headerBytes": 821,
+      "bodyBytes": 365633,
+      "bodySha256": "e2bfd5ff58f023a565919470df1f174a24801f49ebadb5d40b0286791222a9dd",
+      "ingestedAt": "2026-11-08T22:21:43.362474700Z"
+    },
+    {
+      "bookId": 161,
+      "headerPath": "20261108/22/161.header.txt",
+      "bodyPath": "20261108/22/161.body.txt",
+      "headerBytes": 744,
+      "bodyBytes": 680409,
+      "bodySha256": "b357d9b15410fa3e58ce91405727ce41450532a4f501f35df931a7f85e1fb1bb",
+      "ingestedAt": "2026-11-08T22:21:43.472222600Z"
+    },
+    {
+      "bookId": 164,
+      "headerPath": "20261108/22/164.header.txt",
+      "bodyPath": "20261108/22/164.body.txt",
+      "headerBytes": 835,
+      "bodyBytes": 606202,
+      "bodySha256": "0c0e40524077497b77161d996dedc416348b9af80c3e138daf975f75926eeae2",
+      "ingestedAt": "2026-11-08T22:21:43.639278400Z"
+    },
+    {
+      "bookId": 174,
+      "headerPath": "20261108/22/174.header.txt",
+      "bodyPath": "20261108/22/174.body.txt",
+      "headerBytes": 804,
+      "bodyBytes": 437456,
+      "bodySha256": "aa8346331b9532dab86d8ab25a4a4ad598dc1c79e7ec2ed66157db9881861236",
+      "ingestedAt": "2026-11-08T22:21:43.772533300Z"
+    },
+    {
+      "bookId": 205,
+      "headerPath": "20261108/22/205.header.txt",
+      "bodyPath": "20261108/22/205.body.txt",
+      "headerBytes": 839,
+      "bodyBytes": 637838,
+      "bodySha256": "67c01b61970d6eecbccb372a6d5c2b644ae76f3c8fdac21eb238fea502306b05",
+      "ingestedAt": "2026-11-08T22:21:43.914243Z"
+    },
+    {
+      "bookId": 209,
+      "headerPath": "20261108/22/209.header.txt",
+      "bodyPath": "20261108/22/209.body.txt",
+      "headerBytes": 762,
+      "bodyBytes": 234872,
+      "bodySha256": "e74de22bfcb3a3013b538614217d5bd4081ac03860ba348c1512774960378cfb",
+      "ingestedAt": "2026-11-08T22:21:44.070864300Z"
+    },
+    {
+      "bookId": 219,
+      "headerPath": "20261108/22/219.header.txt",
+      "bodyPath": "20261108/22/219.body.txt",
+      "headerBytes": 775,
+      "bodyBytes": 213939,
+      "bodySha256": "56e2c3f429ebc19aa5bfb837a4e0bbe73263f5b742e7d14ec445540baf88a729",
+      "ingestedAt": "2026-11-08T22:21:44.205201700Z"
+    },
+    {
+      "bookId": 236,
+      "headerPath": "20261108/22/236.header.txt",
+      "bodyPath": "20261108/22/236.body.txt",
+      "headerBytes": 730,
+      "bodyBytes": 278523,
+      "bodySha256": "716d1b35047dd9bbbc0b22cb0f8371f3abecda01af748e70b5c7d4c658170ab7",
+      "ingestedAt": "2026-11-08T22:21:44.405319400Z"
+    },
+    {
+      "bookId": 244,
+      "headerPath": "20261108/22/244.header.txt",
+      "bodyPath": "20261108/22/244.body.txt",
+      "headerBytes": 783,
+      "bodyBytes": 244243,
+      "bodySha256": "2d5d1e7d0803807d688a77e847ac2c07319a0a03f2bbc8077257dd928ffd4bc5",
+      "ingestedAt": "2026-11-08T22:21:44.526651400Z"
+    },
+    {
+      "bookId": 345,
+      "headerPath": "20261108/22/345.header.txt",
+      "bodyPath": "20261108/22/345.body.txt",
+      "headerBytes": 783,
+      "bodyBytes": 855074,
+      "bodySha256": "27ff3ad852dccfe9edc06a56b7f5936520148f66bf358ab2e229a576cd076c1b",
+      "ingestedAt": "2026-11-08T22:21:44.691340Z"
+    },
+    {
+      "bookId": 432,
+      "headerPath": "20261108/22/432.header.txt",
+      "bodyPath": "20261108/22/432.body.txt",
+      "headerBytes": 783,
+      "bodyBytes": 934971,
+      "bodySha256": "76d49ed23329d2e465901601bc8e2757a03b99fa43008f62cb3bf05fe1c013e7",
+      "ingestedAt": "2026-11-08T22:21:44.822758300Z"
+    },
+    {
+      "bookId": 514,
+      "headerPath": "20261108/22/514.header.txt",
+      "bodyPath": "20261108/22/514.body.txt",
+      "headerBytes": 725,
+      "bodyBytes": 1030871,
+      "bodySha256": "c6308b76332136d22a5dfc45e7e4eb8aaa5a8d416ad032fd5544f96af46a0231",
+      "ingestedAt": "2026-11-08T22:21:44.983960700Z"
+    },
+    {
+      "bookId": 521,
+      "headerPath": "20261108/22/521.header.txt",
+      "bodyPath": "20261108/22/521.body.txt",
+      "headerBytes": 804,
+      "bodyBytes": 623958,
+      "bodySha256": "c9d8973a9a18d094e77fd4ae518a78714a87c699246534a588f6d7517a932978",
+      "ingestedAt": "2026-11-08T22:21:45.114182700Z"
+    },
+    {
+      "bookId": 580,
+      "headerPath": "20261108/22/580.header.txt",
+      "bodyPath": "20261108/22/580.body.txt",
+      "headerBytes": 778,
+      "bodyBytes": 1798693,
+      "bodySha256": "98c7dbacaf10b3878eb34030ab8b3863b9971c8caa9a99415de2ded77133b2ee",
+      "ingestedAt": "2026-11-08T22:21:45.335372Z"
+    },
+    {
+      "bookId": 600,
+      "headerPath": "20261108/22/600.header.txt",
+      "bodyPath": "20261108/22/600.body.txt",
+      "headerBytes": 833,
+      "bodyBytes": 242738,
+      "bodySha256": "0ed3fdada4fbbf8bdcec2b65324f63a0dd9eb98466a13d064208ff19a13898d3",
+      "ingestedAt": "2026-11-08T22:21:45.487650700Z"
+    },
+    {
+      "bookId": 730,
+      "headerPath": "20261108/22/730.header.txt",
+      "bodyPath": "20261108/22/730.body.txt",
+      "headerBytes": 795,
+      "bodyBytes": 917255,
+      "bodySha256": "bd74c7181288de82a2ad726dbb267abee316173cefe9f412563c73bd56049213",
+      "ingestedAt": "2026-11-08T22:21:45.682187600Z"
+    },
+    {
+      "bookId": 766,
+      "headerPath": "20261108/22/766.header.txt",
+      "bodyPath": "20261108/22/766.body.txt",
+      "headerBytes": 814,
+      "bodyBytes": 1975229,
+      "bodySha256": "58d9656b4201ae294770edfe654c5abc81d096cf02cecc8469361aed0b0ce366",
+      "ingestedAt": "2026-11-08T22:21:45.882115100Z"
+    },
+    {
+      "bookId": 768,
+      "headerPath": "20261108/22/768.header.txt",
+      "bodyPath": "20261108/22/768.body.txt",
+      "headerBytes": 754,
+      "bodyBytes": 661711,
+      "bodySha256": "6ed5d10a515e2e025b0941dbccf22f291b2212a22226b3c2e442ce27ba93d71a",
+      "ingestedAt": "2026-11-08T22:21:46.002850400Z"
+    },
+    {
+      "bookId": 786,
+      "headerPath": "20261108/22/786.header.txt",
+      "bodyPath": "20261108/22/786.body.txt",
+      "headerBytes": 802,
+      "bodyBytes": 594776,
+      "bodySha256": "bb2a733e2c7f49be75a91f0e38acb273addaab8c76f660ff568c44a33dd4c1a1",
+      "ingestedAt": "2026-11-08T22:21:46.229293900Z"
+    },
+    {
+      "bookId": 829,
+      "headerPath": "20261108/22/829.header.txt",
+      "bodyPath": "20261108/22/829.body.txt",
+      "headerBytes": 841,
+      "bodyBytes": 584472,
+      "bodySha256": "0c3e288408fd2c8940f5169518dda829d101cc58b9f709337bfe3055400235cc",
+      "ingestedAt": "2026-11-08T22:21:46.474383400Z"
+    },
+    {
+      "bookId": 834,
+      "headerPath": "20261108/22/834.header.txt",
+      "bodyPath": "20261108/22/834.body.txt",
+      "headerBytes": 791,
+      "bodyBytes": 581679,
+      "bodySha256": "699fea1d8b1d39ac447aaff6ac105c9f4748500c9e9e30765d4b16342f13a45f",
+      "ingestedAt": "2026-11-08T22:21:46.677802100Z"
+    },
+    {
+      "bookId": 844,
+      "headerPath": "20261108/22/844.header.txt",
+      "bodyPath": "20261108/22/844.body.txt",
+      "headerBytes": 857,
+      "bodyBytes": 117987,
+      "bodySha256": "c89baeb2febea37c10858d5097d4316c6abd4d4953dc498da930d0f0a4c6483e",
+      "ingestedAt": "2026-11-08T22:21:46.848854800Z"
+    },
+    {
+      "bookId": 902,
+      "headerPath": "20261108/22/902.header.txt",
+      "bodyPath": "20261108/22/902.body.txt",
+      "headerBytes": 801,
+      "bodyBytes": 90836,
+      "bodySha256": "e314377d67fc24e95c435a7f21afc0cf3617bf48b062062ec1f0217ba6b3e74b",
+      "ingestedAt": "2026-11-08T22:21:47.082225100Z"
+    },
+    {
+      "bookId": 932,
+      "headerPath": "20261108/22/932.header.txt",
+      "bodyPath": "20261108/22/932.body.txt",
+      "headerBytes": 817,
+      "bodyBytes": 42627,
+      "bodySha256": "481964b9f46ee40227d028fdb8b27bf6ebf1933948c7cc7b9fd3c2ed6fb90734",
+      "ingestedAt": "2026-11-08T22:21:47.243391400Z"
+    },
+    {
+      "bookId": 996,
+      "headerPath": "20261108/22/996.header.txt",
+      "bodyPath": "20261108/22/996.body.txt",
+      "headerBytes": 783,
+      "bodyBytes": 2328990,
+      "bodySha256": "a7448c4d9cad4012b277854a603096e088d8fb5640b56d54d5c9fe1be343f32c",
+      "ingestedAt": "2026-11-08T22:21:47.786579900Z"
+    },
+    {
+      "bookId": 1023,
+      "headerPath": "20261108/22/1023.header.txt",
+      "bodyPath": "20261108/22/1023.body.txt",
+      "headerBytes": 868,
+      "bodyBytes": 1985097,
+      "bodySha256": "4690f2d6ded2ebc6715bd11a009fd635b9b0be411dfe6bbe583a9d55437ed42b",
+      "ingestedAt": "2026-11-08T22:21:47.792578300Z"
+    },
+    {
+      "bookId": 1065,
+      "headerPath": "20261108/22/1065.header.txt",
+      "bodyPath": "20261108/22/1065.body.txt",
+      "headerBytes": 778,
+      "bodyBytes": 7345,
+      "bodySha256": "5ab7d7f5a6903bb839f1fe5c0e26ab4ebf8990e8fbf83512de703d7102111645",
+      "ingestedAt": "2026-11-08T22:21:47.774578900Z"
+    },
+    {
+      "bookId": 1080,
+      "headerPath": "20261108/22/1080.header.txt",
+      "bodyPath": "20261108/22/1080.body.txt",
+      "headerBytes": 791,
+      "bodyBytes": 19512,
+      "bodySha256": "5ecfd997c88a5e7a8f05713cf98330ba8556447366b579a965ad7c76a311703c",
+      "ingestedAt": "2026-11-08T22:21:47.807580500Z"
+    },
+    {
+      "bookId": 1184,
+      "headerPath": "20261108/22/1184.header.txt",
+      "bodyPath": "20261108/22/1184.body.txt",
+      "headerBytes": 857,
+      "bodyBytes": 2704313,
+      "bodySha256": "b719c17174271b75d42c59393cfe9361489c283689f89c7c5e0f52e05ff8444f",
+      "ingestedAt": "2026-11-08T22:21:48.297877700Z"
+    },
+    {
+      "bookId": 1228,
+      "headerPath": "20261108/22/1228.header.txt",
+      "bodyPath": "20261108/22/1228.body.txt",
+      "headerBytes": 849,
+      "bodyBytes": 934492,
+      "bodySha256": "b8aa5011c387e9bbb73fc43c6e141ced0282fbe2cbe57f3da3bcb060fd1c6c69",
+      "ingestedAt": "2026-11-08T22:21:48.379910500Z"
+    },
+    {
+      "bookId": 1232,
+      "headerPath": "20261108/22/1232.header.txt",
+      "bodyPath": "20261108/22/1232.body.txt",
+      "headerBytes": 806,
+      "bodyBytes": 283426,
+      "bodySha256": "33e616c68ed77837dd40d587a30b97988783c76126c8fbb7ae220c53780648d0",
+      "ingestedAt": "2026-11-08T22:21:48.475281200Z"
+    },
+    {
+      "bookId": 1250,
+      "headerPath": "20261108/22/1250.header.txt",
+      "bodyPath": "20261108/22/1250.body.txt",
+      "headerBytes": 771,
+      "bodyBytes": 108718,
+      "bodySha256": "c0006ab064d8d51fce2711866c036ae620a8c14e2ff36a061a2985bc8c46fe3d",
+      "ingestedAt": "2026-11-08T22:21:48.744276500Z"
+    },
+    {
+      "bookId": 1257,
+      "headerPath": "20261108/22/1257.header.txt",
+      "bodyPath": "20261108/22/1257.body.txt",
+      "headerBytes": 883,
+      "bodyBytes": 1337847,
+      "bodySha256": "c5069c9b0354b2d32ce99d38443a0112116581b6056f641d7fbb059165055742",
+      "ingestedAt": "2026-11-08T22:21:48.953525500Z"
+    },
+    {
+      "bookId": 1260,
+      "headerPath": "20261108/22/1260.header.txt",
+      "bodyPath": "20261108/22/1260.body.txt",
+      "headerBytes": 813,
+      "bodyBytes": 1043963,
+      "bodySha256": "a535895cbb7c9bd50f8ae3f30e001ac5c0f25ce5925d61e6277e2a597102d6ca",
+      "ingestedAt": "2026-11-08T22:21:49.456911200Z"
+    },
+    {
+      "bookId": 1322,
+      "headerPath": "20261108/22/1322.header.txt",
+      "bodyPath": "20261108/22/1322.body.txt",
+      "headerBytes": 767,
+      "bodyBytes": 742866,
+      "bodySha256": "3f5f33ac7360adca35cf142f7fc399a8f045ce56d4c4733733c0fde09d94b7ec",
+      "ingestedAt": "2026-11-08T22:21:49.614911300Z"
+    },
+    {
+      "bookId": 1342,
+      "headerPath": "20261108/22/1342.header.txt",
+      "bodyPath": "20261108/22/1342.body.txt",
+      "headerBytes": 899,
+      "bodyBytes": 737914,
+      "bodySha256": "ec5006ab5edb21cf0ee304712665ef03a8a96bc5ef2e8bb70877dca86973d79c",
+      "ingestedAt": "2026-11-08T22:21:49.848068900Z"
+    },
+    {
+      "bookId": 1399,
+      "headerPath": "20261108/22/1399.header.txt",
+      "bodyPath": "20261108/22/1399.body.txt",
+      "headerBytes": 812,
+      "bodyBytes": 2008297,
+      "bodySha256": "8c17942439a37d85838cea7f079a8eaec081e43e91b60334d18ec3cc70cccef9",
+      "ingestedAt": "2026-11-08T22:21:50.124807200Z"
+    },
+    {
+      "bookId": 1400,
+      "headerPath": "20261108/22/1400.header.txt",
+      "bodyPath": "20261108/22/1400.body.txt",
+      "headerBytes": 790,
+      "bodyBytes": 1018009,
+      "bodySha256": "b8ed36381a778163bb64691e827e629dbccead1f978f66a2d033e1a018a5a3cf",
+      "ingestedAt": "2026-11-08T22:21:50.235455400Z"
+    },
+    {
+      "bookId": 1404,
+      "headerPath": "20261108/22/1404.header.txt",
+      "bodyPath": "20261108/22/1404.body.txt",
+      "headerBytes": 861,
+      "bodyBytes": 1147615,
+      "bodySha256": "c0b34a90ef9c75b37d0c7ac8b25ee02b088a34b9972f05b51ddcf8b41fccc431",
+      "ingestedAt": "2026-11-08T22:21:50.556542300Z"
+    },
+    {
+      "bookId": 1497,
+      "headerPath": "20261108/22/1497.header.txt",
+      "bodyPath": "20261108/22/1497.body.txt",
+      "headerBytes": 787,
+      "bodyBytes": 1199840,
+      "bodySha256": "30e5b674ac9f72c4906cfb5cf5d3f1e0df3b8459a1211d3a36879b6abad6515f",
+      "ingestedAt": "2026-11-08T22:21:50.797859900Z"
+    },
+    {
+      "bookId": 1513,
+      "headerPath": "20261108/22/1513.header.txt",
+      "bodyPath": "20261108/22/1513.body.txt",
+      "headerBytes": 832,
+      "bodyBytes": 144397,
+      "bodySha256": "8a82a91cc44c4d77ff9e2477a5317e2232306ef4eb388d1787264c6a606e7faf",
+      "ingestedAt": "2026-11-08T22:21:50.992681Z"
+    },
+    {
+      "bookId": 1524,
+      "headerPath": "20261108/22/1524.header.txt",
+      "bodyPath": "20261108/22/1524.body.txt",
+      "headerBytes": 747,
+      "bodyBytes": 180462,
+      "bodySha256": "445bbb0ab53d60c0fca3689a18f6d5b036e6be0c38f3caf8c8349b55055f0478",
+      "ingestedAt": "2026-11-08T22:21:51.218833200Z"
+    },
+    {
+      "bookId": 1661,
+      "headerPath": "20261108/22/1661.header.txt",
+      "bodyPath": "20261108/22/1661.body.txt",
+      "headerBytes": 842,
+      "bodyBytes": 575794,
+      "bodySha256": "a4866cc751985c68a8dec9753cc5afc4f5c7da0332f1be320e053ae8d19a7c71",
+      "ingestedAt": "2026-11-08T22:21:51.510759600Z"
+    },
+    {
+      "bookId": 1695,
+      "headerPath": "20261108/22/1695.header.txt",
+      "bodyPath": "20261108/22/1695.body.txt",
+      "headerBytes": 822,
+      "bodyBytes": 328937,
+      "bodySha256": "6c118c7fd673402a183022d99e6feedaa8ae655d2c238d24e463791ae634b4ba",
+      "ingestedAt": "2026-11-08T22:21:51.678429300Z"
+    },
+    {
+      "bookId": 1727,
+      "headerPath": "20261108/22/1727.header.txt",
+      "bodyPath": "20261108/22/1727.body.txt",
+      "headerBytes": 782,
+      "bodyBytes": 686142,
+      "bodySha256": "77f39f6d3aa78c121d6c6331786ace36ac847020071f32ccfdc1d4c4f5129fa8",
+      "ingestedAt": "2026-11-08T22:21:51.875826600Z"
+    },
+    {
+      "bookId": 1952,
+      "headerPath": "20261108/22/1952.header.txt",
+      "bodyPath": "20261108/22/1952.body.txt",
+      "headerBytes": 808,
+      "bodyBytes": 31904,
+      "bodySha256": "bfb16b1ebb0bef2051490e1599934607e7aa06fe6805275cfd3e554bf0c186d2",
+      "ingestedAt": "2026-11-08T22:21:52.089471800Z"
+    },
+    {
+      "bookId": 1998,
+      "headerPath": "20261108/22/1998.header.txt",
+      "bodyPath": "20261108/22/1998.body.txt",
+      "headerBytes": 914,
+      "bodyBytes": 647318,
+      "bodySha256": "8e91510761af270345e13473b78d2c45ce4dccee4c1d8f326e4d50f6f6919614",
+      "ingestedAt": "2026-11-08T22:21:52.351655800Z"
+    },
+    {
+      "bookId": 2097,
+      "headerPath": "20261108/22/2097.header.txt",
+      "bodyPath": "20261108/22/2097.body.txt",
+      "headerBytes": 744,
+      "bodyBytes": 236841,
+      "bodySha256": "09a8c2656e5a3b477963c9f379330cc75927cfb92b20c2d2a4e18ce9ce33edae",
+      "ingestedAt": "2026-11-08T22:21:52.539547500Z"
+    },
+    {
+      "bookId": 2500,
+      "headerPath": "20261108/22/2500.header.txt",
+      "bodyPath": "20261108/22/2500.body.txt",
+      "headerBytes": 782,
+      "bodyBytes": 218758,
+      "bodySha256": "0f24e651a3217c3c7867e2102f43f563e893ef9e2b180edcf8b0d4d0600a92e1",
+      "ingestedAt": "2026-11-08T22:21:52.649721Z"
+    },
+    {
+      "bookId": 2542,
+      "headerPath": "20261108/22/2542.header.txt",
+      "bodyPath": "20261108/22/2542.body.txt",
+      "headerBytes": 824,
+      "bodyBytes": 144057,
+      "bodySha256": "055e4f62e703f4cd4ab2e4a1e73f879bee53b82f72b6a3253f27ea854477d1cc",
+      "ingestedAt": "2026-11-08T22:21:52.892812800Z"
+    },
+    {
+      "bookId": 2554,
+      "headerPath": "20261108/22/2554.header.txt",
+      "bodyPath": "20261108/22/2554.body.txt",
+      "headerBytes": 826,
+      "bodyBytes": 1160565,
+      "bodySha256": "ca13494d1b2b07cb5fe47146a1e5cccffd9667e4fd29c8aaecd4fd0ed981e7ff",
+      "ingestedAt": "2026-11-08T22:21:53.110038100Z"
+    },
+    {
+      "bookId": 2591,
+      "headerPath": "20261108/22/2591.header.txt",
+      "bodyPath": "20261108/22/2591.body.txt",
+      "headerBytes": 823,
+      "bodyBytes": 531096,
+      "bodySha256": "7a46bd703893bdc54e79be63e9a69fe63d793781ce534e425103e0447603abc4",
+      "ingestedAt": "2026-11-08T22:21:53.359475700Z"
+    },
+    {
+      "bookId": 2600,
+      "headerPath": "20261108/22/2600.header.txt",
+      "bodyPath": "20261108/22/2600.body.txt",
+      "headerBytes": 825,
+      "bodyBytes": 3274124,
+      "bodySha256": "c7156148ecaa12b6416cf816540d8dede2014982554a835e61076f0dd8bf0c2d",
+      "ingestedAt": "2026-11-08T22:21:53.754669700Z"
+    },
+    {
+      "bookId": 2638,
+      "headerPath": "20261108/22/2638.header.txt",
+      "bodyPath": "20261108/22/2638.body.txt",
+      "headerBytes": 820,
+      "bodyBytes": 1380901,
+      "bodySha256": "bfb81db707d14263f5dfd81ed7768cb58ddcce109949ee322cfaf6b065de0a10",
+      "ingestedAt": "2026-11-08T22:21:53.873022800Z"
+    },
+    {
+      "bookId": 2680,
+      "headerPath": "20261108/22/2680.header.txt",
+      "bodyPath": "20261108/22/2680.body.txt",
+      "headerBytes": 776,
+      "bodyBytes": 398683,
+      "bodySha256": "95bcfa55d3a6bba03c42af3f32cff2dd5a7e3822962c8f267d3249f769adbfba",
+      "ingestedAt": "2026-11-08T22:21:53.899534100Z"
+    },
+    {
+      "bookId": 2701,
+      "headerPath": "20261108/22/2701.header.txt",
+      "bodyPath": "20261108/22/2701.body.txt",
+      "headerBytes": 802,
+      "bodyBytes": 1234542,
+      "bodySha256": "b8d4a465cfb1eb0c7c8a3bd597f0af7666d00caa5d3a40aa52f7af9819e31d7b",
+      "ingestedAt": "2026-11-08T22:21:54.197078200Z"
+    },
+    {
+      "bookId": 2814,
+      "headerPath": "20261108/22/2814.header.txt",
+      "bodyPath": "20261108/22/2814.body.txt",
+      "headerBytes": 772,
+      "bodyBytes": 378036,
+      "bodySha256": "1b626998d4b5b37a3f4cb6037f8a832da6600803f657d62d35fb2e0391b0675b",
+      "ingestedAt": "2026-11-08T22:21:54.554608400Z"
+    },
+    {
+      "bookId": 2852,
+      "headerPath": "20261108/22/2852.header.txt",
+      "bodyPath": "20261108/22/2852.body.txt",
+      "headerBytes": 808,
+      "bodyBytes": 360867,
+      "bodySha256": "3c3e43511782f4be9a74587b2ffdc4d69fd6b982b572659375b6d41a4acb7f2b",
+      "ingestedAt": "2026-11-08T22:21:55.720732900Z"
+    },
+    {
+      "bookId": 3207,
+      "headerPath": "20261108/22/3207.header.txt",
+      "bodyPath": "20261108/22/3207.body.txt",
+      "headerBytes": 760,
+      "bodyBytes": 1212566,
+      "bodySha256": "561f26bb562903058e8e1807021b4f0428b086a062ff8d3bf7d31188492fd732",
+      "ingestedAt": "2026-11-08T22:21:55.940930400Z"
+    },
+    {
+      "bookId": 3296,
+      "headerPath": "20261108/22/3296.header.txt",
+      "bodyPath": "20261108/22/3296.body.txt",
+      "headerBytes": 830,
+      "bodyBytes": 602962,
+      "bodySha256": "7cfe7ca317eb27075ed6a0cec6caec51bea81352c9ad873ca64202c920d9024e",
+      "ingestedAt": "2026-11-08T22:21:55.937926700Z"
+    },
+    {
+      "bookId": 3300,
+      "headerPath": "20261108/22/3300.header.txt",
+      "bodyPath": "20261108/22/3300.body.txt",
+      "headerBytes": 865,
+      "bodyBytes": 2414440,
+      "bodySha256": "e452e5762908c46b9fde1fa07f74112d341bad5259b848d1e87e6cd3e1ba365f",
+      "ingestedAt": "2026-11-08T22:21:56.154969300Z"
+    },
+    {
+      "bookId": 3825,
+      "headerPath": "20261108/22/3825.header.txt",
+      "bodyPath": "20261108/22/3825.body.txt",
+      "headerBytes": 765,
+      "bodyBytes": 190981,
+      "bodySha256": "6fd37cde98b67dae33e4686bd0b7ecb6674013ca08965bbd9e195af1542bde15",
+      "ingestedAt": "2026-11-08T22:21:56.293924900Z"
+    },
+    {
+      "bookId": 4300,
+      "headerPath": "20261108/22/4300.header.txt",
+      "bodyPath": "20261108/22/4300.body.txt",
+      "headerBytes": 753,
+      "bodyBytes": 1533770,
+      "bodySha256": "bff261b23c123680ecdb4ee5ea5d20184a27ab0aec6615de378155d483f47e90",
+      "ingestedAt": "2026-11-08T22:21:56.573298500Z"
+    },
+    {
+      "bookId": 4363,
+      "headerPath": "20261108/22/4363.header.txt",
+      "bodyPath": "20261108/22/4363.body.txt",
+      "headerBytes": 900,
+      "bodyBytes": 382769,
+      "bodySha256": "afbe1ac297926978bcbdd50bcc60931c66972a3121098cbd94fd3b21ac1b858e",
+      "ingestedAt": "2026-11-08T22:21:56.791201200Z"
+    },
+    {
+      "bookId": 5200,
+      "headerPath": "20261108/22/5200.header.txt",
+      "bodyPath": "20261108/22/5200.body.txt",
+      "headerBytes": 892,
+      "bodyBytes": 119757,
+      "bodySha256": "966b9c1c7e0cb17f8d5330fa724bdd5e55dfd76ddf80cfbcaa45b881f31b185f",
+      "ingestedAt": "2026-11-08T22:21:57.003415900Z"
+    },
+    {
+      "bookId": 5230,
+      "headerPath": "20261108/22/5230.header.txt",
+      "bodyPath": "20261108/22/5230.body.txt",
+      "headerBytes": 797,
+      "bodyBytes": 280781,
+      "bodySha256": "c3b214783d0625f31fac6fe688ad6c3787dc0bf826a4e6e51c28e62f5883e962",
+      "ingestedAt": "2026-11-08T22:21:57.305710700Z"
+    },
+    {
+      "bookId": 6130,
+      "headerPath": "20261108/22/6130.header.txt",
+      "bodyPath": "20261108/22/6130.body.txt",
+      "headerBytes": 878,
+      "bodyBytes": 1115825,
+      "bodySha256": "f7672c513b22d4cdf25aa187048fd41c206bb2388c459a70a82a86bd2844fdb3",
+      "ingestedAt": "2026-11-08T22:21:57.466796900Z"
+    },
+    {
+      "bookId": 7370,
+      "headerPath": "20261108/22/7370.header.txt",
+      "bodyPath": "20261108/22/7370.body.txt",
+      "headerBytes": 795,
+      "bodyBytes": 314030,
+      "bodySha256": "1d87dd369877bf6f4a6f748d329679dc70c9c7ea0ac19c2985cc1213013e4729",
+      "ingestedAt": "2026-11-08T22:21:57.717552700Z"
+    },
+    {
+      "bookId": 8800,
+      "headerPath": "20261108/22/8800.header.txt",
+      "bodyPath": "20261108/22/8800.body.txt",
+      "headerBytes": 822,
+      "bodyBytes": 621280,
+      "bodySha256": "f90acf43052b94654d58591574bbab3f333f8fb8eb09a8499d4121fabecbb62d",
+      "ingestedAt": "2026-11-08T22:21:58.229165200Z"
+    },
+    {
+      "bookId": 28054,
+      "headerPath": "20261108/22/28054.header.txt",
+      "bodyPath": "20261108/22/28054.body.txt",
+      "headerBytes": 790,
+      "bodyBytes": 1982079,
+      "bodySha256": "a8da4f61494ed71b2f3b598a17b511cea3e07dae88d757b7dd4b3ab5b2dcd40d",
+      "ingestedAt": "2026-11-08T22:21:58.621971600Z"
+    },
+    {
+      "bookId": 64317,
+      "headerPath": "20261108/22/64317.header.txt",
+      "bodyPath": "20261108/22/64317.body.txt",
+      "headerBytes": 878,
+      "bodyBytes": 280241,
+      "bodySha256": "b85487b89c4b5f13efc6a59bc97b5c81ec4371768e6c1106b388153fb764f36b",
+      "ingestedAt": "2026-11-08T22:21:58.745055Z"
+    }
+  ],
+  "datamart_sha256": "5f5eb878c4f792371e011a708211bb420b6d92ed557998fd7c4908172dadabcc"
+}

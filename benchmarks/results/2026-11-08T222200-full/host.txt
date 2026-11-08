@@ -1,0 +1,10 @@
+﻿saved_at: 2026-11-08T23:37:41.7564299+00:00
+cpu: AMD Ryzen 7 6800HS with Radeon Graphics
+cores: 8 logical: 16
+ram_gb: 15.3
+os: Microsoft Windows 11 Home 10.0.22631
+power_scheme: GUID de plan de energía: 6fecc5ae-f350-48a5-b669-b472cb895ccf  (Turbo)
+java: openjdk version "17.0.21" 2026-10-20 | OpenJDK Runtime Environment Temurin-17.0.21+9 (build 17.0.21+9) | OpenJDK 64-Bit Server VM Temurin-17.0.21+9 (build 17.0.21+9, mixed mode, sharing)
+git_commit: 629cf3487c6922af48f55711b6938360a8e89ff4
+service_jvm_options: -Xms1G -Xmx4G
+powershell: 5.1.22621.5624

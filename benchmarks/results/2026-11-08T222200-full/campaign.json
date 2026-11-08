@@ -1,0 +1,175 @@
+{
+  "http_warmup_seconds": 5,
+  "jmh_threads": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "branch": "feature/benchmarks",
+  "measurement_iterations": 10,
+  "java": "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+  "status": "passed",
+  "http_duration_seconds": 20,
+  "base_commit": "629cf3487c6922af48f55711b6938360a8e89ff4",
+  "quick": false,
+  "warmup_iterations": 5,
+  "http_repetitions": 3,
+  "started_at": "2026-11-08T22:21:30.2514062Z",
+  "work_dir": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full",
+  "results_dir": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+  "phases": [
+    {
+      "name": "jmh",
+      "status": "passed",
+      "started_at": "2026-11-08T22:23:38.4244860Z",
+      "finished_at": "2026-11-08T23:11:25.8451342Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\jmh.log",
+      "parameters": [
+        "-Datamart",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot\\datamarts\\datamarts.db",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe"
+      ]
+    },
+    {
+      "name": "search-a",
+      "status": "passed",
+      "started_at": "2026-11-08T23:11:25.8521372Z",
+      "finished_at": "2026-11-08T23:19:22.9244665Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\search-a.log",
+      "parameters": [
+        "-Snapshot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot",
+        "-DataDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\work\\search",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-Queries",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\queries.txt",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+        "-Experiments",
+        "A"
+      ]
+    },
+    {
+      "name": "search-b",
+      "status": "passed",
+      "started_at": "2026-11-08T23:19:22.9736455Z",
+      "finished_at": "2026-11-08T23:24:16.9359849Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\search-b.log",
+      "parameters": [
+        "-Snapshot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot",
+        "-DataDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\work\\search",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-Queries",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\queries.txt",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+        "-Experiments",
+        "B",
+        "-SaturationClients",
+        "16"
+      ]
+    },
+    {
+      "name": "search-c",
+      "status": "passed",
+      "started_at": "2026-11-08T23:24:16.9389869Z",
+      "finished_at": "2026-11-08T23:29:02.7005848Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\search-c.log",
+      "parameters": [
+        "-Snapshot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot",
+        "-DataDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\work\\search",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-Queries",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\queries.txt",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+        "-Experiments",
+        "C"
+      ]
+    },
+    {
+      "name": "pipeline-d",
+      "status": "passed",
+      "started_at": "2026-11-08T23:29:02.7045868Z",
+      "finished_at": "2026-11-08T23:37:40.2462946Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\pipeline-d.log",
+      "parameters": [
+        "-Snapshot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot",
+        "-WorkRoot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\work\\pipeline",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-IngestIds",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\ingest-ids.txt",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+        "-Experiments",
+        "D"
+      ]
+    },
+    {
+      "name": "pipeline-e",
+      "status": "passed",
+      "started_at": "2026-11-08T23:37:40.2512968Z",
+      "finished_at": "2026-11-08T23:42:42.8620093Z",
+      "exit_code": 0,
+      "log": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full\\pipeline-e.log",
+      "parameters": [
+        "-Snapshot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot",
+        "-WorkRoot",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\work\\pipeline",
+        "-OutDir",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\results\\2026-11-08T222200-full",
+        "-IngestIds",
+        "C:\\Users\\herna\\IdeaProjects\\Stage_2\\benchmarks\\ingest-ids.txt",
+        "-JavaExe",
+        "C:\\Users\\herna\\.jdks\\temurin-17.0.21\\bin\\java.exe",
+        "-Experiments",
+        "E",
+        "-IngestionReplicas",
+        "1,2"
+      ]
+    }
+  ],
+  "finished_at": "2026-11-08T23:42:46.9826182Z",
+  "http_server_threads": [
+    16,
+    32,
+    250
+  ],
+  "jmh_csv_files": 14,
+  "jmh_combinations": 116,
+  "jmh_measurement_samples": 1160,
+  "http_runs": 33,
+  "http_successful_requests": 1352058,
+  "http_errors": 0,
+  "pipeline_runs": 36,
+  "plots": 10,
+  "raw_archive_sha256": "5f24541ec6a4dfa298fdf43c2d0a2ce46d76d2fb82d0d1ef452743ba8b1afc54",
+  "source_patch_sha256": "48d54fe0dfa2212a922ca4117f63f0897e2a3b731c1846ed0f34a8b3c48011f2",
+  "plot_dependencies": {
+    "pandas": "3.0.1",
+    "matplotlib": "3.11.2"
+  },
+  "measurement_note": "JMH used full warmup and measurement iterations. HTTP used 5 s warmup and 20 s measurement, three repetitions; selected before any HTTP measurements. See explicit CSV timestamps.",
+  "snapshot": "C:\\Users\\herna\\IdeaProjects\\Stage_2\\data\\benchmark-campaigns\\2026-11-08T222200-full\\snapshot"
+}

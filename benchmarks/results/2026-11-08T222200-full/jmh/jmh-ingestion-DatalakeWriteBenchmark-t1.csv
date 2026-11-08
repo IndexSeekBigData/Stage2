@@ -1,0 +1,7 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: size"
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","thrpt",1,10,"0,060969","0,005724","ops/ms",SMALL
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","thrpt",1,10,"0,056482","0,006507","ops/ms",MEDIUM
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","thrpt",1,10,"0,022493","0,001877","ops/ms",LARGE
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","avgt",1,10,"17,008096","1,946984","ms/op",SMALL
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","avgt",1,10,"32,505259","52,674394","ms/op",MEDIUM
+"com.inverseek.ingestion.benchmark.DatalakeWriteBenchmark.store","avgt",1,10,"45,633515","5,335098","ms/op",LARGE

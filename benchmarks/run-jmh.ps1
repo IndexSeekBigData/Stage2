@@ -45,6 +45,7 @@ if ($Datamart) {
 }
 $extra = if ($Quick) { " -wi 1 -i 1 -w 1s -r 1s" } else { "" }
 
+$failedRuns = 0
 foreach ($name in (Split-List $Modules)) {
     if (-not $plan.ContainsKey($name)) { throw "Unknown module '$name'. Use ingestion, indexing or search." }
     $entry = $plan[$name]
@@ -58,11 +59,12 @@ foreach ($name in (Split-List $Modules)) {
         foreach ($benchmark in $entry.Benchmarks) {
             foreach ($count in $counts) {
                 $base = "jmh-$name-$benchmark-t$count"
-                $jmhArgs = "-cp %classpath org.openjdk.jmh.Main $benchmark -t $count -rf csv -rff target/$base.csv -o target/$base.txt$extra"
+                $jmhArgs = "-cp %classpath org.openjdk.jmh.Main $benchmark -foe true -t $count -rf csv -rff target/$base.csv -o target/$base.txt$extra"
                 Write-Host ("[{0}] {1} threads={2} ({3:HH:mm:ss})" -f $name, $benchmark, $count, (Get-Date))
                 $run = Invoke-Native { mvn -q -B exec:exec "-Dexec.executable=java" "-Dexec.classpathScope=test" "-Dexec.args=$jmhArgs" }
                 if (Test-Path -LiteralPath "target\$base.txt") { Move-Item -LiteralPath "target\$base.txt" -Destination $jmhDir -Force }
                 if ($run.ExitCode -ne 0 -or -not (Test-Path -LiteralPath "target\$base.csv")) {
+                    $failedRuns++
                     Write-Warning "$benchmark failed (exit $($run.ExitCode)). Log: $(Join-Path $jmhDir "$base.txt")`n$($run.Output -join "`n")"
                     continue
                 }
@@ -75,3 +77,5 @@ foreach ($name in (Split-List $Modules)) {
     }
 }
 Write-Host "JMH results in $jmhDir"
+
+if ($failedRuns -gt 0) { throw "$failedRuns JMH runs failed; inspect their logs" }

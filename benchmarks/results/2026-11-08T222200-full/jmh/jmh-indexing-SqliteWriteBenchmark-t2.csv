@@ -1,0 +1,7 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: size"
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","thrpt",2,10,"0,051804","0,028624","ops/ms",SMALL
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","thrpt",2,10,"0,025536","0,013286","ops/ms",MEDIUM
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","thrpt",2,10,"0,014994","0,001994","ops/ms",LARGE
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","avgt",2,10,"219,883923","382,892604","ms/op",SMALL
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","avgt",2,10,"544,611137","930,248711","ms/op",MEDIUM
+"com.inverseek.indexing.benchmark.SqliteWriteBenchmark.saveBook","avgt",2,10,"857,382071","1457,070590","ms/op",LARGE
