@@ -1,56 +1,56 @@
 # InverSeek
 
-Buscador de libros de Project Gutenberg. Descarga el texto, publica el índice invertido y permite buscar por términos y metadatos a través de una API REST. Los cuatro servicios se ejecutan como procesos independientes en Java 17, con Javalin, JSON y SQLite.
+InverSeek is a search engine for Project Gutenberg books. It downloads texts, publishes an inverted index, and exposes a REST API for searching by terms and metadata. Four independent Java 17 processes use Javalin, JSON, and SQLite.
 
-## Arquitectura
+## Architecture
 
 ```mermaid
 flowchart LR
-    Admin[Registro de libros] -->|HTTP JSON| Control
-    Control -->|HTTP: descarga| Ingestion
-    Control -->|HTTP: indexacion| Indexing
+    Admin[Book registration] -->|HTTP JSON| Control
+    Control -->|HTTP: download| Ingestion
+    Control -->|HTTP: index| Indexing
     Control --> State[(control.db)]
-    Ingestion --> Lake[(Datalake: cabecera, cuerpo y marcador)]
+    Ingestion --> Lake[(Datalake: header, body, and completion marker)]
     Lake --> Indexing
-    Indexing --> Index[(Datamart SQLite en WAL)]
-    Index -->|Lectura| Search
-    Client[Cliente] -->|HTTP JSON| Search
+    Indexing --> Index[(SQLite datamart in WAL mode)]
+    Index -->|Read| Search
+    Client[Client] -->|HTTP JSON| Search
 ```
 
-| Componente | Puerto local | Responsabilidad |
+| Component | Local port | Responsibility |
 | --- | ---: | --- |
-| [Control](control-module/README.md) | 7000 | Registro, cola persistente, reintentos y coordinación de Ingestion e Indexing. |
-| [Ingestion](ingestion-service/README.md) | 7001 | Descarga libros y publica archivos completos en el datalake. |
-| [Indexing](indexing-service/README.md) | 7002 | Extrae metadatos, genera postings y publica el datamart en una transacción. |
-| [Search](search-service/README.md) | 7003 | Lee el índice publicado y ofrece búsqueda, detalles y filtros. |
+| [Control](control-module/README.md) | 7000 | Book registration, persistent queue, retries, and coordination of Ingestion and Indexing. |
+| [Ingestion](ingestion-service/README.md) | 7001 | Downloads books and publishes complete files to the datalake. |
+| [Indexing](indexing-service/README.md) | 7002 | Extracts metadata, generates postings, and publishes the datamart in a transaction. |
+| [Search](search-service/README.md) | 7003 | Reads the published index and provides search, book details, and filters. |
 
-El marcador de Ingestion se publica al final de la escritura. Indexing valida el contenido y es el único escritor del datamart; Search abre una vista consistente de solo lectura. Control mantiene su estado en una base SQLite separada.
+Ingestion publishes the completion marker after writing the book files. Indexing validates the content and is the sole writer of the datamart. Search opens a consistent read-only view. Control keeps its state in a separate SQLite database.
 
-## Compilar y arrancar
+## Build and run
 
-Los ejemplos usan PowerShell en Windows. Se necesita un JDK 17 y Maven en `PATH`. Project Gutenberg debe ser accesible para descargar el corpus.
+The examples use PowerShell on Windows. Install JDK 17 and put Maven on `PATH`. Downloading the corpus requires access to Project Gutenberg.
 
-Desde la raíz del repositorio:
+From the repository root, run the following commands.
 
 ```powershell
-$env:JAVA_HOME = 'C:\ruta\al\jdk-17'
+$env:JAVA_HOME = 'C:\path\to\jdk-17'
 $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
 java -version
 mvn clean package
 ```
 
-El reactor compila y prueba los cuatro módulos. Para compilar uno por separado, usa `mvn -f <modulo>/pom.xml package`. Cada módulo genera su JAR ejecutable en `target/`; consulta su README para lanzarlo por separado y configurar sus rutas.
+The Maven reactor builds and tests all four modules. To build one module separately, run `mvn -f <module>/pom.xml package`. Each module produces an executable JAR in `target/`. See its README for standalone launch and path configuration instructions.
 
-Para arrancar todos los servicios con datos separados de otras ejecuciones:
+Start all services with a separate data directory for this deployment.
 
 ```powershell
 $dataDir = Join-Path (Get-Location) 'data/demo'
 .\scripts\start-all.ps1 -DataDir $dataDir -JavaExe "$env:JAVA_HOME\bin\java.exe"
 ```
 
-El script espera la respuesta de salud y guarda endpoints, procesos y logs en el directorio de datos. Para arrancar réplicas en otro despliegue, indica `-IngestionReplicas 2 -SearchReplicas 3` y usa puertos disponibles (por ejemplo `-PortOffset 1000`). Consulta la [configuración de despliegue](docs/deployment/configuration-matrix.md).
+The script waits for health checks and stores endpoints, process information, and logs in the data directory. To start replicas in another deployment, specify `-IngestionReplicas 2 -SearchReplicas 3` and use available ports, for example with `-PortOffset 1000`. See the [deployment configuration](docs/deployment/configuration-matrix.md).
 
-## Registrar libros y consultar
+## Register books and search
 
 ```powershell
 Invoke-RestMethod -Method Post -Uri 'http://localhost:7000/control/books' `
@@ -58,7 +58,7 @@ Invoke-RestMethod -Method Post -Uri 'http://localhost:7000/control/books' `
 Invoke-RestMethod -Uri 'http://localhost:7000/control/status'
 ```
 
-El registro es asíncrono. Consulta el estado hasta que los tres libros estén en `INDEXED` y no haya trabajo activo. Después:
+Registration is asynchronous. Check the status until all three books reach `INDEXED` and the queue is idle. Then run the example queries below.
 
 ```powershell
 Invoke-RestMethod -Uri 'http://localhost:7003/search?q=whale&language=en&limit=5'
@@ -67,31 +67,31 @@ Invoke-RestMethod -Uri 'http://localhost:7003/books/1342'
 Invoke-RestMethod -Uri 'http://localhost:7003/search/filters'
 ```
 
-Search combina términos con AND, ordena por relevancia y devuelve `total`, paginación y versión del índice. El filtro por año admite valores conocidos, pero el pipeline actual no obtiene el año original de publicación de Gutenberg: sus libros llevan `year=null`.
+Search combines terms with AND, ranks results by relevance, and returns `total`, pagination information, and the index version. The year filter accepts known values. The current pipeline leaves `year=null` because it does not extract the original publication year from Gutenberg.
 
-Los contratos están en los `openapi.yaml` de cada módulo y se resumen en el [inventario de endpoints](docs/api/endpoint-inventory.md). Hay ejemplos `.http` y scripts de prueba en los módulos.
+The API contracts are in each module's `openapi.yaml` and are summarized in the [endpoint inventory](docs/api/endpoint-inventory.md). The modules also include `.http` examples and test scripts.
 
-Para detener el despliegue:
+Stop the deployment with the following command.
 
 ```powershell
 .\scripts\stop-all.ps1 -DataDir $dataDir
 ```
 
-## Validación funcional
+## Functional validation
 
-`mvn test` ejecuta las pruebas de los servicios. La validación de sistema arranca procesos reales con datos aislados, verifica contratos, flujo de libros y recuperación ante fallos, y detiene los servicios al acabar:
+`mvn test` runs the service tests. System validation starts real processes with isolated data, checks API contracts, the book workflow, and recovery from failures, then stops the services.
 
 ```powershell
 .\system-tests\scripts\validate-all.ps1 -JavaExe "$env:JAVA_HOME\bin\java.exe"
 ```
 
-Consulta las [instrucciones de validación](system-tests/README.md) y su [cobertura](docs/validation/README.md). Las pruebas de integración se activan de forma explícita y no se ejecutan en una compilación Maven normal.
+See the [validation instructions](system-tests/README.md) and [test coverage](docs/validation/README.md). Integration tests are opt-in and run separately from the default Maven build.
 
-## Benchmarks y resultados
+## Benchmarks and results
 
-La [campaña medida](benchmarks/results/2026-11-08T222200-full/README.md) incluye 116 combinaciones JMH, 33 ejecuciones HTTP, 36 del pipeline y 10 gráficas. Conserva CSV, logs, configuración del equipo, huellas del corpus y un ZIP con las muestras de origen. Las cifras corresponden al equipo y a la carga indicados en esa campaña.
+The [recorded campaign](benchmarks/results/2026-11-08T222200-full/README.md) covers 116 JMH combinations, 33 HTTP runs, 36 pipeline runs, and 10 figures. It includes CSV files, logs, host configuration, corpus hashes, and a ZIP archive of raw samples. Results apply to the host and workload described in the campaign.
 
-Para repetirla, detén primero otros despliegues de InverSeek, compila los servicios y el cliente de carga e instala `pandas` y `matplotlib` en tu entorno Python. Utiliza directorios nuevos:
+To reproduce the campaign, stop other InverSeek deployments, build the services and the load client, and install `pandas` and `matplotlib` in your Python environment. Use fresh directories for the run.
 
 ```powershell
 mvn -f benchmarks/load-client/pom.xml package
@@ -105,8 +105,8 @@ $snapshot = Join-Path $work 'snapshot'
     -Snapshot $snapshot -JavaExe $java -PythonExe (Get-Command python).Source
 ```
 
-La campaña usa JMH completo y después mide Search y el pipeline. Puede durar más de una hora. La [guía de benchmarks](benchmarks/README.md) explica cómo ejecutar los bloques por separado y regenerar las gráficas sin repetir las mediciones.
+The campaign runs the full JMH suite, followed by Search and pipeline measurements. It can take more than an hour. The [benchmark guide](benchmarks/README.md) explains how to run individual blocks and regenerate figures from saved measurements.
 
-## Límites del despliegue actual
+## Deployment limits
 
-Las réplicas se ejecutan en una sola máquina con almacenamiento local. Comparten el datalake y el datamart; SQLite tiene un único escritor y las cifras no representan un clúster. Para reconstruir todo el índice, deja terminar el trabajo de Control y evita nuevos registros hasta que finalice la operación.
+Replicas run on one host and share the local datalake and datamart. SQLite uses a single writer. To rebuild the index, wait for Control to finish its active work and resume book registration once the rebuild completes.
