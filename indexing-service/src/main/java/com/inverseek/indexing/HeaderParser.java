@@ -26,7 +26,7 @@ public final class HeaderParser {
         return parseContent(Files.readString(headerPath, StandardCharsets.UTF_8));
     }
 
-    static BookMetadata parseContent(String content) {
+    public static BookMetadata parseContent(String content) {
         return new BookMetadata(extractField(content, "Title"), extractField(content, "Author"),
                 languageCode(extractField(content, "Language")));
     }

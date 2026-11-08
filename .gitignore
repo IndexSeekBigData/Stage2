@@ -53,3 +53,7 @@ __pycache__/
 data/
 *.class
 .idea/
+
+### Benchmarks ###
+# Large raw files (monitor samples, Control data per run); summaries and plots are committed.
+benchmarks/results/**/raw/

@@ -1,0 +1,57 @@
+# Queries for the load client (experiments A, B and C): one request per line, as URL parameters.
+# Values are URL-encoded by the client. Every line must return 200 (an empty result is still 200).
+# Mix: frequent words, rare words, two-word queries and queries with language/author filters.
+# Frequent words
+q=love
+q=time
+q=house
+q=night
+q=great
+q=father
+q=heart
+q=world
+q=water
+q=king
+q=war
+q=death
+q=money
+q=friend
+q=god
+# Rare words
+q=whale
+q=harpoon
+q=vampire
+q=monster
+q=detective
+q=telescope
+q=guillotine
+q=cathedral
+q=hobbit
+q=submarine
+q=rabbit
+q=witch
+q=pirate
+q=balloon
+q=locomotive
+# Two words
+q=love heart
+q=sea ship
+q=king queen
+q=dark night
+q=young lady
+q=old man
+q=war peace
+q=gold treasure
+q=murder detective
+q=whale captain
+# With filters
+q=love&language=en
+q=time&language=en&limit=50
+q=heart&author=Austen
+q=marriage&author=Austen
+q=london&author=Dickens
+q=crime&author=Doyle
+q=sea&author=Melville
+q=love&language=en&offset=20
+q=night&author=Shelley
+q=war&language=en&author=Tolstoy

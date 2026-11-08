@@ -1,0 +1,103 @@
+# Corpus for the benchmarks: Project Gutenberg ids, one per line, English texts of varied sizes.
+# Downloaded once with prepare-corpus.ps1; the books themselves are not committed.
+# An id that Gutenberg does not serve ends as NOT_FOUND and is simply left out of the snapshot.
+1342  # Pride and Prejudice
+84  # Frankenstein
+11  # Alice's Adventures in Wonderland
+2701  # Moby Dick
+1661  # The Adventures of Sherlock Holmes
+98  # A Tale of Two Cities
+1080  # A Modest Proposal
+74  # The Adventures of Tom Sawyer
+76  # Adventures of Huckleberry Finn
+345  # Dracula
+174  # The Picture of Dorian Gray
+2542  # A Doll's House
+1952  # The Yellow Wallpaper
+5200  # Metamorphosis
+64317  # The Great Gatsby
+43  # The Strange Case of Dr. Jekyll and Mr. Hyde
+1260  # Jane Eyre
+768  # Wuthering Heights
+1232  # The Prince
+2554  # Crime and Punishment
+2600  # War and Peace
+1400  # Great Expectations
+46  # A Christmas Carol
+219  # Heart of Darkness
+158  # Emma
+161  # Sense and Sensibility
+105  # Persuasion
+121  # Northanger Abbey
+141  # Mansfield Park
+1184  # The Count of Monte Cristo
+135  # Les Miserables
+996  # Don Quixote
+4300  # Ulysses
+1497  # The Republic
+3207  # Leviathan
+2591  # Grimms' Fairy Tales
+1727  # The Odyssey
+6130  # The Iliad
+16  # Peter Pan
+120  # Treasure Island
+55  # The Wonderful Wizard of Oz
+36  # The War of the Worlds
+35  # The Time Machine
+5230  # The Invisible Man
+829  # Gulliver's Travels
+521  # Robinson Crusoe
+2814  # Dubliners
+4363  # Beyond Good and Evil
+1998  # Thus Spake Zarathustra
+205  # Walden
+100  # The Complete Works of William Shakespeare
+1513  # Romeo and Juliet
+1524  # Hamlet
+244  # A Study in Scarlet
+2097  # The Sign of the Four
+2852  # The Hound of the Baskervilles
+834  # The Memoirs of Sherlock Holmes
+108  # The Return of Sherlock Holmes
+730  # Oliver Twist
+766  # David Copperfield
+786  # Hard Times
+580  # The Pickwick Papers
+1023  # Bleak House
+145  # Middlemarch
+33  # The Scarlet Letter
+932  # The Fall of the House of Usher
+1065  # The Raven
+1250  # Anthem
+160  # The Awakening
+514  # Little Women
+236  # The Jungle Book
+1322  # Leaves of Grass
+2500  # Siddhartha
+23  # Narrative of the Life of Frederick Douglass
+113  # The Secret Garden
+41  # The Legend of Sleepy Hollow
+8800  # The Divine Comedy
+2680  # Meditations
+28054  # The Brothers Karamazov
+2638  # The Idiot
+600  # Notes from the Underground
+1399  # Anna Karenina
+3825  # Pygmalion
+844  # The Importance of Being Earnest
+902  # The Happy Prince and Other Tales
+1695  # The Man Who Was Thursday
+209  # The Turn of the Screw
+432  # The Ambassadors
+140  # The Jungle
+132  # The Art of War
+3296  # The Confessions of Saint Augustine
+10  # The King James Bible
+7370  # Second Treatise of Government
+147  # Common Sense
+1404  # The Federalist Papers
+3300  # The Wealth of Nations
+1228  # On the Origin of Species
+1257  # The Three Musketeers
+103  # Around the World in Eighty Days
+164  # Twenty Thousand Leagues under the Sea
